@@ -61,9 +61,9 @@ app.get("/", async (request, response) => {
   }
 });
 
-// app.get("/login", (request, response) => {
-//   response.sendFile(__dirname + "/views/login.html");
-// });
+app.get("/login", (request, response) => {
+   response.sendFile(__dirname + "/views/login.html");
+});
 
 app.get("/signup", async (request, response) => {
   response.sendFile(__dirname + "/views/signup.html");
