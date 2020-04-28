@@ -11,12 +11,13 @@
     "randomatic": "^3.1.1",
     "body-parser": "^1.19.0",
     "endb": "^0.22.9",
-    "sqlite3": "^4.1.1",
+    "sqlite3": "^4.2.0",
     "sql": "^0.78.0",
     "express-session": "^1.17.1",
     "cors": "^2.8.5",
     "ejs": "^3.1.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "express-status-monitor": "^1.3.2"
   },
   "engines": {
     "node": "12.x"
