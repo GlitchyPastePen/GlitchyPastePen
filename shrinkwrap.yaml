@@ -10,6 +10,7 @@ dependencies:
   randomatic: 3.1.1
   sql: 0.78.0
   sqlite3: 4.2.0
+  sweetalert2: 9.10.12
 packages:
   /abbrev/1.1.1:
     dev: false
@@ -1234,6 +1235,10 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
+  /sweetalert2/9.10.12:
+    dev: false
+    resolution:
+      integrity: sha512-RnarmbDGTPmwecJbaVdq5LvlzbVReIOtPk0huPnXOE19G00xMxGcTY0wjt9AjwsexUnLivLXc3b6nD6+D6NlGg==
   /tar/4.4.13:
     dependencies:
       chownr: 1.1.4
@@ -1371,3 +1376,4 @@ specifiers:
   randomatic: ^3.1.1
   sql: ^0.78.0
   sqlite3: ^4.2.0
+  sweetalert2: ^9.10.12
