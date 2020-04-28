@@ -251,6 +251,7 @@ app.get("/login-new", (req, res) => {
 
 app.get("/logout", (req, res) => {
   req.session.loggedin = false;
+  res.redirect("/");
 });
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {

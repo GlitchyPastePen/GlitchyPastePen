@@ -10,6 +10,19 @@ body {
   margin: 0px;
 }
 
+.main {
+  font-size: calc(100vw / 12.8);
+  font-weight: 740;
+}
+
+#intro {
+  margin-left: 20px;
+}
+
+a {
+  color: black;
+}
+
 #editor {
   height: 100%;
 }
@@ -249,5 +262,5 @@ i.fab {
   padding-right: 20px;
   cursor: pointer;
   margin-right: 20px;
-  border-radius: 9pxl
+  border-radius: 9px;
 }
