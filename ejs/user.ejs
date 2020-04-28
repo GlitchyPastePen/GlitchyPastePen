@@ -100,6 +100,8 @@
   <br /><br />
   <script>
     function remove(project) {
+      alert("project removed")
+      location.reload();
       fetch("/delete/" + project)
       .then(res => res.json() )
       .then(data => {
