@@ -264,3 +264,9 @@ i.fab {
   margin-right: 20px;
   border-radius: 9px;
 }
+
+.desc {
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: calc(35vw / 12.8);
+}
