@@ -1,6 +1,6 @@
 {
   "name": "pasteglitchpen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A code editor with more features than Pastebin, (almost) equivalent of CodePen and smaller than Glitch.",
   "main": "server.js",
   "scripts": {
