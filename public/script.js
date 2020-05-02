@@ -21,4 +21,3 @@ function dismiss() {
 //   });
 
 console.log(":)");
-

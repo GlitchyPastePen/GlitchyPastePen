@@ -57,8 +57,7 @@
   </head>
   <body style="background-color:#1f2430;">
     <header>
-      <span id="status">
-      </span>
+      <span id="status"> </span>
       <button id="logout">
         <a href="/logout">Log out</a>
       </button>
@@ -83,7 +82,7 @@
       document.CodeMirror = CodeMirror;
       var editor = createEditor(document.getElementById("editor"), {
         lineNumbers: true,
-        mode:  "htmlmixed",
+        mode: "htmlmixed",
         htmlMode: true,
         lint: true,
         theme: "ayu-mirage"
@@ -101,11 +100,12 @@
         .then(data => {
           editor.setValue(data.code);
         });
-      
-      fetch('/projectinfo/' + projectname)
+
+      fetch("/projectinfo/" + projectname)
         .then(response => response.json())
         .then(data => {
-          document.getElementsByClassName("owner")[0].innerText = "by " + data.owner;
+          document.getElementsByClassName("owner")[0].innerText =
+            "by " + data.owner;
           document.getElementsByClassName("owner")[0].href = "/u/" + data.owner;
         });
 
@@ -125,11 +125,14 @@
           .then(data => {
             if (data.status === 200) {
               document.getElementById("status").style.display = "block";
-              document.getElementById("status").innerHTML = "Your project has been successfully deployed <br />at https://glitchypastepen.glitch.me/p/" + name;
+              document.getElementById("status").innerHTML =
+                "Your project has been successfully deployed <br />at https://glitchypastepen.glitch.me/p/" +
+                name;
             } else {
               document.getElementById("status").style.display = "block";
-              document.getElementById('status').style.backgroundColor = "red";
-              document.getElementById('status').innerHTML = "Something went wrong! <br />Try again?";
+              document.getElementById("status").style.backgroundColor = "red";
+              document.getElementById("status").innerHTML =
+                "Something went wrong! <br />Try again?";
             }
           });
       }
