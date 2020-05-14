@@ -61,6 +61,9 @@
       <button id="logout">
         <a href="/logout">Log out</a>
       </button>
+      <button style="float:right;margin-right:10px;">
+        <a href="/me">My Projects</a>
+      </button>
       <p class="p-title">
         <i>PROJECT NAME</i>
       </p>
@@ -125,9 +128,12 @@
           .then(data => {
             if (data.status === 200) {
               document.getElementById("status").style.display = "block";
+              document.getElementById("status").onclick = function() {
+                this.style.display = "none";
+              };
               document.getElementById("status").innerHTML =
-                "Your project has been successfully deployed <br />at https://glitchypastepen.glitch.me/p/" +
-                name;
+                "Your project has been successfully deployed <br />at <a href=\"/p/" + name + "\">https://glitchypastepen.glitch.me/p/" +
+                name + "</a>";
             } else {
               document.getElementById("status").style.display = "block";
               document.getElementById("status").style.backgroundColor = "red";
