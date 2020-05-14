@@ -13,11 +13,11 @@ const signup = () => {
     .then(response => response.json())
     .then(data => {
       if (data.redirect == "signup") {
-        window.location.href = "https://glitchypastepen.glitch.me/signup";
+        window.location.href = "/signup";
       } else if (data.redirect == "editor") {
-        window.location.href = "https://glitchypastepen.glitch.me/editor/new";
+        window.location.href = "/editor/new";
       } else if (data.redirect == "/") {
-        window.location.href = "https://glitchypastepen.glitch.me/login-new";
+        window.location.href = "/login-new";
       } else {
         console.log("yo!");
       }

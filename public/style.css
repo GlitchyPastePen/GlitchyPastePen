@@ -101,15 +101,30 @@ header {
 }
 
 .submit {
-  margin-top: 20px;
-  background-color: #f5f5f5;
-  border: none;
+  margin-top: 20px;  
+  background-color: var(--background);
   padding-top: 10px;
-  padding-left: 20px;
-  padding-bottom: 10px;
   padding-right: 20px;
-  border-radius: 9px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: 1s ease;
   cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  margin-bottom: 10px;
+}
+
+.submit:hover {
+  background-color: yellow;
+  color: black;
+  transition: 1s ease;
+  border: none;
+  font-weight: bold;
+  -webkit-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  transform: scale(1.01);
 }
 
 #success {
@@ -274,4 +289,30 @@ i.fab {
 #login {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+button {
+  background-color: white;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: 1s ease;
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: yellow;
+  color: black;
+  transition: 1s ease;
+  border: none;
+  font-weight: bold;
+  -webkit-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  transform: scale(1.01);
 }
