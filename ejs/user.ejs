@@ -45,6 +45,7 @@
       width: 100%;
       left: 0px;
       font-size: 25px;
+      overflow: hidden;
     }
     
     img {
@@ -119,7 +120,11 @@
     <% for (var project of projects) { %>
       <div class = "project">
         <%= project.key %>&nbsp;&nbsp;
-        <img onclick="remove('<%= project.key %>')" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F9755946431556282330.svg?v=1587891245518">
+        <br />
+        <img style="float:right;margin-right:20px;" onclick="remove('<%= project.key %>')" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fdelete.svg?v=1589450120507" height="30px">
+        <img style="float:right;margin-right:10px;" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fexternal.svg?v=1589450399039" height="30px;">
+        <img style="float:right;margin-right:10px;" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fedit.svg?v=1589450679556" height="30px">
+        <br /><br />
       </div>
     <% } %>
   </div>
