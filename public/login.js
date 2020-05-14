@@ -12,9 +12,9 @@ const login = () => {
     .then(response => response.json())
     .then(data => {
       if (data.redirect == "signup") {
-        window.location.href = "https://glitchypastepen.glitch.me/signup";
+        window.location.href = "/signup";
       } else if (data.redirect == "editor") {
-        window.location.href = "https://glitchypastepen.glitch.me/me";
+        window.location.href = "/me";
       } else if (data.redirect == "/") {
         window.location.href =
           "https://glitchypastepen.glitch.me/redirect/loginfail";
