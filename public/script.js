@@ -13,6 +13,7 @@ function dismiss() {
 
 function changename() {
   console.log(document.getElementById("project-name").value);
+  
 }
 
 // fetch("/projectname", {
