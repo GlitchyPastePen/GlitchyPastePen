@@ -317,3 +317,14 @@ button:hover {
   -ms-transform: scale(1.01);
   transform: scale(1.01);
 }
+
+#option {
+  background-color: yellow;
+  padding-top: 5px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin-left: 20px;
+  width: fit-content;
+  border-radius: 3px;
+}

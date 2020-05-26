@@ -69,8 +69,10 @@
       </p>
       <input type="text" id="project-name" oninput="changename()" />
       <br />
-      <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fcancel.svg?v=1590469975627" style="width:30px;display:inline-block;cursor:pointer;">
-      <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Ftick.svg?v=1590469975377" style="width:30px;display:inline-block;cursor:pointer;">
+      <div id="option">
+        <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Ftick%20(1).svg?v=1590470313515" style="width:30px;display:inline-block;cursor:pointer;display: inline-block;cursor: pointer;width: 40px;margin-top: auto;vertical-align: text-bottom;">
+        <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fcancel.svg?v=1590469975627" style="width:30px;display:inline-block;cursor:pointer;" onclick="cancel()">
+      </div>
       <p class="empty">
         <a href="" class="owner"></a>
       </p>
@@ -144,6 +146,10 @@
                 "Something went wrong! <br />Try again?";
             }
           });
+      }
+      
+      function cancel() {
+        
       }
     </script>
   </body>
