@@ -102,6 +102,8 @@
         .then(response => response.json())
         .then(data => {
           editor.setValue(data.code);
+          console.log(data.css);
+          console.log(data.js);
         });
 
       fetch("/projectinfo/" + projectname)
