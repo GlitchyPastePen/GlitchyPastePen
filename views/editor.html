@@ -47,17 +47,15 @@
         <a href="" class="owner"></a>
       </p>
       <button id="html" onclick="editor.setSession(html);">
-      index.html
-    </button>
-    <button id="js" onclick="editor.setSession(js);">
-      script.js
-    </button>
-    <button is="css" onclick="editor.setSession(css);">
-      style.css
-    </button>
-      <p style="color:white">
-        To use the script files and stylesheets in your <code>index.html</code> code, make sure to set the source pointing towards <code>/p/<span class="projectname"></span>/style.css</code> or <code>/p/<span class="projectname"></span>/script.js</code>. 
-      </p>
+        index.html
+      </button>
+      <button id="js" onclick="editor.setSession(js);">
+        script.js
+      </button>
+      <button is="css" onclick="editor.setSession(css);">
+        style.css
+      </button>
+
       <button class="deploy" onclick="beautify()" title="Beautify code!">
         <img
           src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
@@ -70,20 +68,24 @@
           height="40px"
         />
       </button>
+      <p style="color:white">
+          To use the script files and stylesheets in your
+          <code>index.html</code> code, make sure to set the source pointing
+          towards <code>/p/<span class="projectname"></span>/style.css</code> or
+          <code>/p/<span class="projectname"></span>/script.js</code>.
+        </p>
     </header>
     <br /><br />
     <style type="text/css">
       #editor {
         position: absolute;
-        top: 230px;;
+        top: 240px;
         right: 0;
         bottom: 0;
         left: 0;
         z-index: -1;
       }
     </style>
-
-    
 
     <div id="editor"></div>
 
@@ -128,8 +130,8 @@
       let projecturl = window.location.href;
       let projectname = projecturl.slice(41);
       document.getElementById("project-name").value = projectname;
-      document.getElementsByClassName('projectname')[0].innerText = projectname;
-      document.getElementsByClassName('projectname')[1].innerText = projectname;
+      document.getElementsByClassName("projectname")[0].innerText = projectname;
+      document.getElementsByClassName("projectname")[1].innerText = projectname;
 
       let name = document.getElementById("project-name").value;
       let path = "/getCode/" + name;
