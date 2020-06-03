@@ -36,7 +36,7 @@ header {
 #project-name {
   margin-left: 20px;
   margin-top: 0px;
-  background-color: #1f2430;
+  background-color: #272822;
   border: none;
   color: white;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
@@ -154,7 +154,7 @@ pre {
 
 #deploy {
   border: none;
-  background-color: #1f2430;
+  background-color: #272822;
   display: inline-block;
   float: right;
   cursor: pointer;

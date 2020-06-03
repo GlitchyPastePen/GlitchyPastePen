@@ -17,19 +17,24 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/monokai.min.css"
-    />
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <!--     <script>hljs.initHighlightingOnLoad();</script> -->
     <script src="/script.js"></script>
     <style>
       body {
-        background-color: #1f2430;
+        background-color: #272822;
       }
+      
+      #editor { 
+        position: absolute;
+        top: 200px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
     </style>
   </head>
   <body>
@@ -38,9 +43,9 @@
     </p>
     <p type="text" id="project-name"></p>
     <br /><br />
-    <pre>
-      <code id="code-preview" class = "lanuguage-html"></code>
-    </pre>
+    <div id="editor">
+      
+    </div>
     <script>
       // document.CodeMirror = CodeMirror;
       // var editor = createEditor(document.getElementById("editor"), {
@@ -48,13 +53,18 @@
       //   lint: true,
       //   theme: "monokai"
       // });
-
-      document.addEventListener("DOMContentLoaded", event => {
-        document.querySelectorAll("pre code").forEach(block => {
-          hljs.highlightBlock(block);
-        });
+      
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/html");
+      
+      editor.setOptions({
+        fontSize: "1.5vw"
       });
+      
+      editor.setReadOnly(true);
 
+  
       let projecturl = window.location.href;
       let projectname = projecturl.slice(40);
       document.getElementById("project-name").innerText = projectname;
@@ -65,26 +75,10 @@
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          document.getElementById("code-preview").innerText = data.code;
+          editor.setValue(data.code);
         });
 
-      function deploy() {
-        let code = editor.getValue();
-        let name = document.getElementById("project-name").innerText;
-        let content = { code: code, name: name };
-
-        fetch("/deploy", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(content)
-        })
-          .then(response => response.json())
-          .then(data => {
-            console.log(":)");
-          });
-      }
+      
     </script>
   </body>
 </html>
