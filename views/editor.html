@@ -69,6 +69,16 @@
         z-index: -1;
       }
     </style>
+    
+    <button id="html">
+      HTML
+    </button>
+    <button id="js">
+      JS
+    </button>
+    <button is="css">
+      CSS
+    </button>
 
     <div id="editor"></div>
 
@@ -79,6 +89,16 @@
       });
       editor.setTheme("ace/theme/monokai");
       editor.session.setMode("ace/mode/html");
+      
+      // ace.createEditSession("html", "ace/mode/html")
+      // ace.createEditSession("js", "ace/mode/javascript");
+      // ace.createEditSession("css", "ace/mode/css")
+      
+      var EditSession = require("ace/edit_session").EditSession;
+      var html = new EditSession("html")
+      var js = new EditSession("js");
+      var css = new EditSession("css");
+
 
       function beautify() {
         var beautify = ace.require("ace/ext/beautify");
