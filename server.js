@@ -152,10 +152,7 @@ app.get("/editor/new", async (req, res) => {
       console.error(err);
     }
     
-    mkdirp('./projects/' + projectname, function(err) { 
-        // path exists unless there was an error
-      if (err) throw err;
-    });
+    mkdirp.sync(`projects/${projectname}`);
     
     // let data = { name: name };
     fs.writeFile(__dirname + `/projects/${projectname}/index.html`, "", function(
@@ -206,7 +203,7 @@ app.post("/deploy", async function(request, response) {
   
   let projectname = request.body.name;
   let filename = request.body.name + ".html";
-  fs.writeFile("projects/" + filename, request.body.code, function(err) {
+  fs.writeFile("projects/" + projectname + "/index.html", request.body.code, function(err) {
     if (err) throw err;
   });
   let projectinfo = { name: projectname, owner: global.theuser };
