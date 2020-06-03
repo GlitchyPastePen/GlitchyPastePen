@@ -333,3 +333,7 @@ button:hover {
   width: fit-content;
   border-radius: 3px;
 }
+
+.projectname {
+  color: white;
+}
