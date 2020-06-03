@@ -1,11 +1,3 @@
-const createEditor = (editor, options = {}) => {
-  const e = new document.CodeMirror.fromTextArea(editor, {
-    lineNumbers: true,
-    viewportMargin: Infinity,
-    ...options
-  });
-  return e;
-};
 
 function dismiss() {
   document.getElementById("status").style.display = "none";

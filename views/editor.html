@@ -17,42 +17,8 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/theme/ayu-mirage.css"
-    />
-    <link rel="stylesheet" href="/codemirror-theme.css" />
-    <link rel="stylesheet" href="https://codemirror.net/addon/lint/lint.css" />
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/mode/javascript/javascript.js"></script>
-    <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
-    <script src="https://codemirror.net/mode/css/css.js"></script>
-    <script src="https://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="https://codemirror.net/mode/xml/xml.js"></script>
-    <script src="https://codemirror.net/addon/lint/lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/javascript-lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/json-lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/html-lint.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js"></script>
-    <script src="https://rawgithub.com/zaach/jsonlint/79b553fb65c192add9066da64043458981b3972b/lib/jsonlint.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/lint/css-lint.min.js"></script>
-    <script src="https://codemirror.net/addon/edit/closetag.js"></script>
-    <script src="https://codemirror.net/addon/edit/closebrackets.js"></script>
-    <script src="https://codemirror.net/addon/edit/matchtags.js"></script>
-    <script src="https://codemirror.net/addon/edit/matchbrackets.js"></script>
-    <script src="https://codemirror.net/addon/selection/active-line.js"></script>
-    <script src="https://codemirror.net/addon/fold/foldcode.js"></script>
-    <script src="https://codemirror.net/addon/fold/foldgutter.js"></script>
-    <script src="https://codemirror.net/addon/fold/brace-fold.js"></script>
-    <script src="https://codemirror.net/addon/fold/xml-fold.js"></script>
-    <script src="https://htmlhint.com/js/htmlhint.js"></script>
-    <script src="https://codemirror.net/addon/fold/comment-fold.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="/script.js"></script>
   </head>
   <body style="background-color:#1f2430;">
@@ -84,19 +50,18 @@
       </button>
     </header>
     <br /><br />
-    <textarea id="editor" oninput="save();"></textarea>
+    <div id="editor" oninput="save();">
+      <h1>
+        Hi
+      </h1>
+    </div>
 
     <script>
-      document.CodeMirror = CodeMirror;
-      var editor = createEditor(document.getElementById("editor"), {
-        lineNumbers: true,
-        mode: "htmlmixed",
-        htmlMode: true,
-        lint: true,
-        theme: "ayu-mirage"
-      });
-      editor.setSize("100%", "100%");
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/html");
 
+      
       let projecturl = window.location.href;
       let projectname = projecturl.slice(41);
       document.getElementById("project-name").value = projectname;
