@@ -22,6 +22,8 @@ app.use(cors());
 
 const path = require("path");
 
+var mkdirp = require('mkdirp');
+
 const endb = require("endb");
 var user = new endb("sqlite://user.db");
 var project = new endb("sqlite://project.db");
@@ -134,12 +136,21 @@ app.get("/editor/new", async (req, res) => {
     } catch (err) {
       console.error(err);
     }
+    
+    mkdirp('./projects/' + projectname, function(err) { 
+        // path exists unless there was an error
+      if (err) throw err;
+    });
+    
     // let data = { name: name };
-    fs.writeFile(__dirname + `/projects/${projectname}.html`, "", function(
+    fs.writeFile(__dirname + `/projects/${projectname}/index.html`, "", function(
       err
     ) {
       if (err) throw err;
     });
+    fs.writeFile(__dirname + `/projects/${projectname}/style.css`, "", function(err) {
+      if (err) throw err;
+    })
     let projectinfo = { name: projectname, owner: global.theuser };
     let setinfo = await project.set(projectname, projectinfo);
     res.redirect(`/editor/${projectname}`);
@@ -187,14 +198,21 @@ app.post("/deploy", async function(request, response) {
 
 app.get("/getCode/:projectname", async (req, res) => {
   let projectname = req.params.projectname;
-  fs.readFile(`projects/${projectname}.html`, "utf8", function(err, data) {
-    res.send({ code: data });
-  });
+  // fs.readFile(`projects/${projectname}/index.html`, "utf8", function(err, data) {
+  //   res.send({ code: data });
+  // });
+  let code = fs.readFileSync(`projects`)
 });
 
 app.get("/p/:project", function(req, res) {
   let projectname = req.params.project;
   res.sendFile(__dirname + "/projects/" + projectname + ".html");
+});
+
+
+app.get("/p/:project/style.css", function(req, res) {
+  let projectname = req.params.project;
+  res.sendFile(__dirname + "/projects/" + projectname + "/style.css")
 });
 
 app.get("/redirect/loginfail", function(req, res) {
