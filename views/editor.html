@@ -50,16 +50,29 @@
       </button>
     </header>
     <br /><br />
-    <div id="editor" oninput="save();">
-      <h1>
-        Hi
-      </h1>
-    </div>
+    <style type="text/css">
+    #editor { 
+        position: absolute;
+        top: 200px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+
+<div id="editor">
+  
+</div>
+    
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/html");
+</script>
 
     <script>
-      var editor = ace.edit("editor");
-      editor.setTheme("ace/theme/monokai");
-      editor.session.setMode("ace/mode/html");
 
       
       let projecturl = window.location.href;
