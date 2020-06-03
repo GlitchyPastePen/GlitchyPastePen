@@ -1,7 +1,7 @@
 {
-  "name": "pasteglitchpen",
+  "name": "glitchypastepen",
   "version": "1.0.0",
-  "description": "A code editor with more features than Pastebin, (almost) equivalent of CodePen and smaller than Glitch.",
+  "description": "Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

@@ -1,13 +1,11 @@
-## Under development
 
----
 ![](https://cdn.khaleelgibran.com/img/glitchypastepen.png)
 
 # GlitchyPastePen
 
-Create simple front-end projects (mainly with HTML, CSS and JS) instant hosting.
+Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting.
 
-GitchyPastePen has an online code IDE, which allows you to create a simple static site and host them immediately. 
+GlitchyPastePen has an online code IDE, which allows you to create a simple static site and host them immediately. 
 
 ### Features
 
@@ -42,3 +40,7 @@ GitchyPastePen has an online code IDE, which allows you to create a simple stati
 
 * [Khaleel Gibran](https://khaleelgibran.com)
 * [17lwinn @ProTechCEO](https://ptuk.tk)
+
+### Need Help?
+
+Join our (unofficial) Discord server: [https://discord.gg/8bnp2vK](https://discord.gg/8bnp2vK).
