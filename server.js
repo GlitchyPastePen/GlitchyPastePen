@@ -209,7 +209,7 @@ app.post("/deploy", async function(request, response) {
   fs.writeFile("projects/" + projectname + "/style.html", request.body.css, function(err) {
     if (err) throw err;
   });
-  fs.writeFile("projects/" + projectname + "/index.html", request.body.js, function(err) {
+  fs.writeFile("projects/" + projectname + "/script.html", request.body.js, function(err) {
     if (err) throw err;
   });
   let projectinfo = { name: projectname, owner: global.theuser };

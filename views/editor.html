@@ -33,11 +33,11 @@
       <button id="logout">
         <a href="/logout">Log out</a>
       </button>
-      
+
       <button style="float:right;margin-right:10px;">
         <a href="/me">My Projects</a>
       </button>
-      
+
       <p class="p-title">
         <i>PROJECT NAME</i>
       </p>
@@ -47,11 +47,11 @@
         <a href="" class="owner"></a>
       </p>
       <button class="deploy" onclick="beautify()" title="Beautify code!">
-          <img
-            src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
-            height="40px"
-          />
-        </button>
+        <img
+          src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
+          height="40px"
+        />
+      </button>
       <button class="deploy" onclick="deploy();" title="Save code!">
         <img
           src="https://img.icons8.com/cotton/100/000000/save.png"
@@ -70,7 +70,7 @@
         z-index: -1;
       }
     </style>
-    
+
     <button id="html" onclick="editor.setSession(html);">
       HTML
     </button>
@@ -93,16 +93,13 @@
       // ace.createEditSession("html", "ace/mode/html");
       // ace.createEditSession("js", "ace/mode/javascript");
       // ace.createEditSession("css", "ace/mode/css")
-      
-      
-      
+
       // var EditSession = require("ace/edit_session").EditSession;
       // var html = new EditSession("html")
       // var js = new EditSession("js");
       // var css = new EditSession("css");
 
       // editor.setSession("html");
-
 
       function beautify() {
         var beautify = ace.require("ace/ext/beautify");
@@ -112,9 +109,18 @@
       editor.setOptions({
         fontSize: "1.5vw"
       });
-      
+
       var EditSession = require("ace/edit_session").EditSession;
-    
+
+      var html = new EditSession("<html></html>", "ace/mode/html");
+      var js = new EditSession("console.log('//hi')", "ace/mode/javascript");
+      var css = new EditSession("body { color: red; }", "ace/mode/css");
+      // and then to load document into editor, just call
+      editor.setSession(html);
+      js.setOverwrite(true);
+      html.setOverwrite(true);
+      css.setOverwrite(true);
+
       let projecturl = window.location.href;
       let projectname = projecturl.slice(41);
       document.getElementById("project-name").value = projectname;
@@ -127,14 +133,9 @@
           // editor.setValue(data.code);
           console.log(data.css);
           console.log(data.js);
-          var html = new EditSession(data.code, "ace/mode/html")
-          var js = new EditSession(data.js, "ace/mode/javascript");
-          var css = new EditSession(data.css, "ace/mode/css");
-          // and then to load document into editor, just call
-          editor.setSession(html);
-          js.setOverwrite(true);
-          html.setOverwrite(true);
-          css.setOverwrite(true);
+          html.setValue(data.code);
+          js.setValue(data.js);
+          css.setValue(data.css);
         });
 
       fetch("/projectinfo/" + projectname)
@@ -146,9 +147,11 @@
         });
 
       function deploy() {
-        let code = editor.getValue();
+        let code = html.getValue();
+        let js2 = js.getValue();
+        let css2 = css.getValue();
         let name = document.getElementById("project-name").value;
-        let content = { code: code, name: name };
+        let content = { code: code, js: js2, css: css2, name: name };
 
         fetch("/deploy", {
           method: "post",
