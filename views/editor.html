@@ -57,6 +57,7 @@
           height="40px"
         />
       </button>
+      <button onclick="TogetherJS(this); return false;">Start TogetherJS</button>
     </header>
     <br /><br />
     <style type="text/css">
@@ -70,13 +71,13 @@
       }
     </style>
     
-    <button id="html">
+    <button id="html" onclick="html()">
       HTML
     </button>
-    <button id="js">
+    <button id="js" onclick="js()">
       JS
     </button>
-    <button is="css">
+    <button is="css" onclick="css()">
       CSS
     </button>
 
@@ -89,8 +90,7 @@
       });
       editor.setTheme("ace/theme/monokai");
       editor.session.setMode("ace/mode/html");
-      
-      // ace.createEditSession("html", "ace/mode/html")
+      // ace.createEditSession("html", "ace/mode/html");
       // ace.createEditSession("js", "ace/mode/javascript");
       // ace.createEditSession("css", "ace/mode/css")
       
@@ -98,6 +98,8 @@
       var html = new EditSession("html")
       var js = new EditSession("js");
       var css = new EditSession("css");
+
+      editor.setSession("html");
 
 
       function beautify() {
@@ -108,7 +110,6 @@
       editor.setOptions({
         fontSize: "1.5vw"
       });
-      
     </script>
 
     <script>
