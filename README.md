@@ -22,6 +22,7 @@ The link to the live app of this project will be available as soon as the initia
 - JS
 - Node.js (Express)
 - EJS
+- togetherJS for streaming with friends (Mozilla labs)
 
 ### Contributors
 

@@ -17,15 +17,12 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.4.0/css/ace-collab-ext.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.4.0/css/ace-collab-ext.min.css">
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"
       type="text/javascript"
       charset="utf-8"
     ></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.4.0/lib/index.js"></script>
     <script src="/script.js"></script>
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
   </head>
@@ -74,13 +71,13 @@
       }
     </style>
     
-    <button id="html" onclick="editor.setSession('html');">
+    <button id="html" onclick="editor.setSession(html);">
       HTML
     </button>
-    <button id="js" onclick="editor.setSession('js');">
+    <button id="js" onclick="editor.setSession(js);">
       JS
     </button>
-    <button is="css" onclick="editor.setSession('css');">
+    <button is="css" onclick="editor.setSession(css);">
       CSS
     </button>
 
@@ -97,12 +94,7 @@
       // ace.createEditSession("js", "ace/mode/javascript");
       // ace.createEditSession("css", "ace/mode/css")
       
-      var EditSession = require("ace/edit_session").EditSession;
-      var js = new EditSession("some js code");
-      var css = new EditSession(["some", "css", "code here"]);
-      // and then to load document into editor, just call
-      editor.setSession(js);
-
+      
       
       // var EditSession = require("ace/edit_session").EditSession;
       // var html = new EditSession("html")
@@ -120,9 +112,9 @@
       editor.setOptions({
         fontSize: "1.5vw"
       });
-    </script>
-
-    <script>
+      
+      var EditSession = require("ace/edit_session").EditSession;
+    
       let projecturl = window.location.href;
       let projectname = projecturl.slice(41);
       document.getElementById("project-name").value = projectname;
@@ -135,6 +127,14 @@
           // editor.setValue(data.code);
           console.log(data.css);
           console.log(data.js);
+          var html = new EditSession(data.code, "ace/mode/html")
+          var js = new EditSession(data.js, "ace/mode/javascript");
+          var css = new EditSession(data.css, "ace/mode/css");
+          // and then to load document into editor, just call
+          editor.setSession(html);
+          js.setOverwrite(true);
+          html.setOverwrite(true);
+          css.setOverwrite(true);
         });
 
       fetch("/projectinfo/" + projectname)
