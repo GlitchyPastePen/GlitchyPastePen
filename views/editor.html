@@ -26,7 +26,7 @@
     <script src="/script.js"></script>
   </head>
   <body style="background-color:#272822;">
-    <header>
+    <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
       <button id="logout">
         <a href="/logout">Log out</a>
@@ -42,7 +42,13 @@
       <p class="empty">
         <a href="" class="owner"></a>
       </p>
-      <button id="deploy" onclick="deploy();" title="Save code!">
+      <button class="deploy" onclick="beautify()" title="Beautify code!">
+          <img
+            src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
+            height="40px"
+          />
+        </button>
+      <button class="deploy" onclick="deploy();" title="Save code!">
         <img
           src="https://img.icons8.com/cotton/100/000000/save.png"
           height="40px"
@@ -62,7 +68,7 @@
     </style>
 
     <div id="editor"></div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
     <script>
       var editor = ace.edit("editor", {

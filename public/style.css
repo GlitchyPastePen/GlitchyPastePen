@@ -154,10 +154,19 @@ pre {
 
 #deploy {
   border: none;
-  background-color: #272822;
+  background-color: rgba(0,0,0,0);
   display: inline-block;
   float: right;
   cursor: pointer;
+}
+
+.deploy {
+  border: none;
+  background-color: rgba(0,0,0,0);
+  display: inline-block;
+  float: right;
+  cursor: pointer; 
+  border: 1px solid dashed;
 }
 
 .signup-link {
