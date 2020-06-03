@@ -37,6 +37,8 @@
       <button style="float:right;margin-right:10px;">
         <a href="/me">My Projects</a>
       </button>
+      
+      <button style="float:right;margin-right:10px;" onclick="TogetherJS(this); return false;">Invite friends!</button>
 
       <p class="p-title">
         <i>PROJECT NAME</i>
@@ -83,19 +85,20 @@
         right: 0;
         bottom: 0;
         left: 0;
-        z-index: -1;
+        z-index: 2;
       }
     </style>
 
     <div id="editor"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.min.js"></script>
     <script>
-      var editor = ace.edit("editor", {
-        autoScrollEditorIntoView: true
-      });
+      var editor = ace.edit("editor");
       editor.setTheme("ace/theme/monokai");
       editor.session.setMode("ace/mode/html");
+      
+      ace.require("ace/ext/language_tools");
       // ace.createEditSession("html", "ace/mode/html");
       // ace.createEditSession("js", "ace/mode/javascript");
       // ace.createEditSession("css", "ace/mode/css")
@@ -113,7 +116,9 @@
       }
 
       editor.setOptions({
-        fontSize: "1.5vw"
+        fontSize: "1.5vw",
+        enableBasicAutocompletion: true,
+        autoScrollEditorIntoView: true
       });
 
       var EditSession = require("ace/edit_session").EditSession;
