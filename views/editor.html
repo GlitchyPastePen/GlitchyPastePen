@@ -17,7 +17,11 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
 
     <script src="/script.js"></script>
   </head>
@@ -47,41 +51,37 @@
     </header>
     <br /><br />
     <style type="text/css">
-    #editor { 
+      #editor {
         position: absolute;
         top: 150px;
         right: 0;
         bottom: 0;
         left: 0;
         z-index: -1;
-    }
-</style>
+      }
+    </style>
 
-<div id="editor">
-  
-</div>
+    <div id="editor"></div>
     
-<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
     <script>
       var editor = ace.edit("editor", {
         autoScrollEditorIntoView: true
       });
       editor.setTheme("ace/theme/monokai");
       editor.session.setMode("ace/mode/html");
-      
+
       function beautify() {
         var beautify = ace.require("ace/ext/beautify");
         beautify.beautify(editor.session);
       }
-      
-      
+
       editor.setOptions({
         fontSize: "1.5vw"
       });
     </script>
 
     <script>
-      
       let projecturl = window.location.href;
       let projectname = projecturl.slice(41);
       document.getElementById("project-name").value = projectname;
@@ -122,8 +122,11 @@
                 this.style.display = "none";
               };
               document.getElementById("status").innerHTML =
-                "Your project has been successfully deployed <br />at <a href=\"/p/" + name + "\">https://glitchypastepen.glitch.me/p/" +
-                name + "</a>";
+                'Your project has been successfully deployed <br />at <a href="/p/' +
+                name +
+                '">https://glitchypastepen.glitch.me/p/' +
+                name +
+                "</a>";
             } else {
               document.getElementById("status").style.display = "block";
               document.getElementById("status").style.backgroundColor = "red";
@@ -132,10 +135,8 @@
             }
           });
       }
-      
-      function cancel() {
-        
-      }
+
+      function cancel() {}
     </script>
   </body>
 </html>
