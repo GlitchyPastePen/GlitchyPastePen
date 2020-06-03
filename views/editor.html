@@ -27,16 +27,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.4.0/lib/index.js"></script>
     <script src="/script.js"></script>
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
   </head>
   <body style="background-color:#272822;">
     <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
+      <!-- <button onclick="TogetherJS(this); return false;">Invite friends!</button> -->
       <button id="logout">
         <a href="/logout">Log out</a>
       </button>
+      
       <button style="float:right;margin-right:10px;">
         <a href="/me">My Projects</a>
       </button>
+      
       <p class="p-title">
         <i>PROJECT NAME</i>
       </p>
@@ -57,7 +61,6 @@
           height="40px"
         />
       </button>
-      <button onclick="TogetherJS(this); return false;">Start TogetherJS</button>
     </header>
     <br /><br />
     <style type="text/css">
@@ -71,13 +74,13 @@
       }
     </style>
     
-    <button id="html" onclick="html()">
+    <button id="html" onclick="editor.setSession('html');">
       HTML
     </button>
-    <button id="js" onclick="js()">
+    <button id="js" onclick="editor.setSession('js');">
       JS
     </button>
-    <button is="css" onclick="css()">
+    <button is="css" onclick="editor.setSession('css');">
       CSS
     </button>
 
@@ -95,11 +98,18 @@
       // ace.createEditSession("css", "ace/mode/css")
       
       var EditSession = require("ace/edit_session").EditSession;
-      var html = new EditSession("html")
-      var js = new EditSession("js");
-      var css = new EditSession("css");
+      var js = new EditSession("some js code");
+      var css = new EditSession(["some", "css", "code here"]);
+      // and then to load document into editor, just call
+      editor.setSession(js);
 
-      editor.setSession("html");
+      
+      // var EditSession = require("ace/edit_session").EditSession;
+      // var html = new EditSession("html")
+      // var js = new EditSession("js");
+      // var css = new EditSession("css");
+
+      // editor.setSession("html");
 
 
       function beautify() {
@@ -122,7 +132,7 @@
       fetch(path)
         .then(response => response.json())
         .then(data => {
-          editor.setValue(data.code);
+          // editor.setValue(data.code);
           console.log(data.css);
           console.log(data.js);
         });
