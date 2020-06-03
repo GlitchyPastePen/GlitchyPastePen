@@ -209,7 +209,7 @@ app.post("/deploy", async function(request, response) {
   fs.writeFile("projects/" + projectname + "/style.css", request.body.css, function(err) {
     if (err) throw err;
   });
-  fs.writeFile("projects/" + projectname + "/script.html", request.body.js, function(err) {
+  fs.writeFile("projects/" + projectname + "/script.js", request.body.js, function(err) {
     if (err) throw err;
   });
   let projectinfo = { name: projectname, owner: global.theuser };
@@ -252,7 +252,7 @@ app.get("/delete/:project", async (req, res) => {
   let projectinfo = await project.get(req.params.project);
   if (req.session.loggedin && req.session.username === projectinfo.owner) {
     await project.delete(req.params.project);
-    rimraf.sync(`./projects/{req.params.project}`);
+    rimraf.sync(`/projects/{req.params.project}`);
     console.log("Authorised!");
     res.sendStatus(200);
   } else {

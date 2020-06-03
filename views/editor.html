@@ -46,6 +46,15 @@
       <p class="empty">
         <a href="" class="owner"></a>
       </p>
+      <button id="html" onclick="editor.setSession(html);">
+      index.html
+    </button>
+    <button id="js" onclick="editor.setSession(js);">
+      script.js
+    </button>
+    <button is="css" onclick="editor.setSession(css);">
+      style.css
+    </button>
       <button class="deploy" onclick="beautify()" title="Beautify code!">
         <img
           src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
@@ -63,7 +72,7 @@
     <style type="text/css">
       #editor {
         position: absolute;
-        top: 150px;
+        top: 200px;
         right: 0;
         bottom: 0;
         left: 0;
@@ -71,15 +80,7 @@
       }
     </style>
 
-    <button id="html" onclick="editor.setSession(html);">
-      HTML
-    </button>
-    <button id="js" onclick="editor.setSession(js);">
-      JS
-    </button>
-    <button is="css" onclick="editor.setSession(css);">
-      CSS
-    </button>
+    
 
     <div id="editor"></div>
 
