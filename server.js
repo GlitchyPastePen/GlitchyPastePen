@@ -206,7 +206,7 @@ app.post("/deploy", async function(request, response) {
   fs.writeFile("projects/" + projectname + "/index.html", request.body.code, function(err) {
     if (err) throw err;
   });
-  fs.writeFile("projects/" + projectname + "/style.html", request.body.css, function(err) {
+  fs.writeFile("projects/" + projectname + "/style.css", request.body.css, function(err) {
     if (err) throw err;
   });
   fs.writeFile("projects/" + projectname + "/script.html", request.body.js, function(err) {
