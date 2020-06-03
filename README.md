@@ -19,6 +19,15 @@ GitchyPastePen has an online code IDE, which allows you to create a simple stati
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fscreely-1591191781898.png?v=1591191852875)
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fscreely-1591191829511.png?v=1591191848661)
 
+### Contributing
+
+1. [Fork the repository](https://github.com/khalby786/GlitchyPastePen/fork)!
+2. Clone your fork: `git clone https://github.com/your-username/GlitchyPastePen.git`
+3. Create your feature branch: `git checkout -b my-new-feature`
+4. Commit your changes: `git commit -am 'Add some feature'`
+5. Push to the branch: `git push origin my-new-feature`
+6. Submit a pull request!
+
 
 ### Uses
 
