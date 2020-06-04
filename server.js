@@ -43,10 +43,8 @@ var user = new Endb("sqlite://user.db");
 var project = new Endb("sqlite://project.db");
 
 async function all() {
-  return {
-    users: await user.all(),
-    projects: await project.all()
-  };
+  console.log(await user.all());
+  console.log(await project.all());
 }
 
 async function clear() {
@@ -346,9 +344,6 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
   });
 });
-
-
-
 
 // Listener
 const listener = app.listen(process.env.PORT, () => {
