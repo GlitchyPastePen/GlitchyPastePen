@@ -293,6 +293,7 @@ app.get("/delete/:project", async (req, res) => {
 
 app.post("/contributor", async (req, res) => {
   const user = req.body.user;
+  console.log(req.body.project)
   console.log(await project.get(req.body.project));
   const project2 = await project.get(req.body.project);
   if (req.session.username === project2.owner && req.session.loggedin) {
