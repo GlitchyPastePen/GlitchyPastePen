@@ -189,6 +189,7 @@ app.get("/editor/new", async (req, res) => {
 
 app.get("/editor/:project/", async (request, response) => {
   let contributors = await contributor.get(request.params.project);
+  console.log(contributors);
   if (
     (request.session.username === global.theuser &&
     request.session.loggedin === true) || (contributors.includes(request.session.username)) 
@@ -281,8 +282,8 @@ app.get("/redirect/loginfail", function(req, res) {
 });
 
 app.get("/delete/:project", async (req, res) => {
-  const project = await project.get(req.params.project);
-  if (req.session.loggedin && req.session.username === project.owner) {
+  const project2 = await project.get(req.params.project);
+  if (req.session.loggedin && req.session.username === project2.owner) {
     await project.delete(req.params.project);
     rimraf.sync(`/projects/{req.params.project}`);
     res.sendStatus(200);
@@ -291,14 +292,13 @@ app.get("/delete/:project", async (req, res) => {
   }
 });
 
-app.post("/contributor/:project", async (req, res) => {
-  const user = req.body.user;
+app.post("/contributor/:project/:user", async (req, res) => {
   console.log(req.params.project)
   console.log(await project.get(req.params.project));
   const project2 = await project.get(req.params.project);
   if (req.session.username === project2.owner && req.session.loggedin) {
     let current = await contributor.get(req.params.project) || [];
-    current.push(user);
+    current.push(req.params.user);
     await contributor.set(req.params.project, current);
     res.send("200");
   } else {
