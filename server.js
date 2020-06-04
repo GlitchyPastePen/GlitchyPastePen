@@ -134,7 +134,7 @@ app.post("/auth", async function(request, response) {
 
 app.get("/editor/new", async (req, res) => {
   if (req.session.loggedin) {
-    const projectname = randomize("Aa0", 10);
+    let projectname = randomize("Aa0", 10);
     if (config.nameGen == "sensible") {
       projectname = uniqueNamesGenerator({
         dictionaries: [adjectives, colors, animals]
