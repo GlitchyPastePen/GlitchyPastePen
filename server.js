@@ -19,10 +19,11 @@ app.use(require("express-status-monitor")());
 
 const cors = require("cors");
 app.use(cors());
-
+const config = require("./config");
+const bcrypt = require("bcrypt");
 const path = require("path");
 
-var mkdirp = require('mkdirp');
+var mkdirp = require("mkdirp");
 var rimraf = require("rimraf");
 
 const endb = require("endb");
@@ -56,19 +57,19 @@ app.use(
   })
 );
 
-function checkHttps(req, res, next){
+function checkHttps(req, res, next) {
   // protocol check, if http, redirect to https
-  
-  if(req.get('X-Forwarded-Proto').indexOf("https")!=-1){
-    console.log("https, yo")
-    return next()
+
+  if (req.get("X-Forwarded-Proto").indexOf("https") != -1) {
+    console.log("https, yo");
+    return next();
   } else {
-    console.log("just http")
-    res.redirect('https://' + req.hostname + req.url);
+    console.log("just http");
+    res.redirect("https://" + req.hostname + req.url);
   }
 }
 
-app.all('*', checkHttps)
+app.all("*", checkHttps);
 
 app.get("/", async (request, response) => {
   if (request.session.loggedin) {
@@ -94,10 +95,12 @@ app.post("/signup", async (request, response) => {
   if (username && password && global.email) {
     let hasuser = await user.has(username);
     if (!hasuser) {
-      let userinfo = { password: password, email: global.email };
-      let newuser = await user.set(username, userinfo);
-      authdata = { redirect: "/", detail: "newuser" };
-      response.send(authdata);
+      bcrypt.hash(password, config.saltRounds, async function(err, hash) {
+        let userinfo = { password: hash, email: global.email };
+        let newuser = await user.set(username, userinfo);
+        authdata = { redirect: "/", detail: "newuser" };
+        response.send(authdata);
+      });
     } else {
     }
   }
@@ -109,13 +112,18 @@ app.post("/auth", async function(request, response) {
   global.password = request.body.password;
   if (global.username && global.password) {
     let hasuser = await user.has(global.username);
+    console.log("Has user" + hasuser)
     if (hasuser) {
       let pass = await user.get(global.username);
       console.log(pass.projects);
       pass = pass.password;
-      console.log(pass);
-      console.log(global.password);
-      if (pass === global.password) {
+      //console.log(pass);
+      //console.log(global.password);
+      // Don't log passwords into the log
+      bcrypt.compare(global.password, pass, function(err, result) {
+        console.log("Login correct "+result+" "+err)
+    if(result){
+      
         request.session.loggedin = true;
         request.session.username = global.username;
         global.theuser = request.session.username;
@@ -131,7 +139,9 @@ app.post("/auth", async function(request, response) {
         authdata = { redirect: "/", detail: "wronginfo" };
         response.send(authdata);
       }
-      response.end();
+        response.end();
+});
+      
     } else {
       // esponse.redirect('/signup');
       authdata = { redirect: "signup", detail: "noaccount" };
@@ -140,9 +150,22 @@ app.post("/auth", async function(request, response) {
   }
 });
 
+  
+
 app.get("/editor/new", async (req, res) => {
   if (req.session.loggedin) {
-    let projectname = randomize("Aa0", 10);
+    let projectname = randomize("Aa0", 10); // Fallback
+    if(config.nameGen == "sensible"){
+      const { uniqueNamesGenerator, adjectives, colors, animals } = require('unique-names-generator');
+      projectname = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
+    }else if(config.nameGen == "sensible2"){
+      var generate = require('project-name-generator');
+      projectname = generate({ words: 4 }).dashed;
+    }else if(config.nameGen == "alliterative"){
+      var generate = require('project-name-generator');
+      projectname = generate({ words: 4,alliterative: true}).dashed;
+    }
+    
     let dir = __dirname + "/projects/";
     try {
       if (!fs.existsSync(dir)) {
@@ -151,21 +174,27 @@ app.get("/editor/new", async (req, res) => {
     } catch (err) {
       console.error(err);
     }
-    
+
     mkdirp.sync(`projects/${projectname}`);
-    
+
     // let data = { name: name };
-    fs.writeFile(__dirname + `/projects/${projectname}/index.html`, "", function(
+    fs.writeFile(
+      __dirname + `/projects/${projectname}/index.html`,
+      "",
+      function(err) {
+        if (err) throw err;
+      }
+    );
+    fs.writeFile(__dirname + `/projects/${projectname}/style.css`, "", function(
       err
     ) {
       if (err) throw err;
     });
-    fs.writeFile(__dirname + `/projects/${projectname}/style.css`, "", function(err) {
+    fs.writeFile(__dirname + `/projects/${projectname}/script.js`, "", function(
+      err
+    ) {
       if (err) throw err;
     });
-    fs.writeFile(__dirname + `/projects/${projectname}/script.js`, "", function(err) {
-      if (err) throw err;
-    })
     let projectinfo = { name: projectname, owner: global.theuser };
     let setinfo = await project.set(projectname, projectinfo);
     res.redirect(`/editor/${projectname}`);
@@ -200,18 +229,29 @@ app.get("/editor/:project", function(request, response) {
 // });
 
 app.post("/deploy", async function(request, response) {
-  
   let projectname = request.body.name;
   let filename = request.body.name + ".html";
-  fs.writeFile("projects/" + projectname + "/index.html", request.body.code, function(err) {
-    if (err) throw err;
-  });
-  fs.writeFile("projects/" + projectname + "/style.css", request.body.css, function(err) {
-    if (err) throw err;
-  });
-  fs.writeFile("projects/" + projectname + "/script.js", request.body.js, function(err) {
-    if (err) throw err;
-  });
+  fs.writeFile(
+    "projects/" + projectname + "/index.html",
+    request.body.code,
+    function(err) {
+      if (err) throw err;
+    }
+  );
+  fs.writeFile(
+    "projects/" + projectname + "/style.css",
+    request.body.css,
+    function(err) {
+      if (err) throw err;
+    }
+  );
+  fs.writeFile(
+    "projects/" + projectname + "/script.js",
+    request.body.js,
+    function(err) {
+      if (err) throw err;
+    }
+  );
   let projectinfo = { name: projectname, owner: global.theuser };
   let setinfo = await project.set(projectname, projectinfo);
   response.send({ status: 200 });
@@ -225,7 +265,7 @@ app.get("/getCode/:projectname", async (req, res) => {
   let code = fs.readFileSync(`projects/${projectname}/index.html`, "utf-8");
   let css = fs.readFileSync(`projects/${projectname}/style.css`, "utf-8");
   let js = fs.readFileSync(`projects/${projectname}/script.js`, "utf-8");
-  res.send({ code: code, css: css, js: js })
+  res.send({ code: code, css: css, js: js });
 });
 
 app.get("/p/:project", function(req, res) {
@@ -233,15 +273,14 @@ app.get("/p/:project", function(req, res) {
   res.sendFile(__dirname + "/projects/" + projectname + "/index.html");
 });
 
-
 app.get("/p/:project/style.css", function(req, res) {
   let projectname = req.params.project;
-  res.sendFile(__dirname + "/projects/" + projectname + "/style.css")
+  res.sendFile(__dirname + "/projects/" + projectname + "/style.css");
 });
 
 app.get("/p/:project/script.js", function(req, res) {
   let projectname = req.params.project;
-  res.sendFile(__dirname + "/projects/" + projectname + "/script.js")
+  res.sendFile(__dirname + "/projects/" + projectname + "/script.js");
 });
 
 app.get("/redirect/loginfail", function(req, res) {
@@ -312,8 +351,8 @@ app.get("/logout", (req, res) => {
     if (err) throw err;
     res.redirect("/");
   });
-  
 });
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
