@@ -22,7 +22,8 @@
     "mkdirp": "^1.0.4",
     "rimraf": "^3.0.2",
     "bcrypt": "^4.0.1",
-    "unique-names-generator": "^4.2.0"
+    "unique-names-generator": "^4.2.0",
+    "project-name-generator": "^2.1.7"
   },
   "engines": {
     "node": "12.x"
