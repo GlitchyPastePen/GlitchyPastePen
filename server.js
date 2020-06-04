@@ -211,9 +211,9 @@ app.get("/editor/:project", (request, response) => {
 // });
 
 app.post("/deploy", async function(request, response) {
-  const project = await project.get(request.body.name);
+  const projectinfo = await project.get(request.body.name);
   if (
-    request.session.username === project.owner &&
+    request.session.username === projectinfo.owner &&
     request.session.loggedin === true
   ) {
     let projectname = request.body.name;
