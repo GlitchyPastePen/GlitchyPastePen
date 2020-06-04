@@ -89,8 +89,13 @@
       }
     </style>
 
-    <div id="editor" onkeydown="onkeydown()"></div>
+    <div id="editor"></div>
+<script>
+document.addEventListener('keydown', function(event) {
+    TogetherJS.reinitialize();
+});
 
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.min.js"></script>
     <script>
@@ -227,10 +232,9 @@
       TogetherJSConfig_hubBase = "https://gpphub.herokuapp.com/";
       TogetherJSConfig_findRoom = projecturl.slice(41);
 
-      function onkeydown() {
-        TogetherJS.reinitialize();
-      }      
+      
     </script>
+
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
   </body>
 </html>
