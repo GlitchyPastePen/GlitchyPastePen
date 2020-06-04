@@ -290,6 +290,19 @@ app.get("/delete/:project", async (req, res) => {
   }
 });
 
+app.post("/contributor", async (req, res) => {
+  const user = req.body.user;
+  const project = await project.get(req.body.project);
+  if (req.session.username === project.owner && req.session.loggedin) {
+    let current = await contributor.get(req.body.project) || [];
+    current.push(user);
+    await contributor.set(req.body.project, current);
+    res.send("200");
+  } else {
+    res.send("401");
+  }
+})
+
 app.get("/u/:user", async (req, res) => {
   if (!(await user.has(req.params.user))) {
     res.send("User not found!");
