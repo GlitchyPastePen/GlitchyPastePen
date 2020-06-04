@@ -186,11 +186,12 @@ app.get("/editor/new", async (req, res) => {
   }
 });
 
-app.get("/editor/:project", (request, response) => {
+app.get("/editor/:project/", (request, response) => {
   if (
     request.session.username === global.theuser &&
-    request.session.loggedin === true
+    request.session.loggedin === true 
   ) {
+    console.log(request.query.togetherjs);
     response.sendFile(__dirname + "/views/editor.html");
   } else {
     response.sendFile(__dirname + "/views/preview.html");
