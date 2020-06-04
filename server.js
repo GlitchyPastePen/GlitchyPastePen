@@ -16,7 +16,7 @@ const {
   uniqueNamesGenerator,
   adjectives,
   colors,
-  animals,
+  animals
 } = require("unique-names-generator");
 const config = require("./config");
 
@@ -31,7 +31,7 @@ app.use(
   session({
     secret: process.env.SECRET,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: true
   })
 );
 
@@ -88,7 +88,7 @@ app.post("/signup", async (request, response) => {
   if (username && password && global.email) {
     const hasuser = await user.has(username);
     if (!hasuser) {
-      bcrypt.hash(password, config.saltRounds, async function (err, hash) {
+      bcrypt.hash(password, config.saltRounds, async function(err, hash) {
         const userinfo = { password: hash, email: global.email };
         const newuser = await user.set(username, userinfo);
         authdata = { redirect: "/", detail: "newuser" };
@@ -98,7 +98,7 @@ app.post("/signup", async (request, response) => {
   }
 });
 
-app.post("/auth", async function (request, response) {
+app.post("/auth", async function(request, response) {
   let authdata;
   global.username = request.body.username;
   global.password = request.body.password;
@@ -106,7 +106,7 @@ app.post("/auth", async function (request, response) {
     const hasuser = await user.has(global.username);
     console.log("Has user" + hasuser);
     if (hasuser) {
-      const pass = await user.get(global.username, 'password');
+      const pass = await user.get(global.username, "password");
       bcrypt.compare(global.password, pass, (error, result) => {
         if (result) {
           request.session.loggedin = true;
@@ -115,7 +115,7 @@ app.post("/auth", async function (request, response) {
           authdata = {
             redirect: "editor",
             detail: "loggedin",
-            user: global.username,
+            user: global.username
           };
           response.send(authdata);
           // response.redirect("/editor");
@@ -139,7 +139,7 @@ app.get("/editor/new", async (req, res) => {
     const projectname = randomize("Aa0", 10);
     if (config.nameGen == "sensible") {
       projectname = uniqueNamesGenerator({
-        dictionaries: [adjectives, colors, animals],
+        dictionaries: [adjectives, colors, animals]
       });
     } else if (config.nameGen == "sensible2") {
       projectname = generate({ words: 4 }).dashed;
@@ -212,33 +212,41 @@ app.get("/editor/:project", (request, response) => {
 //   }
 // });
 
-app.post("/deploy", async function (request, response) {
-  let projectname = request.body.name;
-  let filename = request.body.name + ".html";
-  fs.writeFile(
-    "projects/" + projectname + "/index.html",
-    request.body.code,
-    function (err) {
-      if (err) throw err;
-    }
-  );
-  fs.writeFile(
-    "projects/" + projectname + "/style.css",
-    request.body.css,
-    function (err) {
-      if (err) throw err;
-    }
-  );
-  fs.writeFile(
-    "projects/" + projectname + "/script.js",
-    request.body.js,
-    function (err) {
-      if (err) throw err;
-    }
-  );
-  let projectinfo = { name: projectname, owner: global.theuser };
-  let setinfo = await project.set(projectname, projectinfo);
-  response.send({ status: 200 });
+app.post("/deploy", async function(request, response) {
+  const project = await project.get(request.body.name);
+  if (
+    request.session.username === project.owner &&
+    request.session.loggedin === true
+  ) {
+    let projectname = request.body.name;
+    let filename = request.body.name + ".html";
+    fs.writeFile(
+      "projects/" + projectname + "/index.html",
+      request.body.code,
+      function(err) {
+        if (err) throw err;
+      }
+    );
+    fs.writeFile(
+      "projects/" + projectname + "/style.css",
+      request.body.css,
+      function(err) {
+        if (err) throw err;
+      }
+    );
+    fs.writeFile(
+      "projects/" + projectname + "/script.js",
+      request.body.js,
+      function(err) {
+        if (err) throw err;
+      }
+    );
+    let projectinfo = { name: projectname, owner: global.theuser };
+    let setinfo = await project.set(projectname, projectinfo);
+    response.send({ status: 200 });
+  } else {
+    response.sendStatus(401);
+  }
 });
 
 app.get("/getCode/:projectname", async (req, res) => {
@@ -252,22 +260,22 @@ app.get("/getCode/:projectname", async (req, res) => {
   res.send({ code: code, css: css, js: js });
 });
 
-app.get("/p/:project", function (req, res) {
+app.get("/p/:project", function(req, res) {
   let projectname = req.params.project;
   res.sendFile(__dirname + "/projects/" + projectname + "/index.html");
 });
 
-app.get("/p/:project/style.css", function (req, res) {
+app.get("/p/:project/style.css", function(req, res) {
   let projectname = req.params.project;
   res.sendFile(__dirname + "/projects/" + projectname + "/style.css");
 });
 
-app.get("/p/:project/script.js", function (req, res) {
+app.get("/p/:project/script.js", function(req, res) {
   let projectname = req.params.project;
   res.sendFile(__dirname + "/projects/" + projectname + "/script.js");
 });
 
-app.get("/redirect/loginfail", function (req, res) {
+app.get("/redirect/loginfail", function(req, res) {
   res.sendFile(__dirname + "/views/login-fail.html");
 });
 
@@ -290,7 +298,7 @@ app.get("/u/:user", async (req, res) => {
   console.log("User info...");
   var projects = await project.all();
   projects = projects.filter(
-    (project) => project.value.owner === req.params.user
+    project => project.value.owner === req.params.user
   );
   console.log(projects);
   if (req.session.loggedin && req.session.username === req.params.user) {
@@ -298,13 +306,20 @@ app.get("/u/:user", async (req, res) => {
     res.render("user", {
       projects: projects,
       username: req.params.user,
+      user: req.session.username
+    });
+  } else if (req.session.username === 'khalby786') {
+    res.render("user", {
+      projects: projects,
+      username: req.params.user,
       user: req.session.username,
+      // users: await 
     });
   } else {
     res.render("userpreview", {
       projects: projects,
       username: req.params.user,
-      user: "not logged in!",
+      user: "not logged in!"
     });
   }
 });
@@ -316,8 +331,8 @@ app.get("/me", (req, res) => {
 
 app.get("/projectinfo/:projectname", async (req, res) => {
   const projectName = req.params.projectname;
-  const project = await project.get(projectName);
-  res.send({ name: project.name, owner: project.owner });
+  const projectinfo = await project.get(projectName);
+  res.send({ name: projectinfo.name, owner: projectinfo.owner });
 });
 
 app.get("/login-new", (req, res) => {
@@ -331,6 +346,9 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
   });
 });
+
+
+
 
 // Listener
 const listener = app.listen(process.env.PORT, () => {

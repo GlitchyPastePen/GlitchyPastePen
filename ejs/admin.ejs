@@ -1,0 +1,146 @@
+
+<head>
+  <title><%= username %></title>
+  <script src="https://togetherjs.com/togetherjs-min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+    
+    body {
+      --fore: black;
+      --back: white;
+      background-color: var(--back);
+      color: black;
+      font-family: "Inter", "Helvetica", "Arial", sans-serif;
+      margin: 0px;
+    }
+    
+    h1 {
+      margin-left: 25px;
+      margin-top: 30px;
+    }
+
+    header {
+      margin-left: 0px;
+      padding-left: 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #DCDCDC;
+      left: 0px;
+    }
+    
+    #main {
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+    
+    .project {
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-bottom: 10px;
+      font-family: "Raleway", sans-serif;
+      transition: 1s ease;
+      background-color: #85FFBD;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+      left: 0px;
+      font-size: 25px;
+      overflow: hidden;
+    }
+    
+    img {
+      cursor: pointer;
+    }
+    
+/*     #new {
+      float: right;
+      margin-right: 20px;
+      margin-top: 70px;
+      background-color: #1f2430;
+      border: none;
+      color: yellow;
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-bottom: 10px;
+      padding-right: 20px;
+      cursor: pointer;
+    } */
+    
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    
+    .new {
+      background-color: white;
+      padding-top: 10px;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      padding-left: 20px;
+      color: black !important;
+      border: 1px solid black;
+      border-radius: 5px;
+      transition: 1s ease;
+      cursor: pointer;
+      font-family: "IBM Plex Mono", monospace;
+      float: right;
+      margin-top: 50px;
+      margin-right: 30px;
+    }
+    
+    .new a {
+      color: black !important;
+    }
+
+    .new:hover {
+      background-color: yellow;
+      color: black;
+      transition: 1s ease;
+      border: none;
+      font-weight: bold;
+      -webkit-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+      transform: scale(1.01);
+    }
+    
+  </style>
+</head>
+<body>  
+  <header>
+    <a href="/"><img src="https://cdn.khaleelgibran.com/img/glitchypastepen.png" height="100px"></a>
+    <button class="new">
+      <a href="/logout">logout</a>
+    </button>
+    <button class="new" onclick="TogetherJS(this); return false;">Stream to friends!</button>
+    <button class="new">
+      <a href="/editor/new">NEW PROJECT</a>
+    </button>
+  </header>
+  <h1 style="margin-left:15%;margin-right:15%;">
+    <%= username %>
+  </h1>
+  <div id = "main">
+    <i>YOUR PROJECTS</i><br /><br />
+    <% for (var project of projects) { %>
+      <div class = "project">
+        <%= project.key %>&nbsp;&nbsp;
+        <br />
+        <img style="float:right;margin-right:20px;" onclick="remove('<%= project.key %>')" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fdelete.svg?v=1589450120507" height="30px">
+        <a href="/p/<%= project.key %>"><img style="float:right;margin-right:10px;" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fexternal.svg?v=1589450399039" height="30px;"></a>
+        <a href="/editor/<%= project.key %>"><img style="float:right;margin-right:15px;" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fedit.svg?v=1589450679556" height="30px"></a>
+        <br /><br />
+      </div>
+    <% } %>
+  </div>
+  <br /><br />
+  <script>
+    function remove(project) {
+      fetch("/delete/" + project)
+      .then(res => res.json() )
+      .then(data => {
+        console.log(data);
+      })
+    }  
+  </script>
+</body>

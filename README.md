@@ -36,10 +36,15 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 - EJS
 - TogetherJS for streaming with friends (Mozilla labs)
 
-### Contributors
+### Author
 
 * [Khaleel Gibran](https://khaleelgibran.com)
+
+### Contributors
+
 * [17lwinn @ProTechCEO](https://ptuk.tk)
+* [RiversideRocks](https://riverside.rocks)
+* [chroventer](https://github.com/chroventer)
 
 ### Need Help?
 
