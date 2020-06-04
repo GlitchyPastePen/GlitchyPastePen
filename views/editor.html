@@ -201,7 +201,7 @@
         console.log(projectname)
         let contributor = prompt("Please username you would like to invite.", "khalby786");
         if (contributor != null) {
-          fetch("/contributor", {
+          fetch("/contributor/" + projectname, {
             method: 'POST',
             body: JSON.stringify(body)
           }).then(res => res.text())

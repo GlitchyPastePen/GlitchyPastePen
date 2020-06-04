@@ -291,15 +291,15 @@ app.get("/delete/:project", async (req, res) => {
   }
 });
 
-app.post("/contributor", async (req, res) => {
+app.post("/contributor/:project", async (req, res) => {
   const user = req.body.user;
-  console.log(req.body.project)
-  console.log(await project.get(req.body.project));
-  const project2 = await project.get(req.body.project);
+  console.log(req.params.project)
+  console.log(await project.get(req.params.project));
+  const project2 = await project.get(req.params.project);
   if (req.session.username === project2.owner && req.session.loggedin) {
-    let current = await contributor.get(req.body.project) || [];
+    let current = await contributor.get(req.params.project) || [];
     current.push(user);
-    await contributor.set(req.body.project, current);
+    await contributor.set(req.params.project, current);
     res.send("200");
   } else {
     res.send("401");
