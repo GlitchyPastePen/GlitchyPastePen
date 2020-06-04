@@ -187,10 +187,11 @@ app.get("/editor/new", async (req, res) => {
   }
 });
 
-app.get("/editor/:project/", (request, response) => {
+app.get("/editor/:project/", async (request, response) => {
+  let contributors = await contributor.get(request.params.project);
   if (
-    request.session.username === global.theuser &&
-    request.session.loggedin === true 
+    (request.session.username === global.theuser &&
+    request.session.loggedin === true) || (contributors.includes(request.session.username)) 
   ) {
     console.log(request.query.togetherjs);
     response.sendFile(__dirname + "/views/editor.html");
@@ -292,8 +293,9 @@ app.get("/delete/:project", async (req, res) => {
 
 app.post("/contributor", async (req, res) => {
   const user = req.body.user;
-  const project = await project.get(req.body.project);
-  if (req.session.username === project.owner && req.session.loggedin) {
+  console.log(await project.get(req.body.project));
+  const project2 = await project.get(req.body.project);
+  if (req.session.username === project2.owner && req.session.loggedin) {
     let current = await contributor.get(req.body.project) || [];
     current.push(user);
     await contributor.set(req.body.project, current);

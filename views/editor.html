@@ -24,6 +24,7 @@
     ></script>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet"> 
     <script src="/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   </head>
   <body style="background-color:#272822;">
     <header style="border-bottom: 0px solid black !important;">
@@ -196,13 +197,27 @@
       }
       
       function contributor() {
+        console.log(projectname)
         let contributor = prompt("Please username you would like to invite.", "khalby786");
-        if (person != null) {
+        if (contributor != null) {
           fetch("/contributor", {
             method: 'POST',
             body: JSON.stringify({ project: projectname, user: contributor })
           }).then(res => res.text())
-          
+          .then(data => {
+            if (data === "200") {
+              alert("Contributor added successfully!");
+            } else if (data === "401") {
+              alert("Unauthorised!");
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went horribly wrong!',
+                footer: 'try again later!'
+              })
+            }
+          })
         } 
       }
 
