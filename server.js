@@ -41,6 +41,7 @@ app.set("view engine", "ejs");
 // Database
 var user = new Endb("sqlite://user.db");
 var project = new Endb("sqlite://project.db");
+var contributor = new Endb("sqlite://contributor.db")
 
 async function all() {
   console.log(await user.all());
