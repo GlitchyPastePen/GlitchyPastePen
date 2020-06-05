@@ -373,5 +373,11 @@ const listener = app.listen(process.env.PORT, () => {
 const io = require("socket.io")(listener);
 
 io.on('connection', (socket) => {
-  console.log("connected!!")
+  console.log("connected!!");
+  
+  socket.on("code_update", (data) => {
+    console.log(data);
+  })
 });
+
+

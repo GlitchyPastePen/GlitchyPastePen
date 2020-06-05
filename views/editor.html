@@ -241,7 +241,7 @@
         let code = html.getValue();
         let js2 = js.getValue();
         let css2 = css.getValue();
-        socket.emit('code_update', { code: code, js: js2, css: css2 })
+        socket.emit('code_update', { code: code, html: html2, js: js2, css: css2 })
       }
       
     </script>
