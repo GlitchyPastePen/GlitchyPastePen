@@ -17,6 +17,9 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/@convergencelabs/ace-collab-ext@0.5.0/css/ace-collab-ext.min.css,npm/@convergencelabs/ace-collab-ext@0.5.0/css/ace-collab-ext.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.5.0/css/ace-collab-ext.min.css" />
+    
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"
       type="text/javascript"
@@ -25,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet"> 
     <script src="/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.5.0/lib/index.min.js"></script>
   </head>
   <body style="background-color:#272822;">
     <header style="border-bottom: 0px solid black !important;">
@@ -232,6 +236,67 @@
       TogetherJSConfig_findRoom = projecturl.slice(41);
 
       
+    </script>
+    <script>
+    let radarView = null;
+    let viewReference = null;
+    const viewKey = "view";
+
+    function initRadarView(textModel, radarViewElement) {
+      radarView = new AceCollabExt.AceRadarView(radarViewElement, editor);
+      viewReference = textModel.rangeReference(viewKey);
+
+      const references = textModel.references({key: viewKey});
+      references.forEach((reference) => {
+        if (!reference.isLocal()) {
+          addView(reference);
+        }
+      });
+
+      session.on('changeScrollTop', () => {
+        setTimeout(() => setLocalView(), 0);
+      });
+
+      textModel.on("reference", (e) => {
+        if (e.reference.key() === viewKey) {
+          addView(e.reference);
+        }
+      });
+
+      setTimeout(() => {
+        setLocalView();
+        viewReference.share();
+      }, 0);
+    }
+
+    function setLocalView() {
+      const viewportIndices = AceCollabExt.AceViewportUtil.getVisibleIndexRange(editor);
+      viewReference.set({start: viewportIndices.start, end: viewportIndices.end});
+    }
+
+    function addView(reference) {
+      const color = colorAssigner.getColorAsHex(reference.sessionId());
+
+      // fixme need the cursor
+      let cursorRow = null;
+      let viewRows = null;
+
+      if (reference.isSet()) {
+        const remoteViewIndices = reference.value();
+        viewRows = AceCollabExt.AceViewportUtil.indicesToRows(editor, remoteViewIndices.start, remoteViewIndices.end);
+      }
+
+      radarView.addView(reference.sessionId(), reference.user().username, color, viewRows, cursorRow);
+
+      // fixme need to implement this on the ace collab side
+      reference.on("cleared", () => radarView.clearView(reference.sessionId()));
+      reference.on("disposed", () => radarView.removeView(reference.sessionId()));
+      reference.on("set", () => {
+        const v = reference.value();
+        const rows = AceCollabExt.AceViewportUtil.indicesToRows(editor, v.start, v.end);
+        radarView.setViewRows(reference.sessionId(), rows);
+      });
+    }
     </script>
 
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
