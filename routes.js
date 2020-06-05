@@ -11,7 +11,6 @@ const {
   animals
 } = require("unique-names-generator");
 const config = require("./config");
-
 const Endb = require('endb');
 var contributor = new Endb("sqlite://contributor.db");
 
