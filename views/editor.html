@@ -90,12 +90,7 @@
     </style>
 
     <div id="editor"></div>
-    <script>
-    document.addEventListener('keydown', function(event) {
-        TogetherJS.reinitialize();
-    });
-
-    </script>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.min.js"></script>
     <script>
@@ -114,6 +109,10 @@
       // var css = new EditSession("css");
 
       // editor.setSession("html");
+      
+      document.addEventListener('keydown', function(event) {
+        TogetherJS.reinitialize();
+      });
 
       function beautify() {
         var beautify = ace.require("ace/ext/beautify");
