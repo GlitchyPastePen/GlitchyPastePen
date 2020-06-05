@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(require("express-status-monitor")());
 app.use(cors());
-app.use(express.static("public"));
+app.use("/public", express.static("public"));
 app.use("/modules", express.static("node_modules"));
 app.use(
   session({
@@ -46,8 +46,9 @@ server.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + process.env.PORT);
 });
 
-socket.on("connection", socket => {
+socket.on("connection", async socket => {
   console.log("connected!");
+  console.log(await user.all());
   socket.on('codeChange', data => console.log('socket data: ', data));
 });
 

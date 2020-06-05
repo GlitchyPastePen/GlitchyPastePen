@@ -63,7 +63,6 @@ module.exports.run = ({ app, user, project, contributor } = {}) => {
     global.password = request.body.password;
     if (global.username && global.password) {
       const hasuser = await user.has(global.username);
-      console.log("Has user" + hasuser);
       if (hasuser) {
         const pass = await user.get(global.username, "password");
         bcrypt.compare(global.password, pass, (error, result) => {
@@ -149,13 +148,11 @@ module.exports.run = ({ app, user, project, contributor } = {}) => {
 
   app.get("/editor/:project/", async (request, response) => {
     let contributors = await contributor.get(request.params.project);
-    console.log(contributors);
     if (
       (request.session.username === global.theuser &&
         request.session.loggedin === true) ||
       contributors.includes(request.session.username)
     ) {
-      console.log(request.query.togetherjs);
       response.sendFile(__dirname + "/views/editor.html");
     } else {
       response.sendFile(__dirname + "/views/preview.html");
@@ -254,8 +251,6 @@ module.exports.run = ({ app, user, project, contributor } = {}) => {
   });
 
   app.post("/contributor/:project/:user", async (req, res) => {
-    console.log(req.params.project);
-    console.log(await project.get(req.params.project));
     const project2 = await project.get(req.params.project);
     if (req.session.username === project2.owner && req.session.loggedin) {
       let current = (await contributor.get(req.params.project)) || [];
@@ -272,14 +267,11 @@ module.exports.run = ({ app, user, project, contributor } = {}) => {
       res.send("User not found!");
       return;
     }
-    console.log("User info...");
     var projects = await project.all();
     projects = projects.filter(
       project => project.value.owner === req.params.user
     );
-    console.log(projects);
     if (req.session.loggedin && req.session.username === req.params.user) {
-      console.log("Logged in!");
       res.render("user", {
         projects: projects,
         username: req.params.user,
