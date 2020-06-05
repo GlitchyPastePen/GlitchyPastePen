@@ -367,3 +367,11 @@ app.get("/logout", (req, res) => {
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
+
+// Socket.IO connections
+// because it needs to be after the listener
+const io = require("socket.io")(listener);
+
+io.on('connection', (socket) => {
+  console.log("connected!!")
+});

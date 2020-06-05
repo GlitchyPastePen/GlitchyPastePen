@@ -17,8 +17,6 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/@convergencelabs/ace-collab-ext@0.5.0/css/ace-collab-ext.min.css,npm/@convergencelabs/ace-collab-ext@0.5.0/css/ace-collab-ext.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.5.0/css/ace-collab-ext.min.css" />
     
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"
@@ -28,7 +26,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet"> 
     <script src="/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@convergencelabs/ace-collab-ext@0.5.0/lib/index.min.js"></script>
   </head>
   <body style="background-color:#272822;">
     <header style="border-bottom: 0px solid black !important;">
@@ -94,10 +91,11 @@
     </style>
 
     <div id="editor"></div>
-  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.min.js"></script>
     <script>
+
       var editor = ace.edit("editor");
       editor.setTheme("ace/theme/monokai");
       editor.session.setMode("ace/mode/html");
@@ -234,7 +232,12 @@
       
       TogetherJSConfig_hubBase = "https://gpphub.herokuapp.com/";
       TogetherJSConfig_findRoom = projecturl.slice(41);
-
+      
+      // SOCKET-IO
+      var socket = io.connect('https://glitchypastepen.glitch.me/'+projectname+ "#&togetherjs=" + projectname); // <---- WS SERVER
+      window.onkeyup = () => {
+        socket.emit('new_message', { message: message.val() })
+      }
       
     </script>
   
