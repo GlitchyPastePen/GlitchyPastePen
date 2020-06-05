@@ -1,6 +1,7 @@
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/html");
+var io = require("socket.io");
 
 ace.require("ace/ext/language_tools");
 
