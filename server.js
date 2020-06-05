@@ -55,19 +55,6 @@ async function clear() {
   return undefined;
 }
 
-// SocketIO
-// Socket.IO connections
-// because it needs to be after the listener
-const io = require("socket.io")(server);
-
-io.on('connection', (socket) => {
-  console.log("connected!!");
-  
-  socket.on("code_update", (data) => {
-    console.log(data);
-  })
-});
-
 // Endpoints
 app.all("*", (request, response, next) => {
   // protocol check, if http, redirect to https
@@ -381,4 +368,17 @@ app.get("/logout", (req, res) => {
 // Listener
 server.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + process.env.PORT);
+});
+
+// SocketIO
+// Socket.IO connections
+// because it needs to be after the listener
+const io = require("socket.io")(server);
+
+io.on('connection', (socket) => {
+  console.log("connected!!");
+  
+  socket.on("code_update", (data) => {
+    console.log(data);
+  })
 });

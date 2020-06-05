@@ -231,8 +231,13 @@
       TogetherJSConfig_findRoom = projecturl.slice(41);
       
       // SOCKET-IO
-      var socket = io.connect(`https://glitchypastepen.glitch.me`); // <---- WS SERVER BETA
-      window.onkeyup = () => {
+      console.log("about to connect");
+      var socket = io('https://glitchypastepen.glitch.me',
+      {
+        transports: ['websocket']
+      }); // <---- WS SERVER BETA
+      console.log("connected")
+      window.onkeydown = () => {
         console.log("keyup!");
         let code = html.getValue();
         let js2 = js.getValue();
