@@ -30,7 +30,7 @@
   <body style="background-color:#272822;">
     <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
-      <!-- <button onclick="TogetherJS(this); return false;">Invite friends!</button> -->
+      <button onclick="TogetherJS(this); return false;">Invite friends!</button>
       <button id="logout">
         <a href="/logout">Log out</a>
       </button>
@@ -231,9 +231,9 @@
       TogetherJSConfig_findRoom = projecturl.slice(41);
       
       // SOCKET-IO
-      var socket = io.connect(`/editor/${projectname}`); // <---- WS SERVER BETA
-      // const socket = io('/my-namespace');
+      var socket = io.connect(`https://glitchypastepen.glitch.me`); // <---- WS SERVER BETA
       window.onkeyup = () => {
+        console.log("keyup!");
         let code = html.getValue();
         let js2 = js.getValue();
         let css2 = css.getValue();

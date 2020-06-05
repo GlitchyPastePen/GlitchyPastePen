@@ -1,6 +1,7 @@
 // Imports
 const express = require("express");
 const app = express();
+const server = require('http').Server(app);
 const Endb = require("endb");
 const randomize = require("randomatic");
 const session = require("express-session");
@@ -364,20 +365,20 @@ app.get("/logout", (req, res) => {
 });
 
 // Listener
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+server.listen(process.env.PORT, () => {
+  console.log("Your app is listening on port " + process.env.PORT);
 });
 
 // Socket.IO connections
 // because it needs to be after the listener
-const io = require("socket.io")(listener);
+const io = require("socket.io")(server);
 
-const nsp = io.of('/project-name-temp-idk');
-
-nsp.on('connection', function(socket){
-  console.log('someone connected, please help, brain is frying, idk');
+io.on('connection', (socket) => {
+  console.log("connected!!");
+  
+  socket.on("code_update", (data) => {
+    console.log(data);
+  })
 });
-
-nsp.emit('hi', 'everyone!');
 
 
