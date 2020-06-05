@@ -39,7 +39,7 @@
         <a href="/me">My Projects</a>
       </button>
       
-      <button style="float:right;margin-right:10px;" onclick="TogetherJS(this); return false;">Invite friends!</button>
+    <!--  <button style="float:right;margin-right:10px;" onclick="TogetherJS(this); return false;">Invite friends!</button> -->
       
       <button style="float:right;margin-right:10px;" onclick="contributor()">Add contributor</button>
 
@@ -219,12 +219,7 @@
             } else if (data === "401") {
               alert("Unauthorised!");
             } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went horribly wrong!',
-                footer: 'try again later!'
-              })
+              alert("sorry, something went horribly wrong!")
             }
           })
         } 
@@ -236,12 +231,13 @@
       TogetherJSConfig_findRoom = projecturl.slice(41);
       
       // SOCKET-IO
-      var socket = io.connect('https://glitchypastepen.glitch.me/editor/'+projectname); // <---- WS SERVER
+      var socket = io.connect(`/editor/${projectname}`); // <---- WS SERVER BETA
+      // const socket = io('/my-namespace');
       window.onkeyup = () => {
         let code = html.getValue();
         let js2 = js.getValue();
         let css2 = css.getValue();
-        socket.emit('code_update', { code: code, html: html2, js: js2, css: css2 })
+        socket.emit('code_update', { code: code, js: js2, css: css2 })
       }
       
     </script>

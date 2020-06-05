@@ -372,12 +372,12 @@ const listener = app.listen(process.env.PORT, () => {
 // because it needs to be after the listener
 const io = require("socket.io")(listener);
 
-io.on('connection', (socket) => {
-  console.log("connected!!");
-  
-  socket.on("code_update", (data) => {
-    console.log(data);
-  })
+const nsp = io.of('/project-name-temp-idk');
+
+nsp.on('connection', function(socket){
+  console.log('someone connected, please help, brain is frying, idk');
 });
+
+nsp.emit('hi', 'everyone!');
 
 
