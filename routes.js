@@ -12,8 +12,11 @@ const {
 } = require("unique-names-generator");
 const config = require("./config");
 
+const Endb = require('endb');
+var contributor = new Endb("sqlite://contributor.db");
+
 // Endpoints
-module.exports.run = ({ app, user, project, contributor } = {}) => {
+module.exports.run = ({ app, user, project } = {}) => {
   app.all("*", (request, response, next) => {
     // protocol check, if http, redirect to https
     if (request.get("X-Forwarded-Proto").indexOf("https") != -1) {

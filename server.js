@@ -39,7 +39,7 @@ var project = new Endb("sqlite://project.db");
 var contributor = new Endb("sqlite://contributor.db");
 
 // Routes
-require("./routes").run({ app, contributor, user, project });
+require("./routes").run({ app, user, project });
 
 // Listener
 server.listen(process.env.PORT, () => {
