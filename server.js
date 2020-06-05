@@ -1,17 +1,18 @@
 // Imports
 const express = require("express");
-const app = express();
 const http = require("http");
 const io = require("socket.io");
-const server = http.createServer(app);
-const socket = io.listen(server);
 const Endb = require("endb");
-const randomize = require("randomatic");
 const session = require("express-session");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { join } = require('path');
+const { join } = require("path");
+
+// Server
+const app = express();
+const server = http.createServer(app);
+const socket = io.listen(server);
 
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,6 +38,9 @@ var user = new Endb("sqlite://user.db");
 var project = new Endb("sqlite://project.db");
 var contributor = new Endb("sqlite://contributor.db");
 
+// Routes
+require("./routes").run({ app, contributor, user, project });
+
 // Listener
 server.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + process.env.PORT);
@@ -44,6 +48,7 @@ server.listen(process.env.PORT, () => {
 
 socket.on("connection", socket => {
   console.log("connected!");
+  socket.on('codeChange', data => console.log('socket data: ', data));
 });
 
-module.exports = { app, user, project };
+module.exports = { app, user, project, contributor };
