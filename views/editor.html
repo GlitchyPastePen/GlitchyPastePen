@@ -231,19 +231,21 @@
       TogetherJSConfig_findRoom = projecturl.slice(41);
       
       // SOCKET-IO
-      console.log("about to connect");
-      var socket = io('https://glitchypastepen.glitch.me',
-      {
-        transports: ['websocket']
-      }); // <---- WS SERVER BETA
-      console.log("connected")
-      window.onkeydown = () => {
-        console.log("keyup!");
-        let code = html.getValue();
-        let js2 = js.getValue();
-        let css2 = css.getValue();
-        socket.emit('code_update', { code: code, js: js2, css: css2 })
-      }
+      // console.log("about to connect");
+      // var socket = io('wss://https://glitchypastepen.glitch.me',
+      // {
+      //   transports: ['websocket']
+      // }); // <---- WS SERVER BETA
+      // console.log("connected")
+      // window.onkeydown = () => {
+      //   console.log("keyup!");
+      //   let code = html.getValue();
+      //   let js2 = js.getValue();
+      //   let css2 = css.getValue();
+      //   socket.emit('code_update', { code: code, js: js2, css: css2 })
+      // }
+      
+      
       
     </script>
   
