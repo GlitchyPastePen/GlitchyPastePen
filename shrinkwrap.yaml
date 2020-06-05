@@ -12,6 +12,7 @@ dependencies:
   project-name-generator: 2.1.7
   randomatic: 3.1.1
   rimraf: 3.0.2
+  socket.io: 2.3.0
   sql: 0.78.0
   sqlite3: 4.2.0
   sweetalert2: 9.14.0
@@ -2165,6 +2166,7 @@ specifiers:
   project-name-generator: ^2.1.7
   randomatic: ^3.1.1
   rimraf: ^3.0.2
+  socket.io: ^2.3.0
   sql: ^0.78.0
   sqlite3: ^4.2.0
   sweetalert2: ^9.13.4

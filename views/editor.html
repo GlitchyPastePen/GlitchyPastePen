@@ -237,67 +237,7 @@
 
       
     </script>
-    <script>
-    let radarView = null;
-    let viewReference = null;
-    const viewKey = "view";
-
-    function initRadarView(textModel, radarViewElement) {
-      radarView = new AceCollabExt.AceRadarView(radarViewElement, editor);
-      viewReference = textModel.rangeReference(viewKey);
-
-      const references = textModel.references({key: viewKey});
-      references.forEach((reference) => {
-        if (!reference.isLocal()) {
-          addView(reference);
-        }
-      });
-
-      session.on('changeScrollTop', () => {
-        setTimeout(() => setLocalView(), 0);
-      });
-
-      textModel.on("reference", (e) => {
-        if (e.reference.key() === viewKey) {
-          addView(e.reference);
-        }
-      });
-
-      setTimeout(() => {
-        setLocalView();
-        viewReference.share();
-      }, 0);
-    }
-
-    function setLocalView() {
-      const viewportIndices = AceCollabExt.AceViewportUtil.getVisibleIndexRange(editor);
-      viewReference.set({start: viewportIndices.start, end: viewportIndices.end});
-    }
-
-    function addView(reference) {
-      const color = colorAssigner.getColorAsHex(reference.sessionId());
-
-      // fixme need the cursor
-      let cursorRow = null;
-      let viewRows = null;
-
-      if (reference.isSet()) {
-        const remoteViewIndices = reference.value();
-        viewRows = AceCollabExt.AceViewportUtil.indicesToRows(editor, remoteViewIndices.start, remoteViewIndices.end);
-      }
-
-      radarView.addView(reference.sessionId(), reference.user().username, color, viewRows, cursorRow);
-
-      // fixme need to implement this on the ace collab side
-      reference.on("cleared", () => radarView.clearView(reference.sessionId()));
-      reference.on("disposed", () => radarView.removeView(reference.sessionId()));
-      reference.on("set", () => {
-        const v = reference.value();
-        const rows = AceCollabExt.AceViewportUtil.indicesToRows(editor, v.start, v.end);
-        radarView.setViewRows(reference.sessionId(), rows);
-      });
-    }
-    </script>
+  
 
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
   </body>
