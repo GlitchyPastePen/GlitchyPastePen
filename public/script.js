@@ -37,12 +37,19 @@ document.getElementById("project-name").value = projectname;
 document.getElementsByClassName("projectname")[0].innerText = projectname;
 document.getElementsByClassName("projectname")[1].innerText = projectname;
 
-var socket = io(`https://glitchypastepen.glitch.me/editor/${projectname}`);
-socket.emit("codeChange", {
-  html: html.getValue(),
-  js: js.getValue(),
-  css: css.getValue()
-});
+var socket = io('https://glitchypastepen.glitch.me',
+{
+  transports: ['websocket']
+}); 
+
+window.onkeyup = () => {
+  socket.emit("codeChange", {
+    html: html.getValue(),
+    js: js.getValue(),
+    css: css.getValue()
+  });
+}
+
 // the console will be flooded
 // temporary logging alright try now ok
 // see discord
