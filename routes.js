@@ -258,13 +258,15 @@ module.exports.run = ({ app, user, project } = {}) => {
       res.render("user", {
         projects: projects,
         username: req.params.user,
-        user: req.session.username
+        user: req.session.username,
+        github: req.session.github
       });
     } else if (req.session.username === "khalby786") {
       res.render("user", {
         projects: projects,
         username: req.params.user,
-        user: req.session.username
+        user: req.session.username,
+        github: req.session.github
         // users: await
       });
     } else {
