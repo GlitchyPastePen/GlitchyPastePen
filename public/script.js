@@ -37,7 +37,7 @@ let projectname = projecturl.slice(41);
 document.getElementById("project-name").value = projectname;
 document.getElementsByClassName("projectname")[0].innerText = projectname;
 document.getElementsByClassName("projectname")[1].innerText = projectname;
-
+// nice
 // var socket = io('https://glitchypastepen.glitch.me',
 // {
 //   transports: ['websocket']
