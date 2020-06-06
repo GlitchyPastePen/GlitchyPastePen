@@ -400,3 +400,11 @@ button:hover {
 .code {
   font-family: "Fira Mono", "IBM Plex Mono", monospace;
 }
+
+#blob {
+  position: absolute;
+  z-index: -1;
+  top: -70px;
+  left: -60px;
+  width: 50vw;
+}
