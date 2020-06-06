@@ -14,10 +14,14 @@ body {
 .main {
   font-size: calc(100vw / 12.8);
   font-weight: 740;
+  text-align: center;
+  font-family: "Inter", sans-serif;
 }
 
 #intro {
   margin-left: 40px;
+  margin-right: 40px;
+  border: 2px dashed yellow;
 }
 
 a {
@@ -290,6 +294,7 @@ i.fab {
   margin-left: 15%;
   margin-right: 15%;
   font-size: calc(35vw / 12.8);
+  font-family: "Fira Mono", "IBM Plex Mono", monospace;
 }
 
 #login {
