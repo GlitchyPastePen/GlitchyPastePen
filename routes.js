@@ -3,6 +3,7 @@ const mkdirp = require("mkdirp");
 const rimraf = require("rimraf");
 const generate = require("project-name-generator");
 const randomize = require("randomatic");
+const fetch = require('node-fetch');
 const fs = require("fs");
 const {
   uniqueNamesGenerator,
@@ -65,16 +66,17 @@ module.exports.run = ({ app, user, project } = {}) => {
     const code = req.query.code;
     const access_token = await getAccessToken(code, clientID, clientSecret);
     console.log(access_token);
-    const user = await fetchGitHubUser(access_token);
-    if (user) {
+    const login_user = await fetchGitHubUser(access_token);
+    if (login_user) {
       req.session.access_token = access_token;
-      req.session.github = user;
-      req.session.githubId = user.id;
+      req.session.github = login_user;
+      req.session.githubId = login_user.id;
       req.session.username = req.session.github.login;
       req.session.email = req.session.github.email;
       console.log(req.session.github);
       console.log(req.session.username);
       req.session.loggedin = true;
+      await user.set(req.session.username, { name: req.session.username, email: req.session.email })
       res.redirect("/me");
     } else {
       res.send("Login did not succeed!");
@@ -135,7 +137,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           if (error) throw error;
         }
       );
-      const projectInfo = { name: projectname, owner: global.theuser };
+      const projectInfo = { name: projectname, owner: req.session.username };
       await project.set(projectname, projectInfo);
       res.redirect(`/editor/${projectname}`);
     } else {
@@ -156,19 +158,6 @@ module.exports.run = ({ app, user, project } = {}) => {
       response.sendFile(__dirname + "/views/preview.html");
     }
   });
-
-  // app.get("/edit/:project", async function(request, response) {
-  //   let hasproject = await project.has(request.params.project);
-  //   if (!hasproject) {
-  //     response.redirect("/editor");
-  //   } else {
-  //     let projectinfo = await project.get(request.params.project);
-  //     let owner = projectinfo.owner;
-  //     if (request.session.username === owner) {
-
-  //     }
-  //   }
-  // });
 
   app.post("/deploy", async function(request, response) {
     const projectinfo = await project.get(request.body.name);
@@ -199,7 +188,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           if (err) throw err;
         }
       );
-      let projectinfo = { name: projectname, owner: global.theuser };
+      let projectinfo = { name: projectname, owner: request.session.username };
       let setinfo = await project.set(projectname, projectinfo);
       response.send({ status: 200 });
     } else {
