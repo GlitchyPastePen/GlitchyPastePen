@@ -71,18 +71,14 @@ module.exports.run = ({ app, user, project } = {}) => {
       req.session.github = user;
       req.session.githubId = user.id;
       req.session.username = req.session.github.login;
+      req.session.email = req.session.github.email;
+      console.log(req.session.github);
+      console.log(req.session.username);
       req.session.loggedin = true;
-      res.redirect("/dashboard");
+      res.redirect("/me");
     } else {
       res.send("Login did not succeed!");
     }
-  });
-
-  app.get("/logout", (req, res) => {
-    // if (req.session) req.session = null;
-    req.session.destroy(function(err) {
-      res.redirect("/");
-    });
   });
 
   app.get("/", async (request, response) => {
@@ -90,67 +86,6 @@ module.exports.run = ({ app, user, project } = {}) => {
       response.redirect("/u/" + request.session.username);
     } else {
       response.sendFile(__dirname + "/views/login.html");
-    }
-  });
-
-  app.get("/login", (request, response) => {
-    response.sendFile(__dirname + "/views/login.html");
-  });
-
-  app.get("/signup", async (request, response) => {
-    response.sendFile(__dirname + "/views/signup.html");
-  });
-
-  app.post("/signup", async (request, response) => {
-    let authdata;
-    global.email = request.body.email;
-    const username = request.body.username;
-    const password = request.body.password;
-    if (username && password && global.email) {
-      const hasuser = await user.has(username);
-      if (!hasuser) {
-        bcrypt.hash(password, config.saltRounds, async function(err, hash) {
-          const userinfo = { password: hash, email: global.email };
-          const newuser = await user.set(username, userinfo);
-          authdata = { redirect: "/", detail: "newuser" };
-          response.send(authdata);
-        });
-      }
-    }
-  });
-
-  app.post("/auth", async function(request, response) {
-    let authdata;
-    global.username = request.body.username;
-    global.password = request.body.password;
-    if (global.username && global.password) {
-      const hasuser = await user.has(global.username);
-      if (hasuser) {
-        const pass = await user.get(global.username, "password");
-        bcrypt.compare(global.password, pass, (error, result) => {
-          if (result) {
-            request.session.loggedin = true;
-            request.session.username = global.username;
-            global.theuser = request.session.username;
-            authdata = {
-              redirect: "editor",
-              detail: "loggedin",
-              user: global.username
-            };
-            response.send(authdata);
-            // response.redirect("/editor");
-          } else {
-            // response.send("Incorrect Username and/or Password!");
-            authdata = { redirect: "/", detail: "wronginfo" };
-            response.send(authdata);
-          }
-          response.end();
-        });
-      } else {
-        // response.redirect('/signup');
-        authdata = { redirect: "signup", detail: "noaccount" };
-        response.send(authdata);
-      }
     }
   });
 
@@ -210,8 +145,9 @@ module.exports.run = ({ app, user, project } = {}) => {
 
   app.get("/editor/:project/", async (request, response) => {
     let contributors = await contributor.get(request.params.project);
+    const projectinfo = await project.get(request.params.project);
     if (
-      (request.session.username === global.theuser &&
+      (request.session.username === projectinfo.owner &&
         request.session.loggedin === true) ||
       contributors.includes(request.session.username)
     ) {
@@ -297,10 +233,6 @@ module.exports.run = ({ app, user, project } = {}) => {
     res.sendFile(__dirname + "/projects/" + projectname + "/script.js");
   });
 
-  app.get("/redirect/loginfail", function(req, res) {
-    res.sendFile(__dirname + "/views/login-fail.html");
-  });
-
   app.get("/delete/:project", async (req, res) => {
     const project2 = await project.get(req.params.project);
     if (req.session.loggedin && req.session.username === project2.owner) {
@@ -364,10 +296,6 @@ module.exports.run = ({ app, user, project } = {}) => {
     const projectName = req.params.projectname;
     const projectinfo = await project.get(projectName);
     res.send({ name: projectinfo.name, owner: projectinfo.owner });
-  });
-
-  app.get("/login-new", (req, res) => {
-    res.sendFile(__dirname + "/views/login-new.html");
   });
 
   app.get("/logout", (req, res) => {
