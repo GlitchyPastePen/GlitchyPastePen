@@ -33,10 +33,6 @@ app.use(
 app.set("views", join(__dirname, "ejs"));
 app.set("view engine", "ejs");
 
-app.use(function(req, res) {
-   response.sendFile(__dirname + "/404.html");
-});
-
 // Database
 var user = new Endb("sqlite://user.db");
 var project = new Endb("sqlite://project.db");
