@@ -24,6 +24,8 @@ body {
   border: 5px dashed yellow;
   margin-top: 50px;
   border-radius: 5px;
+  background-color: #272822;
+  color: white;
 }
 
 a {
