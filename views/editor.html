@@ -35,39 +35,12 @@
   <body style="background-color:#272822;">
     <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
-      <button onclick="TogetherJS(this); return false;">Invite friends!</button>
-      <button id="logout">
-        <a href="/logout">Log out</a>
-      </button>
-
-      <button style="float:right;margin-right:10px;">
-        <a href="/me">My Projects</a>
-      </button>
-
-      <!--  <button style="float:right;margin-right:10px;" onclick="TogetherJS(this); return false;">Invite friends!</button> -->
-
-      <button style="float:right;margin-right:10px;" onclick="contributor()">
-        Add contributor
-      </button>
 
       <p class="p-title">
         <i>PROJECT NAME</i>
       </p>
       <input type="text" id="project-name" oninput="changename()" />
       <br />
-      <p class="empty">
-        <a href="" class="owner"></a>
-      </p>
-      <button id="html" onclick="editor.setSession(html);">
-        index.html
-      </button>
-      <button id="js" onclick="editor.setSession(js);">
-        script.js
-      </button>
-      <button is="css" onclick="editor.setSession(css);">
-        style.css
-      </button>
-
       <button class="deploy" onclick="beautify()" title="Beautify code!">
         <img
           src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
@@ -80,9 +53,13 @@
           height="40px"
         />
       </button>
+      <p class="empty">
+        <a href="" class="owner"></a>
+      </p>
+      
       <p style="color:white">
         To use the script files and stylesheets in your
-        <code>index.html</code> code, make sure to set the source pointing
+        <code>index.html</code> code, make sure to set <br /> the source pointing
         towards <code>/p/<span class="projectname"></span>/style.css</code> or
         <code>/p/<span class="projectname"></span>/script.js</code>.
       </p>
@@ -102,8 +79,26 @@
     <div id="editor"></div>
     
     <footer id="editor-footer">
+      <span class="left code" onclick="editor.setSession(html);">
+        index.html
+      </span>
+      <span class="left code" onclick="editor.setSession(css);">
+        style.css
+      </span>
+      <span class="left code" onclick="editor.setSession(js);">
+         script.js
+      </span>
       <a href="/logout"><span class="right code">
         LOG OUT
+      </span></a>
+      <a href="/me"><span class="right code">
+        MY PROJECTS
+      </span></a>
+      <a onclick="contributor()"><span class="right code">
+        ADD CONTRIBUTOR
+      </span></a>
+      <a onclick="alert('This option has been temporarily disabled.')"><span class="right code">
+        INVITE CONTRIBUTOR
       </span></a>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>

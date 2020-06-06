@@ -369,12 +369,29 @@ button:hover {
   margin-right: 10px;
   padding-top: 3px;
   padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .right:hover {
   --hover: #C0C0C0;
   background-color: var(--hover);
 }
+
+.left {
+  float: left;
+  margin-left: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.left:hover {
+  --hover: #C0C0C0;
+  background-color: var(--hover);
+}
+
 
 .code {
   font-family: "Fira Mono", "IBM Plex Mono", monospace;
