@@ -19,9 +19,11 @@ body {
 }
 
 #intro {
-  margin-left: 40px;
-  margin-right: 40px;
-  border: 2px dashed yellow;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 5px dashed yellow;
+  margin-top: 50px;
+  border-radius: 5px;
 }
 
 a {
@@ -311,7 +313,7 @@ button {
   color: black;
   border: 1px solid black;
   border-radius: 5px;
-  transition: 1s ease;
+  transition: 200ms linear;
   cursor: pointer;
   font-family: "IBM Plex Mono", monospace;
   margin-bottom: 10px;
@@ -320,9 +322,7 @@ button {
 button:hover {
   background-color: yellow;
   color: black;
-  transition: 1s ease;
-  border: none;
-  font-weight: bold;
+  transition: 200ms linear;
   -webkit-transform: scale(1.01);
   -ms-transform: scale(1.01);
   transform: scale(1.01);
