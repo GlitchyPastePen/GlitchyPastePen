@@ -173,6 +173,7 @@ pre {
   cursor: pointer; 
   border: 1px dashed white;
   margin-right: 20px;
+  z-index: 4;
 }
 
 .signup-link {
@@ -341,4 +342,24 @@ button:hover {
 
 .projectname {
   color: white;
+}
+
+#editor-footer {
+  background-color: white;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  z-index: 10;
+  position: absolute;
+  left:  0px;
+  right: 0px;
+  bottom: 0px;
+  color: black;
+  height: 20px;
+  padding-top: 0px !important;
+  position: fixed;
+}
+
+#editor-footer p {
+  margin: 0px !important;
+  margin-top: 0px;
 }
