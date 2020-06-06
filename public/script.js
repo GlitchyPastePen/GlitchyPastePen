@@ -38,10 +38,10 @@ document.getElementById("project-name").value = projectname;
 document.getElementsByClassName("projectname")[0].innerText = projectname;
 document.getElementsByClassName("projectname")[1].innerText = projectname;
 
-var socket = io('https://glitchypastepen.glitch.me',
-{
-  transports: ['websocket']
-}); 
+// var socket = io('https://glitchypastepen.glitch.me',
+// {
+//   transports: ['websocket']
+// }); 
 
 window.onkeyup = () => {
   socket.emit("codeChange", {

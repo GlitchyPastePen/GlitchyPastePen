@@ -345,7 +345,7 @@ button:hover {
 }
 
 #editor-footer {
-  background-color: white;
+  background-color: #5500ff;
   width: 100%;
   font-family: 'Inter', sans-serif;
   z-index: 10;
@@ -353,7 +353,7 @@ button:hover {
   left:  0px;
   right: 0px;
   bottom: 0px;
-  color: black;
+  color: white;
   height: 26px;
   padding-top: 0px !important;
   position: fixed;
@@ -371,10 +371,11 @@ button:hover {
   padding-bottom: 3px;
   padding-left: 5px;
   padding-right: 5px;
+  color: white;
 }
 
 .right:hover {
-  --hover: #C0C0C0;
+  --hover: #8547ff;
   background-color: var(--hover);
 }
 
@@ -385,10 +386,11 @@ button:hover {
   padding-bottom: 3px;
   padding-left: 5px;
   padding-right: 5px;
+  cursor: pointer;
 }
 
 .left:hover {
-  --hover: #C0C0C0;
+  --hover: #8547ff;
   background-color: var(--hover);
 }
 
