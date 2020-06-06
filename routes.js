@@ -282,6 +282,10 @@ module.exports.run = ({ app, user, project } = {}) => {
     const username = req.session.username;
     res.redirect(`/u/${username}`);
   });
+  
+  app.use(function(req, res) {
+   response.sendFile(__dirname + "/404.html");
+  });
 
   app.get("/projectinfo/:projectname", async (req, res) => {
     const projectName = req.params.projectname;
