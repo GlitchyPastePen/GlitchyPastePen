@@ -29,6 +29,7 @@
       rel="stylesheet"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
     <style type="text/css">
       #editor {
         position: absolute;
@@ -84,6 +85,9 @@
       <span class="left code" onclick="editor.setSession(js);">
         script.js
       </span>
+      <span class="left code" onclick="eruda.init()">
+        
+      </span>
       <span class="right code" id="pos">
           
       </span>
@@ -97,7 +101,7 @@
           MY PROJECTS
         </span></a
       >
-      <a onclick="contributor()"
+      <a onclick="eruda.init()"
         ><span class="right code">
           ADD CONTRIBUTOR
         </span></a
