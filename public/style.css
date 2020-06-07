@@ -450,4 +450,6 @@ iframe {
   left: 0px;
   right: 0px;
   border: none;
+  background-color: white;
+  z-index: -1;
 }
