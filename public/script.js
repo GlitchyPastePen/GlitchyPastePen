@@ -1,18 +1,19 @@
-var editor = ace.edit("editor");
+// Editor elements, including Ace imported from Ace.js
+const editor = ace.edit("editor");
+const format = ace.require("ace/ext/beautify");
+const io = require("socket.io");
+const iframe = document.querySelector("iframe");
+const editorDiv = document.getElementById("editor");
+const footer = document.getElementById("editor-footer");
+const projecturl = window.location.href;
+const projectname = projecturl.slice(41);
+const projectname_el = document.getElementById("project-name");
+
+// Ace.js configurations
+ace.require("ace/ext/language_tools");
+
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/html");
-var io = require("socket.io");
-
-document.addEventListener("keydown", function(event) {
-  TogetherJS.reinitialize();
-});
-
-function beautify() {
-  var beautify = ace.require("ace/ext/beautify");
-  beautify.beautify(editor.session);
-}
-
-ace.require("ace/ext/language_tools");
 
 editor.setOptions({
   fontSize: "1.5vw",
@@ -32,14 +33,6 @@ js.setOverwrite(true);
 html.setOverwrite(true);
 css.setOverwrite(true);
 
-// Update cursor position with keyup
-window.onkeyup = () => {
-  let pos = editor.getCursorPosition();
-  let col = pos.column;
-  let row = pos.row;
-  document.getElementById("pos").innerText = `${col}:${row}`;
-};
-
 // Custom commands
 editor.commands.addCommand({
   name: "showKeyboardShortcuts",
@@ -52,24 +45,31 @@ editor.commands.addCommand({
   }
 });
 
-let projecturl = window.location.href;
-let projectname = projecturl.slice(41);
-document.getElementById("project-name").value = projectname;
+// Beautify function beautify code
+function beautify() {
+  format.beautify(editor.session);
+}
+
+
+
+// Update cursor position with keyup
+window.onkeyup = () => {
+  let pos = editor.getCursorPosition();
+  let col = pos.column;
+  let row = pos.row;
+  document.getElementById("pos").innerText = `${col}:${row}`;
+};
+
+
+projectname_el.value = projectname;
 document.getElementsByClassName("projectname")[0].innerText = projectname;
 document.getElementsByClassName("projectname")[1].innerText = projectname;
-// nice
-// var socket = io('https://glitchypastepen.glitch.me',
-// {
-//   transports: ['websocket']
-// });
 
-// window.onkeyup = () => {
-//   socket.emit("codeChange", {
-//     html: html.getValue(),
-//     js: js.getValue(),
-//     css: css.getValue()
-//   });
-// }
+/**
+  *
+  *FETCH REQUESTS TO FETCH INFO FROM BACKEND 
+  *
+**/
 
 let name = document.getElementById("project-name").value;
 let path = "/getCode/" + name;
@@ -152,13 +152,9 @@ function contributor() {
   }
 }
 
-function cancel() {}
-
-TogetherJSConfig_hubBase = "https://gpphub.herokuapp.com/";
-TogetherJSConfig_findRoom = projecturl.slice(41);
-
-// few CSS adjustments
-
-if (document.querySelector("iframe").style.display === 'none') {
-  document.getElementById("editor").bottom = 
+if (iframe.style.display === 'block') {
+  editorDiv.style.bottom = iframe.style.height + footer.style.height;
+  editor.resize(true);
+} else {
+  editorDiv.style.bottom = footer.style.height;
 }
