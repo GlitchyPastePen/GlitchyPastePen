@@ -26,7 +26,8 @@
     "project-name-generator": "^2.1.7",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
-    "@vue/cli": "^4.4.1"
+    "@vue/cli": "^4.4.1",
+    "weinre": "^2.0.0-pre-I0Z7U9OV"
   },
   "engines": {
     "node": "12.x"
