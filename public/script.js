@@ -156,3 +156,4 @@ function cancel() {}
 
 TogetherJSConfig_hubBase = "https://gpphub.herokuapp.com/";
 TogetherJSConfig_findRoom = projecturl.slice(41);
+

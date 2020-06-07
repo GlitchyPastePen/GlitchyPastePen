@@ -64,7 +64,6 @@
       <p class="empty">
         <a href="" class="owner"></a>
       </p>
-
       <p style="color:white;margin-left:20px;">
         To use the script files and stylesheets in your
         <code>index.html</code> code, make sure to set <br />
@@ -85,12 +84,19 @@
       <span class="left code" onclick="editor.setSession(js);">
         script.js
       </span>
-      <span class="left code" onclick="eruda.init()">
-        
+      <span class="left code" onclick="alert('press the button in the bottom right hand corner to open the console');eruda.init()">
+        CONSOLE
       </span>
       <span class="right code" id="pos">
           
       </span>
+    <script>
+        eruda.init({
+          tool: ['console'],
+        })
+        eruda.remove('settings') 
+    
+      </script>
       <a href="/logout"
         ><span class="right code">
           LOG OUT
@@ -101,7 +107,7 @@
           MY PROJECTS
         </span></a
       >
-      <a onclick="eruda.init()"
+      <a onclick="contributor()"
         ><span class="right code">
           ADD CONTRIBUTOR
         </span></a
