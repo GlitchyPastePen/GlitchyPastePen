@@ -74,6 +74,7 @@
     </header>
     <div id="editor"></div>
 
+    <iframe src="https://gpp-debug.glitch.me"> </iframe>
     <footer id="editor-footer">
       <span class="left code" onclick="editor.setSession(html);">
         index.html
@@ -84,15 +85,13 @@
       <span class="left code" onclick="editor.setSession(js);">
         script.js
       </span>
-      <span class="left code" onclick="document.querySelector('iframe').style.display = 'block';">
+      <span
+        class="left code"
+        onclick="document.querySelector('iframe').style.display = 'block';"
+      >
         DEVTOOLS
       </span>
-      <iframe src="https://gpp-debug.glitch.me">
-        
-      </iframe>
-      <span class="right code" id="pos">
-          
-      </span>
+      <span class="right code" id="pos"> </span>
       <a href="/logout"
         ><span class="right code">
           LOG OUT
