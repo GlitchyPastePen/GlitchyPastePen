@@ -61,8 +61,11 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F539afee2-b116-4516-95df-51113f89adab.image.png?v=1591507384298)
 
 7. 
+lick on "New oAuth App"
 
-### Author
+![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F7734c72e-2d9f-430b-9dd6-3355ceabd05c.image.png?v=1591507568690)
+
+8. Fill in all the details according to your wish, but make sure to set callback URL as `https://PROJECTNAME.glitch.me/login/github/callback`.h### Author
 
 * [Khaleel Gibran](https://khaleelgibran.com)
 
@@ -74,4 +77,4 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 
 ### Need Help?
 
-Join our (unofficial) Discord server: [https://discord.gg/8bnp2vK](https://discord.gg/8bnp2vK).
+Join our (unofficial) Discord server: [https://discord.gg/8bnp2vK](https://discord.gg/8bnp2vK).C
