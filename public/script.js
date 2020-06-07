@@ -157,3 +157,8 @@ function cancel() {}
 TogetherJSConfig_hubBase = "https://gpphub.herokuapp.com/";
 TogetherJSConfig_findRoom = projecturl.slice(41);
 
+// few CSS adjustments
+
+if (document.querySelector("iframe").style.display === 'none') {
+  document.getElementById("editor").bottom = 
+}

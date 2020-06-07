@@ -453,3 +453,8 @@ iframe {
   background-color: white;
   z-index: 10;
 }
+
+#settings {
+  border-radius: 3px;
+  position: fixed;
+}
