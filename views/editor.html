@@ -87,7 +87,7 @@
       </span>
       <span
         class="left code"
-        onclick="document.querySelector('iframe').style.display = 'block';"
+        onclick="if (document.querySelector('iframe').style.display === 'none') { document.querySelector('iframe').style.display = 'block';"
       >
         DEVTOOLS
       </span>
