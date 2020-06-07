@@ -441,3 +441,13 @@ button:hover {
   width: 100%;
   height: 2px;
 }
+
+iframe {
+  display: none;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border: none;
+}
