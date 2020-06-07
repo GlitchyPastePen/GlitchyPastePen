@@ -3,8 +3,6 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/html");
 var io = require("socket.io");
 
-ace.require("ace/ext/language_tools");
-
 document.addEventListener("keydown", function(event) {
   TogetherJS.reinitialize();
 });
@@ -13,6 +11,8 @@ function beautify() {
   var beautify = ace.require("ace/ext/beautify");
   beautify.beautify(editor.session);
 }
+
+ace.require("ace/ext/language_tools");
 
 editor.setOptions({
   fontSize: "1.5vw",
@@ -26,11 +26,31 @@ var EditSession = require("ace/edit_session").EditSession;
 var html = new EditSession("<html></html>", "ace/mode/html");
 var js = new EditSession("console.log('//hi')", "ace/mode/javascript");
 var css = new EditSession("body { color: red; }", "ace/mode/css");
-// and then to load document into editor, just call
+
 editor.setSession(html);
 js.setOverwrite(true);
 html.setOverwrite(true);
 css.setOverwrite(true);
+
+// Update cursor position with keyup
+window.onkeyup = () => {
+  let pos = editor.getCursorPosition();
+  let col = pos.column;
+  let row = pos.row;
+  document.getElementById("pos").innerText = `${col}:${row}`;
+};
+
+// Custom commands
+editor.commands.addCommand({
+  name: "showKeyboardShortcuts",
+  bindKey: { win: "Ctrl-Alt-h", mac: "Command-Alt-h" },
+  exec: function(editor) {
+    ace.config.loadModule("ace/ext/keybinding_menu", function(module) {
+      module.init(editor);
+      editor.showKeyboardShortcuts();
+    });
+  }
+});
 
 let projecturl = window.location.href;
 let projectname = projecturl.slice(41);
@@ -41,19 +61,16 @@ document.getElementsByClassName("projectname")[1].innerText = projectname;
 // var socket = io('https://glitchypastepen.glitch.me',
 // {
 //   transports: ['websocket']
-// }); 
+// });
 
-window.onkeyup = () => {
-  socket.emit("codeChange", {
-    html: html.getValue(),
-    js: js.getValue(),
-    css: css.getValue()
-  });
-}
+// window.onkeyup = () => {
+//   socket.emit("codeChange", {
+//     html: html.getValue(),
+//     js: js.getValue(),
+//     css: css.getValue()
+//   });
+// }
 
-// the console will be flooded
-// temporary logging alright try now ok
-// see discord
 let name = document.getElementById("project-name").value;
 let path = "/getCode/" + name;
 fetch(path)
