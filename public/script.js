@@ -71,6 +71,7 @@ document.getElementsByClassName("projectname")[1].innerText = projectname;
   *
 **/
 
+// Get project code
 let name = document.getElementById("project-name").value;
 let path = "/getCode/" + name;
 fetch(path)
@@ -84,6 +85,7 @@ fetch(path)
     css.setValue(data.css);
   });
 
+// Get project info like project owner
 fetch("/projectinfo/" + projectname)
   .then(response => response.json())
   .then(data => {
@@ -91,6 +93,7 @@ fetch("/projectinfo/" + projectname)
     document.getElementsByClassName("owner")[0].href = "/u/" + data.owner;
   });
 
+// Save your code and deploy!
 function deploy() {
   let code = html.getValue();
   let js2 = js.getValue();
@@ -127,6 +130,7 @@ function deploy() {
     });
 }
 
+// Add a new contributor to allow access to your project
 function contributor() {
   console.log(projectname);
   let contributor = prompt(
@@ -152,6 +156,8 @@ function contributor() {
   }
 }
 
+
+// CSS adjustments using Javascript to dynamicaly set editor height
 if (iframe.style.display === 'block') {
   editorDiv.style.bottom = iframe.style.height + footer.style.height;
   editor.resize(true);
