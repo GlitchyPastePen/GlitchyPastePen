@@ -296,7 +296,13 @@ module.exports.run = ({ app, user, project } = {}) => {
       res.redirect("/");
     });
   });
-app.get('*', function(req, res){
-  res.status(404).send('<img src="https://http.cat/404">');
-});
+  
+  app.get('*', function(req, res){
+    res.status(404).send('<body style="background-color:black;"><center><a href="https://http.cat"><img src="https://http.cat/404"></a></center>');
+  });
+
+  app.get('*', function(req, res){
+    res.status(500).send('<body style="background-color:black;"><center><a href="https://http.cat"><img src="https://http.cat/4"></a></center>');
+  });
+
 };
