@@ -128,18 +128,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
   
   <script>
-    
-var timeoutId;
-$('editor').keypress(function () {
-    if (timeoutId) clearTimeout(timeoutId);
-    timeoutId = setTimeout(function () {
-    	$.ajax({
-            url: '/savecomment',
-            data: { comment: $(this).val() }
-            swal("ready!")
-        });
-    }, 3000);
-});
+    // autosave/deploy
+  setInterval(function(){ deploy() }, 10000);
     </script>
   </body>
 </html>
