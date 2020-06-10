@@ -164,3 +164,4 @@ if (iframe.style.display === 'block') {
 } else {
   editorDiv.style.bottom = footer.style.height;
 }
+
