@@ -50,14 +50,24 @@ function beautify() {
   format.beautify(editor.session);
 }
 
-
-
-// Update cursor position with keyup
-window.onkeyup = () => {
+const cursorpos = () => {
   let pos = editor.getCursorPosition();
   let col = pos.column;
   let row = pos.row;
   document.getElementById("pos").innerText = `${col}:${row}`;
+}
+
+// Update cursor position with events
+window.onload = () => {
+  cursorpos();
+}
+
+window.onclick = () => {
+  cursorpos();
+};
+
+window.onkeyup = () => {
+  cursorpos();
 };
 
 
@@ -155,7 +165,6 @@ function contributor() {
       });
   }
 }
-
 
 // CSS adjustments using Javascript to dynamicaly set editor height
 if (iframe.style.display === 'block') {
