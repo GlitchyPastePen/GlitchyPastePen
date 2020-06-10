@@ -167,6 +167,10 @@ if (iframe.style.display === 'block') {
 
 function save(){
   editor.on("input", function() {
-  localStorage.setItem("text", editor.getValue())
+  localStorage.setItem("html", html.getValue());
+  localStorage.setItem("css", css.getValue());
+  localStorage.setItem("js", js.getValue());
 })
+  
+
 }
