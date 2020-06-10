@@ -16,7 +16,7 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/html");
 
 editor.setOptions({
-  fontSize: "1.5vw",
+  fontSize: "14px",
   fontFamily: "Fira Mono",
   enableBasicAutocompletion: true,
   autoScrollEditorIntoView: true
@@ -70,10 +70,15 @@ window.onkeyup = () => {
   cursorpos();
 };
 
-
 projectname_el.value = projectname;
 document.getElementsByClassName("projectname")[0].innerText = projectname;
 document.getElementsByClassName("projectname")[1].innerText = projectname;
+
+projectname_el.onclick = () => {
+  simplecopy(projectname_el.value);
+  projectname_el.value = "Copied!"
+  setTimeout(() => projectname_el.value = projectname, 700)
+}
 
 /**
   *
