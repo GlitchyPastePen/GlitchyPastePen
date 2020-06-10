@@ -164,20 +164,3 @@ if (iframe.style.display === 'block') {
 } else {
   editorDiv.style.bottom = footer.style.height;
 }
-
-function save(){
-  editor.on("input", function() {
-  localStorage.setItem("html", html.getValue());
-  localStorage.setItem("css", css.getValue());
-  localStorage.setItem("js", js.getValue());
-})
-  
-
-function open(){
-  localStorage.getItem("html", html.setValue())
-  localStorage.getItem("css", css.setValue())
-  localStorage.getItem("js", js.setValue())
-
-}
-
-}

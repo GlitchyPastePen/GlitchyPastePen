@@ -296,4 +296,7 @@ module.exports.run = ({ app, user, project } = {}) => {
       res.redirect("/");
     });
   });
+app.get('*', function(req, res){
+  res.status(404).send('<img src="https://http.cat/404">');
+});
 };

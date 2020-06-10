@@ -56,6 +56,7 @@
           height="40px"
         />
       </button>
+      <button class="deploy" onclick="simplecopy(editor.getValue())"
       <p class="p-title">
         <i>PROJECT NAME</i>
       </p>
@@ -73,10 +74,7 @@
       </p>
     </header>
     <div id="editor"></div>
-    <script>
-    setInterval(function(){ open() } 100);
-    </script>
-
+    
     <iframe src="https://gpp-debug.glitch.me"> </iframe>
     <div id="settings">
       
@@ -129,10 +127,10 @@
     <script src="/public/script.js"></script>
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
-  
-  <script>
+    <script src="/public/simplecopy.min.js"></script>
+  <!--<script>
     // autosave/deploy
-  setInterval(function(){ save() });
-    </script>
+  setInterval(function(){ save() }, 3000);
+    </script>-->
   </body>
 </html>
