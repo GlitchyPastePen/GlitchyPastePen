@@ -165,3 +165,8 @@ if (iframe.style.display === 'block') {
   editorDiv.style.bottom = footer.style.height;
 }
 
+function save(){
+  editor.on("input", function() {
+  localStorage.setItem("text", editor.getValue())
+})
+}
