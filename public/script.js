@@ -173,4 +173,11 @@ function save(){
 })
   
 
+function open(){
+  localStorage.getItem("html", html.setValue())
+  localStorage.getItem("css", css.setValue())
+  localStorage.getItem("js", js.setValue())
+
+}
+
 }
