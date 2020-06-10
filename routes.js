@@ -302,7 +302,7 @@ module.exports.run = ({ app, user, project } = {}) => {
   });
 
   app.get('*', function(req, res){
-    res.status(500).send('<body style="background-color:black;"><center><a href="https://http.cat"><img src="https://http.cat/4"></a></center>');
+    res.status(500).send('<body style="background-color:black;"><center><a href="https://http.cat"><img src="https://http.cat/500"></a></center>');
   });
 
 };
