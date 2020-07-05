@@ -145,7 +145,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     }
   });
 
-  
+
   app.get("/editor/:project/", async (request, response) => {
     let contributors = await contributor.get(request.params.project);
     const projectinfo = await project.get(request.params.project);
