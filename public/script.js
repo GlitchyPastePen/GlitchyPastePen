@@ -178,3 +178,7 @@ if (iframe.style.display === 'block') {
 } else {
   editorDiv.style.bottom = footer.style.height;
 }
+
+window.onload = () => {
+  document.getElementById("loader").style.display = "none";
+}
