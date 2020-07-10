@@ -271,10 +271,13 @@ module.exports.run = ({ app, user, project } = {}) => {
         // users: await
       });
     } else {
+      let github = await fetch(`https://api.github.com/users/${req.params.username}`);
+      
       res.render("userpreview", {
         projects: projects,
         username: req.params.user,
-        user: "not logged in!"
+        user: "not logged in!",
+        github: github
       });
     }
   });

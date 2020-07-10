@@ -1,5 +1,5 @@
 
-![](https://cdn.khaleelgibran.com/img/glitchypastepen.png)
+![](https://cdn.glitch.com/a1686874-cbbf-4ca9-b412-cd53a73b9ceb%2Fglitchypastepen.png?v=1587918769653)
 
 # GlitchyPastePen
 
@@ -65,7 +65,9 @@ lick on "New oAuth App"
 
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F7734c72e-2d9f-430b-9dd6-3355ceabd05c.image.png?v=1591507568690)
 
-8. Fill in all the details according to your wish, but make sure to set callback URL as `https://PROJECTNAME.glitch.me/login/github/callback`.h### Author
+8. Fill in all the details according to your wish, but make sure to set callback URL as `https://PROJECTNAME.glitch.me/login/github/callback`.
+
+### Author
 
 * [Khaleel Gibran](https://khaleelgibran.com)
 
