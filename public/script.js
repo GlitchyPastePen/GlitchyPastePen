@@ -29,9 +29,9 @@ var js = new EditSession("console.log('//hi')", "ace/mode/javascript");
 var css = new EditSession("body { color: red; }", "ace/mode/css");
 
 editor.setSession(html);
-js.setOverwrite(true);
-html.setOverwrite(true);
-css.setOverwrite(true);
+// js.setOverwrite(true);
+// html.setOverwrite(true);
+// css.setOverwrite(true);
 
 // Custom commands
 editor.commands.addCommand({

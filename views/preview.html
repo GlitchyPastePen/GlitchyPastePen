@@ -48,7 +48,10 @@
     <p class="p-title">
       <i>PROJECT NAME</i>
     </p>
-    <p type="text" id="project-name"></p>
+    <p type="text" id="project-name" style="margin-bottom:0px;"></p>
+    <p class="empty">
+      <a href="" class="owner"></a>
+    </p>
     <br />
     <div id="editor"></div>
     <footer id="editor-footer">
@@ -105,6 +108,13 @@
           js.setValue(data.js);
           css.setValue(data.css);
         });
+      
+      fetch("/projectinfo/" + projectname)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementsByClassName("owner")[0].innerText = "by " + data.owner;
+        document.getElementsByClassName("owner")[0].href = "/u/" + data.owner;
+      });
     </script>
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
