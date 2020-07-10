@@ -149,12 +149,10 @@ module.exports.run = ({ app, user, project } = {}) => {
   app.get("/editor/:project/", async (request, response) => {
     let contributors = await contributor.get(request.params.project);
     const projectinfo = await project.get(request.params.project);
-    if (
-      (request.session.username === projectinfo.owner &&
-        request.session.loggedin === true) ||
-      contributors.includes(request.session.username)
-    ) {
-      response.sendFile(__dirname + "/views/editor.html");
+    if (request.session.loggedin === true) {
+      if ((request.session.username === projectinfo.owner) || contributors.includes(request.session.username)) {
+        response.sendFile(__dirname + "/views/editor.html");
+      }
     } else {
       response.sendFile(__dirname + "/views/preview.html");
     }

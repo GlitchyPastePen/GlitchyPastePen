@@ -18,7 +18,7 @@ editor.session.setMode("ace/mode/html");
 editor.setOptions({
   fontSize: "14px",
   fontFamily: "Fira Mono",
-  enableBasicAutocompletion: true,
+  enableBasicAutoCompletion: true,
   autoScrollEditorIntoView: true
 });
 
