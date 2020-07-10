@@ -1,5 +1,6 @@
 @import url("https://rsms.me/inter/inter.css");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=IBM+Plex+Mono&display=swap');
 
 body {
   --fore: black;
@@ -321,6 +322,7 @@ button {
   cursor: pointer;
   font-family: "IBM Plex Mono", monospace;
   margin-bottom: 10px;
+  font-size: 15px;
 }
 
 button:hover {
