@@ -84,9 +84,36 @@
       .dropup:hover .dropbtn {
         background-color: #;
       }
+      
+      #loader {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        z-index: 90;
+        padding-top: 5vw;
+      }
     </style>
   </head>
   <body style="background-color:#272822;">
+    
+    <div id="loader">
+      <center>
+        <img src="https://cdn.glitch.com/a1686874-cbbf-4ca9-b412-cd53a73b9ceb%2Fglitchypastepen.png?v=1587918769653">
+        <p style="font-size: 25px;">
+          Loading...
+        </p>
+        <p>
+          <i>Tip!</i><br>
+          Press <kbd>Ctrl</kbd> + <kbd>,</kbd> for editor preferences.
+        </p>
+      </center>
+    </div>
+    
     <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
       <button class="deploy" onclick="beautify()" title="Beautify code!">

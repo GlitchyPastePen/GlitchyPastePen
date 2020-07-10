@@ -177,6 +177,7 @@ pre {
   border: 1px dashed white;
   margin-right: 20px;
   z-index: 4;
+  height: 75px;
 }
 
 .signup-link {
@@ -460,4 +461,23 @@ iframe {
 #settings {
   border-radius: 3px;
   position: fixed;
+}
+
+kbd {
+  align-items: center;
+  background: #fafafa;
+  border: 1px solid #d0d0d0;
+  border-bottom-width: 1px;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #222;
+  display: inline-flex;
+  font-size: 0.8706em;
+  justify-content: center;
+  line-height: 1.4;
+  margin: 0 0.15em;
+  min-width: 24px;
+  padding: 0.15em 0.6em;
+  font-family: "Fira Mono", "IBM Plex Mono", monospace;
 }
