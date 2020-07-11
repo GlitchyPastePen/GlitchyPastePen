@@ -115,10 +115,6 @@
       </center>
     </div>
     
-    <div id="preview">
-      Hi
-    </div>
-    
     <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
       <button class="deploy" onclick="beautify()" title="Beautify code!">
@@ -136,7 +132,7 @@
       <button class="deploy" onclick="simplecopy(editor.getValue())" style="font-size:37px;">
         📋
       </button>
-      <button class="deploy">
+      <button class="deploy" onclick="alert('coming soon!')">
         <i class="fas fa-window-restore" style="background-color: none;color:white;font-size:35px;"></i>
       </button>
       <p class="p-title">
@@ -161,6 +157,11 @@
     <div id="settings">
       
     </div>
+    
+<!--     <aside id="preview">
+      Hi
+    </aside> -->
+    
     <footer id="editor-footer">
       <span class="left code" onclick="editor.setSession(html);">
         index.html
@@ -209,6 +210,7 @@
         </span></a
       >
     </footer>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
