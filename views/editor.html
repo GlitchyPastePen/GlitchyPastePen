@@ -30,6 +30,7 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script src="https://kit.fontawesome.com/98f54f160f.js" crossorigin="anonymous"></script>
     <style type="text/css">
       #editor {
         position: absolute;
@@ -114,6 +115,10 @@
       </center>
     </div>
     
+    <div id="preview">
+      Hi
+    </div>
+    
     <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
       <button class="deploy" onclick="beautify()" title="Beautify code!">
@@ -130,6 +135,9 @@
       </button>
       <button class="deploy" onclick="simplecopy(editor.getValue())" style="font-size:37px;">
         📋
+      </button>
+      <button class="deploy">
+        <i class="fas fa-window-restore" style="background-color: none;color:white;font-size:35px;"></i>
       </button>
       <p class="p-title">
         <i>PROJECT NAME</i>
