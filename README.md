@@ -1,18 +1,20 @@
 
 ![](https://cdn.glitch.com/a1686874-cbbf-4ca9-b412-cd53a73b9ceb%2Fglitchypastepen.png?v=1587918769653)
 
-# GlitchyPastePen
+# GlitchyPastePen BETA
 
-Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting.
+Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting, much like CodePen.
 
 GlitchyPastePen has an online code IDE, which allows you to create a simple static site and host them immediately. 
 
 ### Features
 
-* Collaborate live with friends and other users (not tested yet)
-* Powerful code editor using Ace.js
+* Collaborate live with friends and other users (temporarily disabled)
+* Powerful code editor with Ace.js
 * Choose your own preferences such as text wrapping, theme, font-size, etc, for the editor.
+* Intellisense powered by Ace.js
 * Beautify your code to make it look better.
+* Instant hosting for projects
 
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fscreely-1591191781898.png?v=1591191852875)
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fscreely-1591191829511.png?v=1591191848661)
@@ -34,7 +36,7 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 - JS
 - Node.js (Express)
 - EJS
-- TogetherJS for streaming with friends (Mozilla labs)
+- TogetherJS for streaming with friends (Mozilla labs) (**CURRENTLY DISABLED**)
 
 ### Remixing
 
@@ -60,12 +62,11 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F539afee2-b116-4516-95df-51113f89adab.image.png?v=1591507384298)
 
-7. 
-lick on "New oAuth App"
+7. Click on "New oAuth App"
 
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F7734c72e-2d9f-430b-9dd6-3355ceabd05c.image.png?v=1591507568690)
 
-8. Fill in all the details according to your wish, but make sure to set callback URL as `https://PROJECTNAME.glitch.me/login/github/callback`.
+8. Fill in all the details according to your wish, but make sure to set callback as `https://PROJECTNAME.glitch.me/login/github/callback`.
 
 ### Author
 
@@ -76,7 +77,3 @@ lick on "New oAuth App"
 * [17lwinn @ProTechCEO](https://ptuk.tk)
 * [RiversideRocks](https://riverside.rocks)
 * [chroventer](https://github.com/chroventer)
-
-### Need Help?
-
-Join our (unofficial) Discord server: [https://discord.gg/8bnp2vK](https://discord.gg/8bnp2vK).C
