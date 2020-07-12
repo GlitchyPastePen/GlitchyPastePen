@@ -281,12 +281,18 @@ module.exports.run = ({ app, user, project } = {}) => {
   });
   
   app.get("/admin", async (req, res) => {
-    let github = await fetch(`https://api.github.com/users/${req.params.username}`);
+    
+    if (req.session.username === 'khalby786' || req.session.username === '17lwinn') {
+      let github = await fetch(`https://api.github.com/users/${req.params.username}`);
       
-    res.render("admin", {
-      github: github,
-      users: await user.keys()
-    });
+      res.render("admin", {
+        github: github,
+        users: await user.keys()
+      });
+    } else {
+      res.sendStatus(401).send("Nice try, but this page doesn't exist for ya!")
+    }
+  
   })
 
   app.get("/me", (req, res) => {
