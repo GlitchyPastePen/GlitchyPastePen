@@ -279,6 +279,15 @@ module.exports.run = ({ app, user, project } = {}) => {
       });
     }
   });
+  
+  app.get("/admin", async (req, res) => {
+    let github = await fetch(`https://api.github.com/users/${req.params.username}`);
+      
+    res.render("admin", {
+      github: github,
+      users: await user.keys()
+    });
+  })
 
   app.get("/me", (req, res) => {
     const username = req.session.username;
