@@ -9,15 +9,15 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 
 ### Features
 
-* Collaborate live with friends and other users (temporarily disabled)
+* Collaborate live with friends and other users (**temporarily disabled**)
 * Powerful code editor with Ace.js
 * Choose your own preferences such as text wrapping, theme, font-size, etc, for the editor.
 * Intellisense powered by Ace.js
 * Beautify your code to make it look better.
 * Instant hosting for projects
 
-![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fscreely-1591191781898.png?v=1591191852875)
-![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fscreely-1591191829511.png?v=1591191848661)
+![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2FScreen%20Shot%202020-07-12%20at%204.27.55%20PM.png?v=1594557148047)
+![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2FScreen%20Shot%202020-07-12%20at%204.30.53%20PM.png?v=1594557152082)
 
 ### Contributing
 
