@@ -42,7 +42,7 @@
       padding-bottom: 10px;
       font-family: "Fira Mono", "Inter", "Raleway", sans-serif;
       transition: 1s ease;
-      background-color: #F0F0F0;
+      background-color: yellow;
       border-radius: 5px;
       margin-top: 20px;
       display: block;
@@ -152,9 +152,18 @@
       <a href="/editor/new">New Project</a>
     </button>
   </header>
-  <h1 style="margin-left:15%;margin-right:15%;">
-    <%= username %>
-  </h1>
+  <br><br>
+  <center>
+    <img src="<%= github.avatar_url %>" style="border-radius:50%;width:300px;">
+    <h1>
+      <%= username %>
+    </h1>
+    <p style="font-family: 'IBM Plex Mono', monospace;">
+      <span><%= github.name %></span><br>
+      <span><%= github.email %></span><br><br>
+      <span>@<%= github.twitter_username %></span>
+    </p>
+  </center>
   <div id = "main">
     <i>YOUR PROJECTS</i><br /><br />
     <% for (var project of projects) { %>

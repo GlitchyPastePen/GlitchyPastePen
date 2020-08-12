@@ -180,10 +180,7 @@ pre {
   cursor: pointer; 
   border: 1px dashed white;
   margin-right: 20px;
-  z-index: 4;
-  height: 50px;
-  width: 50px;
-  font-size: 10px;
+  height: 75px;
 }
 
 .signup-link {

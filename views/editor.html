@@ -34,7 +34,7 @@
     <style type="text/css">
       #editor {
         position: absolute;
-        top: 90px;
+        top: 100px;
         right: 0;
         bottom: 0;
         left: 0;
@@ -125,18 +125,16 @@
         />
       </button>
       <button class="deploy" onclick="deploy();" title="Save code!">
-        <center></center>
-          <img
+        <img
           src="https://img.icons8.com/cotton/100/000000/save.png"
-          height="30px"
+          height="40px"
         />
-        </center>
       </button>
-      <button class="deploy" onclick="simplecopy(editor.getValue())">
+      <button class="deploy" onclick="simplecopy(editor.getValue())" style="font-size:37px;">
         📋
       </button>
       <button class="deploy" onclick="alert('coming soon!')">
-        <i class="fas fa-window-restore" style="background-color: none;color:white;"></i>
+        <i class="fas fa-window-restore" style="background-color: none;color:white;font-size:35px;"></i>
       </button>
       <input type="text" id="project-name" oninput="changename()" />
       <br />
