@@ -253,23 +253,26 @@ module.exports.run = ({ app, user, project } = {}) => {
     projects = projects.filter(
       project => project.value.owner === req.params.user
     );
-    if (req.session.loggedin && req.session.username === req.params.user) {
+    if (req.session.loggedin && (req.session.username === req.params.user)) {
       res.render("user", {
         projects: projects,
         username: req.params.user,
         user: req.session.username,
         github: req.session.github
       });
-    } else if (req.session.username === "khalby786") {
+    } else if (req.session.loggedin === true) {
+      let github = await fetch(`https://api.github.com/users/${req.params.user}`);
+      
       res.render("user", {
         projects: projects,
         username: req.params.user,
         user: req.session.username,
         github: req.session.github
-        // users: await
       });
     } else {
-      let github = await fetch(`https://api.github.com/users/${req.params.username}`);
+      console.log("not logged in and not me")
+      
+      let github = await fetch(`https://api.github.com/users/${req.params.user}`);
       
       res.render("userpreview", {
         projects: projects,

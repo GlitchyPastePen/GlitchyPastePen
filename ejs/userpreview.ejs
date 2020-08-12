@@ -154,9 +154,17 @@
         Signup
     </button></a>
   </header>
-  <h1 style="margin-left:15%;margin-right:15%;">
-    <%= username %>
-  </h1>
+  <center>
+    <img src="<%= github.avatar_url %>" style="border-radius:50%;width:300px;">
+    <h1>
+      <%= username %>
+    </h1>
+    <p style="font-family: 'IBM Plex Mono', monospace;">
+      <span><%= github.name %></span><br>
+      <span><%= github.email %></span><br><br>
+      <span><b>Twitter</b> - @<%= github.twitter_username %></span>
+    </p>
+  </center>
   <div id = "main">
     <i>PROJECTS</i><br /><br />
     <% for (var project of projects) { %>
