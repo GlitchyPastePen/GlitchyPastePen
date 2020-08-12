@@ -36,7 +36,7 @@ a {
 header {
   margin-left: 0px;
   padding-left: 20px;
-  padding-top: 0px;
+  padding-top: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #DCDCDC;
   left: 0px;
@@ -181,7 +181,9 @@ pre {
   border: 1px dashed white;
   margin-right: 20px;
   z-index: 4;
-  height: 75px;
+  height: 50px;
+  width: 50px;
+  font-size: 10px;
 }
 
 .signup-link {
@@ -448,4 +450,30 @@ kbd {
   width: 300px;
   right: 0px;
   top: 0px;
+}
+
+#notification {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9;
+  background-color: yellow;
+  font-family: "IBM Plex Mono", "Fira Mono", monospace;
+  width: 400px;
+  padding-right: 20px;
+  padding-left: 10px;
+  color: black !important;
+  border-radius: 5px;
+}
+
+#notification p {
+  color: black !important;
+}
+
+#notification code {
+  color: black !important;
+}
+
+#notification .projectname {
+  color: black !important;
 }
