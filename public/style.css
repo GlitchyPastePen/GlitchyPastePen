@@ -36,36 +36,40 @@ a {
 header {
   margin-left: 0px;
   padding-left: 20px;
-  padding-top: 20px;
+  padding-top: 0px;
   padding-bottom: 20px;
   border-bottom: 1px solid #DCDCDC;
   left: 0px;
 }
 
 #project-name {
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: 0px;
-  background-color: #272822;
+  background-color: yellow;
   border: none;
-  color: white;
-  font-family: "Inter", "Helvetica", "Arial", sans-serif;
+  color: black;
+  font-family: "IBM Plex Mono", "Inter", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
   height: 35px;
-  font-size: 30px;
+  font-size: 20px;
   resize: none;
   overflow-y: hidden;
   outline: none;
   display: inline-block;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .owner {
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: 0px;
   color: white;
 }
 
 .p-title {
   margin-bottom: 0px;
-  margin-left: 20px;
+  margin-left: 10px;
   display: block;
   color: white;
 }
