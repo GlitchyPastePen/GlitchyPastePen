@@ -482,3 +482,11 @@ kbd {
 #notification .projectname {
   color: black !important;
 }
+
+#preview-link {
+  color: white;
+}
+
+#preview-link:hover {
+  color: black;
+}

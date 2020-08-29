@@ -18,7 +18,6 @@ editor.session.setMode("ace/mode/html");
 editor.setOptions({
   fontSize: "16px",
   fontFamily: "Fira Mono",
-  enableBasicAutocompletion: true,
   enableSnippets: true,
   enableLiveAutocompletion: true, 
   autoScrollEditorIntoView: true
@@ -73,6 +72,7 @@ window.onkeyup = () => {
 };
 
 projectname_el.value = projectname;
+document.getElementById("preview-link").href = "https://glitchypastepen.glitch.me/p/" + projectname;
 // document.getElementsByClassName("projectname")[0].innerText = projectname;
 // document.getElementsByClassName("projectname")[1].innerText = projectname;
 
@@ -197,11 +197,7 @@ window.onload = () => {
 
 function showCopyPopup() {
   swal.fire({
-    html: `To use the script files and stylesheets in your
-        <code>index.html</code> code, make sure to set <br>
-        the source pointing towards
-        <code>/p<span class="projectname"></span>/style.css</code> or
-        <code>/p<span class="projectname"></span>/script.js</code>!`,
-    icon: "info",
+    text: "The code has been copied!",
+    icon: "success",
   });
 }

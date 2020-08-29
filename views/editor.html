@@ -36,7 +36,7 @@
         position: absolute;
         top: 100px;
         right: 0;
-        bottom: 0;
+        bottom: 26px;
         left: 0;
         z-index: 2;
       }
@@ -135,8 +135,8 @@
       <button class="deploy" onclick="simplecopy(editor.getValue())">
         Copy code 
       </button>
-      <button class="deploy" onclick="alert('coming soon!')">
-        Preview
+      <button class="deploy">
+        <a href="" id="preview-link" target="_blank">Preview</a>
       </button>
       <input type="text" id="project-name" oninput="changename()" />
       <br />
@@ -175,11 +175,6 @@
         ⚙️
       </span>
       <span class="right code" id="pos"> </span>
-      <a href="/logout"
-        ><span class="right code">
-          LOG OUT
-        </span></a
-      >
       <a href="/me"
         ><span class="right code">
           MY PROJECTS
