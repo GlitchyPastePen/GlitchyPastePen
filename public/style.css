@@ -59,6 +59,7 @@ header {
   border-radius: 5px;
   padding-left: 5px;
   padding-right: 5px;
+  width: 400px;
 }
 
 .owner {
@@ -310,9 +311,6 @@ button:hover {
   background-color: yellow;
   color: black;
   transition: 200ms linear;
-  -webkit-transform: scale(1.01);
-  -ms-transform: scale(1.01);
-  transform: scale(1.01);
 }
 
 #option {

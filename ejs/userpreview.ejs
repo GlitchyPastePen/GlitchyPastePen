@@ -41,7 +41,7 @@
       padding-bottom: 10px;
       font-family: "Fira Mono", "Inter", "Raleway", sans-serif;
       transition: 1s ease;
-      background-color: yellow;
+      background-color: white;
       border-radius: 5px;
       margin-top: 20px;
       display: block;
@@ -57,6 +57,13 @@
         0 0px 33.4px rgba(0, 0, 0, 0.05),
         0 0px 80px rgba(0, 0, 0, 0.07)
       ;
+      border: 1px solid grey;
+      transition: 150ms;
+    }
+    
+    .project:hover {
+      box-shadow: none;
+      transition: 150ms;
     }
     
     img {
@@ -107,12 +114,7 @@
     .new:hover {
       background-color: yellow;
       color: black;
-      transition: 1s ease;
-      border: none;
-      font-weight: bold;
-      -webkit-transform: scale(1.01);
-      -ms-transform: scale(1.01);
-      transform: scale(1.01);
+      transition: 200ms linear;
     }
     
     .pace {
@@ -155,6 +157,7 @@
     </button></a>
   </header>
   <center>
+    <br><br>
     <img src="<%= github.avatar_url %>" style="border-radius:50%;width:300px;">
     <h1>
       <%= username %>
@@ -162,7 +165,11 @@
     <p style="font-family: 'IBM Plex Mono', monospace;">
       <span><%= github.name %></span><br>
       <span><%= github.email %></span><br><br>
-      <span><b>Twitter</b> - @<%= github.twitter_username %></span>
+      <span>
+        <% if (github.twitter_username !== null) { %>
+          <b>Twitter</b> - @<%= github.twitter_username %>
+        <% } %>
+      </span>
     </p>
   </center>
   <div id = "main">
