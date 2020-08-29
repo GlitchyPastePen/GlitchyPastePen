@@ -197,20 +197,6 @@
       >
     </footer>
     
-    <div id="notification">
-      <p style="color:white;margin-left:20px;">
-        To use the script files and stylesheets in your
-        <code>index.html</code> code, make sure to set <br />
-        the source pointing towards
-        <code>/p/<span class="projectname"></span>/style.css</code> or
-        <code>/p/<span class="projectname"></span>/script.js</code>.
-      </p>
-      
-      <p onclick="document.getElementById('notification').style.display = 'none'" style="cursor:pointer;text-align:center;">
-        Okay, close!
-      </p>
-    </div>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
@@ -219,7 +205,7 @@
     <script src="/public/script.js"></script>
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <!--<script>
     // autosave/deploy
   setInterval(function(){ save() }, 3000);
