@@ -68,12 +68,12 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 
 8. Fill in all the details according to your wish, but make sure to set callback as `https://PROJECTNAME.glitch.me/login/github/callback`.
 
-### Author
+### Collaborators
 
 * [Khaleel Gibran](https://khaleelgibran.com)
+* [17lwinn @ProTechCEO](https://ptuk.tk)
 
 ### Contributors
 
-* [17lwinn @ProTechCEO](https://ptuk.tk)
 * [RiversideRocks](https://riverside.rocks)
 * [chroventer](https://github.com/chroventer)

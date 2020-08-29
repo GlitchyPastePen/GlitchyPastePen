@@ -260,19 +260,25 @@ module.exports.run = ({ app, user, project } = {}) => {
         user: req.session.username,
         github: req.session.github
       });
-    } else if (req.session.loggedin === true) {
+    } else if (req.session.loggedin === true && (req.session.username !== req.params.user)) {
       let github = await fetch(`https://api.github.com/users/${req.params.user}`);
+      github = await github.json();
+      console.log(req.params.user);
+      console.log(github);
       
       res.render("user", {
         projects: projects,
         username: req.params.user,
         user: req.session.username,
-        github: req.session.github
+        github: github
       });
     } else {
-      console.log("not logged in and not me")
+      console.log("not logged in and not me");
+      console.log(req.params.user);
       
       let github = await fetch(`https://api.github.com/users/${req.params.user}`);
+      github = await github.json();
+      console.log(github);
       
       res.render("userpreview", {
         projects: projects,
