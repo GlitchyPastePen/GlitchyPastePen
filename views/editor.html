@@ -119,22 +119,24 @@
     <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
       <button class="deploy" onclick="beautify()" title="Beautify code!">
-        <img
+<!--         <img
           src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
           height="40px"
-        />
+        /> -->
+        Beautify
       </button>
       <button class="deploy" onclick="deploy();" title="Save code!">
-        <img
+<!--         <img
           src="https://img.icons8.com/cotton/100/000000/save.png"
           height="40px"
-        />
+        /> -->
+        Save & deploy
       </button>
-      <button class="deploy" onclick="simplecopy(editor.getValue())" style="font-size:37px;">
-        📋
+      <button class="deploy" onclick="simplecopy(editor.getValue())">
+        Copy code 
       </button>
       <button class="deploy" onclick="alert('coming soon!')">
-        <i class="fas fa-window-restore" style="background-color: none;color:white;font-size:35px;"></i>
+        Preview
       </button>
       <input type="text" id="project-name" oninput="changename()" />
       <br />
@@ -224,6 +226,7 @@
     <script src="/public/script.js"></script>
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!--<script>
     // autosave/deploy
   setInterval(function(){ save() }, 3000);

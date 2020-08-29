@@ -179,9 +179,19 @@ pre {
   display: inline-block;
   float: right;
   cursor: pointer; 
-  border: 1px dashed white;
+  border: 1px solid white;
   margin-right: 20px;
-  height: 75px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  font-family: "Inter", sans-serif;
+  transition: 300ms !important;
+}
+
+.deploy:hover {
+  background-color: white !important;
+  color: black !important;
+  transition: 300ms !important;
 }
 
 .signup-link {
@@ -450,7 +460,7 @@ kbd {
 #notification {
   position: absolute;
   bottom: 40px;
-  right: 40px;
+  right: 20px;
   z-index: 9;
   background-color: yellow;
   font-family: "IBM Plex Mono", "Fira Mono", monospace;

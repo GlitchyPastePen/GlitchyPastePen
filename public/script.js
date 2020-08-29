@@ -183,4 +183,13 @@ if (iframe.style.display === 'block') {
 
 window.onload = () => {
   document.getElementById("loader").style.display = "none";
+  
+  // swal({
+  //   html: `To use the script files and stylesheets in your
+  //       index.html code, make sure to set <br
+  //       the source pointing towards
+  //       <code>/p/<span class="projectname"></span>/style.css</code> or
+  //       <code>/p/<span class="projectname"></span>/script.js</code>!`,
+  //   icon: "info",
+  // });
 }
