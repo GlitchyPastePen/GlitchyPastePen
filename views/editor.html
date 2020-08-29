@@ -116,7 +116,7 @@
       </center>
     </div>
     
-    <header style="border-bottom: 0px solid black !important;">
+    <header style="border-bottom: 0px solid black !important;background-color: #0F0F0F">
       <span id="status"> </span>
       <button class="deploy" onclick="beautify()" title="Beautify code!">
 <!--         <img
@@ -171,16 +171,9 @@
       >
         DEVTOOLS
       </span>
-    <div class="dropup">
-      <a class="dropbtn"><span class="left code">
+      <span class="left code" onclick="editor.execCommand('showSettingsMenu')">
         ⚙️
-        </span></a>
-      <div class="dropup-content">
-        <h5><p style="color: black">khalby786, please add options</p></h5>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-      </div>
-    </div>
+      </span>
       <span class="right code" id="pos"> </span>
       <a href="/logout"
         ><span class="right code">

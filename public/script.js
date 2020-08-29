@@ -12,7 +12,7 @@ const projectname_el = document.getElementById("project-name");
 // Ace.js configurations
 ace.require("ace/ext/language_tools");
 
-editor.setTheme("ace/theme/monokai");
+editor.setTheme("ace/theme/vibrant_ink");
 editor.session.setMode("ace/mode/html");
 
 editor.setOptions({
