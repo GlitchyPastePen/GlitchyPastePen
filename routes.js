@@ -227,12 +227,16 @@ module.exports.run = ({ app, user, project } = {}) => {
     const project2 = await project.get(req.params.project);
     console.log(project2);
     if (req.session.loggedin && req.session.username === project2.owner) {
-      await project.delete(req.params.project);
-      rimraf(`projects/{req.params.project}`, function(res, error) {
-        console.error(error);
-        console.log(res);
-      });
-      res.sendStatus(200);
+      const dir = `/projects/${project2.name}`;
+      try {
+        fs.rmdirSync(dir, { recursive: true });
+        await project.delete(req.params.project);
+        console.log(`${dir} is deleted!`);
+        res.sendStatus(200);
+      } catch (err) {
+        console.error(`Error while deleting ${dir}.`);
+        res.sendStatus(400);
+      }
     } else {
       res.sendStatus(401);
     }
