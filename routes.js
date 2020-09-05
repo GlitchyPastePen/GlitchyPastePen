@@ -164,6 +164,7 @@ module.exports.run = ({ app, user, project } = {}) => {
       request.session.username === projectinfo.owner &&
       request.session.loggedin === true
     ) {
+      console.log("owner")
       let projectname = request.body.name;
       let filename = request.body.name + ".html";
       fs.writeFile(
@@ -222,10 +223,15 @@ module.exports.run = ({ app, user, project } = {}) => {
   });
 
   app.get("/delete/:project", async (req, res) => {
+    console.log("project deletion!");
     const project2 = await project.get(req.params.project);
+    console.log(project2);
     if (req.session.loggedin && req.session.username === project2.owner) {
       await project.delete(req.params.project);
-      rimraf.sync(`/projects/{req.params.project}`);
+      rimraf(`projects/{req.params.project}`, function(res, error) {
+        console.error(error);
+        console.log(res);
+      });
       res.sendStatus(200);
     } else {
       res.sendStatus(401);
