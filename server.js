@@ -35,7 +35,10 @@ app.set("view engine", "ejs");
 
 // Database
 var user = new Endb("sqlite://user.db");
-var project = new Endb("sqlite://project.db");
+var project = new Endb({
+  uri: process.env.MONGO_URI,
+  adapter: "mongodb"
+});
 var contributor = new Endb("sqlite://contributor.db");
 
 function checkHttps(req, res, next){
