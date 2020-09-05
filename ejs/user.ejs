@@ -143,6 +143,16 @@
 
     
   </style>
+  <script>
+    function remove(project) {
+      fetch("/delete/" + project)
+      .then(res => res.json())
+      .then(data => {
+        window.location.reload()
+        console.log(data);
+      })
+    }  
+  </script>
 </head>
 <body>  
   <header>
@@ -185,16 +195,6 @@
     <% } %>
   </div>
   <br /><br />
-  <script>
-    function remove(project) {
-      fetch("/delete/" + project)
-      window.location.reload()
-      .then(res => res.json() )
-      .then(data => {
-        console.log(data);
-      })
-    }  
-  </script>
   <script src="https://togetherjs.com/togetherjs-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
 </body>
