@@ -72,11 +72,27 @@ module.exports.run = ({ app, user, project } = {}) => {
       req.session.github = login_user;
       req.session.githubId = login_user.id;
       req.session.username = req.session.github.login;
+      if (req.session.username == "Assfugil") {
+        res.send("You have been banned!");
+        return;
+      }
       req.session.email = req.session.github.email;
-      console.log(req.session.github);
-      console.log(req.session.username);
       req.session.loggedin = true;
-      await user.set(req.session.username, { name: req.session.username, email: req.session.email })
+      console.log(">> " + req.session.username + " has logged in!")
+      await user.set(req.session.username, { 
+        name: req.session.username, 
+        email: req.session.email,
+        id: req.session.github.id,
+        created_at: req.session.github.created_at,
+        updated_at: req.session.github.updated_at
+      });
+      console.log({ 
+        name: req.session.username, 
+        email: req.session.email,
+        id: req.session.github.id,
+        created_at: req.session.github.created_at,
+        updated_at: req.session.github.updated_at
+      });
       res.redirect("/me");
     } else {
       res.send("Login did not succeed!");
