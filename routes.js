@@ -308,23 +308,52 @@ module.exports.run = ({ app, user, project } = {}) => {
     res.send({ code: code, css: css, js: js });
   });
 
-  app.get("/p/:project", function(req, res) {
+  app.get("/p/:project", async function(req, res) {
     let projectname = req.params.project;
-    res.sendFile(__dirname + "/projects/" + projectname + "/index.html");
+    
+    let html = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: 'khalby786',
+      repo: 'GlitchyPastePen_ProjectFiles',
+      path: req.params.project + "/index.html"
+    });
+        
+    let buff = new Buffer(html.data.content, 'base64');
+    let text = buff.toString('ascii');
+    
+    res.send(text);
   });
 
-  app.get("/p/:project/style.css", function(req, res) {
+  app.get("/p/:project/style.css", async function(req, res) {
     let projectname = req.params.project;
-    res.sendFile(__dirname + "/projects/" + projectname + "/style.css");
+    let css = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: 'khalby786',
+      repo: 'GlitchyPastePen_ProjectFiles',
+      path: req.params.project + "/style.css"
+    });
+        
+    let buff = new Buffer(css.data.content, 'base64');
+    let text = buff.toString('ascii');
+    
+    res.send(text);
   });
 
-  app.get("/p/:project/script.js", function(req, res) {
+  app.get("/p/:project/script.js", async function(req, res) {
     let projectname = req.params.project;
-    res.sendFile(__dirname + "/projects/" + projectname + "/script.js");
+    
+    let js = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: 'khalby786',
+      repo: 'GlitchyPastePen_ProjectFiles',
+      path: req.params.project + "/script.js"
+    });
+        
+    let buff = new Buffer(js.data.content, 'base64');
+    let text = buff.toString('ascii');
+    
+    res.send(text);
   });
 
   app.get("/delete/:project", async (req, res) => {
-    console.log("project deletion!");
+    console.warn(">> " + req.params.project + " is scheduled for project deletion!");
     const project2 = await project.get(req.params.project);
     console.log(project2);
     if (req.session.loggedin && req.session.username === project2.owner) {
