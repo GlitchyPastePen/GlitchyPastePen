@@ -162,7 +162,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/index.html",
-        message: 'index.html file created for ' + projectname,
+        message: 'index.html file created for ' + projectname + " by " + req.session.username,
         content: ''
       });
       
@@ -170,7 +170,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/style.css",
-        message: 'style.css file created for ' + projectname,
+        message: 'style.css file created for ' + projectname + " by " + req.session.username,
         content: ''
       });
       
@@ -178,7 +178,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/script.js",
-        message: 'script.js file created for ' + projectname,
+        message: 'script.js file created for ' + projectname + " by " + req.session.username,
         content: ''
       });
       
