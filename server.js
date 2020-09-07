@@ -36,7 +36,7 @@ app.set("view engine", "ejs");
 // Database
 var user = new Endb("sqlite://user.db");
 var project = new Endb({
-  uri: process.env.MONGO_URI,
+  uri: process.env.MONGO_URI + "projects?retryWrites=true&w=majority",
   adapter: "mongodb"
 });
 var contributor = new Endb("sqlite://contributor.db");
