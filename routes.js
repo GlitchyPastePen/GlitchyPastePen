@@ -257,14 +257,38 @@ module.exports.run = ({ app, user, project } = {}) => {
       let js_buff = new Buffer(request.body.js);
       let js = js_buff.toString('base64');
       
-      await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      let html_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'khalby786',
+        repo: 'GlitchyPastePen_ProjectFiles',
+        path: projectname + "/index.html",
+        message: 'index.html file updated for ' + projectname + " by " + request.session.username,
+        content: html,
+        sha: projectinfo.html_sha
+      });
+      
+      let css_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'khalby786',
+        repo: 'GlitchyPastePen_ProjectFiles',
+        path: projectname + "/style.css",
+        message: 'style.css file updated for ' + projectname + " by " + request.session.username,
+        content: css,
+        sha: projectinfo.css_sha
+      });
+      
+      let js_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/script.js",
         message: 'script.js file updated for ' + projectname + " by " + request.session.username,
         content: js,
-        sha: projectinfp
+        sha: projectinfo.js_sha
       });
+      
+      projectinfo.html_sha = html_update.data.content.sha;
+      projectinfo.css_sha = css_update.data.content.sha;
+      projectinfo.js_sha = js_update.data.content.sha;
+      
+      await project.set(projectname, projectinfo);
       
       response.send({ status: 200 });
     } else {
@@ -304,14 +328,34 @@ module.exports.run = ({ app, user, project } = {}) => {
     const project2 = await project.get(req.params.project);
     console.log(project2);
     if (req.session.loggedin && req.session.username === project2.owner) {
-      const dir = `/projects/${project2.name}`;
       try {
-        fs.rmdirSync(dir, { recursive: true });
+        await octokit.request('DELETE /repos/{owner}/{repo}/contents/{path}', {
+          owner: 'khalby786',
+          repo: 'GlitchyPastePen_ProjectFiles',
+          path: project2.name + "/index.html",
+          message: 'index.html file deleted for ' + project2.name + " by " + req.session.username,
+          sha: project2.html_sha
+        });
+        
+        await octokit.request('DELETE /repos/{owner}/{repo}/contents/{path}', {
+          owner: 'khalby786',
+          repo: 'GlitchyPastePen_ProjectFiles',
+          path: project2.name + "/style.css",
+          message: 'style.css file deleted for ' + project2.name + " by " + req.session.username,
+          sha: project2.css_sha
+        });
+        
+        await octokit.request('DELETE /repos/{owner}/{repo}/contents/{path}', {
+          owner: 'khalby786',
+          repo: 'GlitchyPastePen_ProjectFiles',
+          path: project2.name + "/script.js",
+          message: 'script.js file deleted for ' + project2.name + " by " + req.session.username,
+          sha: project2.js_sha
+        });
+        
         await project.delete(req.params.project);
-        console.log(`${dir} is deleted!`);
         res.sendStatus(200);
       } catch (err) {
-        console.error(`Error while deleting ${dir}.`);
         res.sendStatus(400);
       }
     } else {
