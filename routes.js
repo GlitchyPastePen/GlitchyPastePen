@@ -11,6 +11,8 @@ const {
   colors,
   animals
 } = require("unique-names-generator");
+const { Octokit } = require("@octokit/core");
+const octokit = new Octokit({ auth: process.env.GITHUB_ACCESS_TOKEN });
 const config = require("./config");
 const Endb = require("endb");
 var contributor = new Endb("sqlite://contributor.db");
@@ -155,7 +157,13 @@ module.exports.run = ({ app, user, project } = {}) => {
           if (error) throw error;
         }
       );
-      const projectInfo = { name: projectname, owner: req.session.username };
+      const projectInfo = { 
+        name: projectname, 
+        owner: req.session.username,
+        html_sha: null,
+        css_sha: null,
+        js_sha: null
+      };
       let userinfo = await user.get(req.session.username);
       userinfo.project_count++;
       await user.set(req.session.username, userinfo);
