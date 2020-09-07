@@ -78,13 +78,14 @@ module.exports.run = ({ app, user, project } = {}) => {
       }
       req.session.email = req.session.github.email;
       req.session.loggedin = true;
-      console.log(">> " + req.session.username + " has logged in!")
+      console.error(">> " + req.session.username + " has logged in!")
       await user.set(req.session.username, { 
         name: req.session.username, 
         email: req.session.email,
         id: req.session.github.id,
         created_at: req.session.github.created_at,
-        updated_at: req.session.github.updated_at
+        updated_at: req.session.github.updated_at,
+        project_count: 0
       });
       console.log({ 
         name: req.session.username, 
@@ -154,6 +155,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         }
       );
       const projectInfo = { name: projectname, owner: req.session.username };
+      console.error(">> New project " + projectname + " has been created by " + req.session.username);
       await project.set(projectname, projectInfo);
       res.redirect(`/editor/${projectname}`);
     } else {
@@ -214,6 +216,7 @@ module.exports.run = ({ app, user, project } = {}) => {
 
   app.get("/getCode/:projectname", async (req, res) => {
     let projectname = req.params.projectname;
+    console.warn(`>> ${projectname} being actively edited!`);
     // fs.readFile(`projects/${projectname}/index.html`, "utf8", function(err, data) {
     //   res.send({ code: data });
     // });
