@@ -193,11 +193,9 @@
       </a>
     </center>
     <% if ((!projects) || (projects === [])) { %>
-      <span>It's if</span>
       <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fundraw_empty_xct9.svg?v=1599306004713" width="100%" />
     <% } else { %>
       <% for (var project of projects) { %>
-        <span>It's else</span>
         <div class = "project">
           <%= project.key %> &nbsp;&nbsp;
           <br />

@@ -254,7 +254,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     let html = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
-      path: req.params.project + "/index.html"
+      path: req.params.projectname + "/index.html"
     });
         
     let buff = new Buffer(html.data.content, 'base64');
@@ -263,7 +263,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     let css = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
-      path: req.params.project + "/style.css"
+      path: req.params.projectname + "/style.css"
     });
         
     let css_buff = new Buffer(css.data.content, 'base64');
@@ -272,7 +272,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     let js = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
-      path: req.params.project + "/script.js"
+      path: req.params.projectname + "/script.js"
     });
         
     let js_buff = new Buffer(js.data.content, 'base64');
