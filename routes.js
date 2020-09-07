@@ -414,6 +414,12 @@ module.exports.run = ({ app, user, project } = {}) => {
       project => project.value.owner === req.params.user
     );
     if (req.session.loggedin && (req.session.username === req.params.user)) {
+      console.log({
+        projects: projects,
+        username: req.params.user,
+        user: req.session.username,
+        github: req.session.github
+      })
       res.render("user", {
         projects: projects,
         username: req.params.user,

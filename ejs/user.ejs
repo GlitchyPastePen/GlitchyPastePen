@@ -185,13 +185,14 @@
   </center>
   <div id = "main">
     <i>YOUR PROJECTS</i><br /><br />
-    <% if (!projects || (projects == {})) { %>
-      <% console.log("no projects!") %>
-      <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fundraw_empty_xct9.svg?v=1599306004713" width="100%">
-    <% } else { %>}
+    <% if (!projects || (projects === [])) { %>
+      <span>It's if</span>
+      <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fundraw_empty_xct9.svg?v=1599306004713" width="100%" />
+    <% } else { %>
       <% for (var project of projects) { %>
+        <span>It's else</span>
         <div class = "project">
-          <%= project.key %>&nbsp;&nbsp;
+          <%= project.key %> &nbsp;&nbsp;
           <br />
           <img style="float:right;margin-right:20px;" onclick="remove('<%= project.key %>')" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fdelete.svg?v=1589450120507" height="30px">
           <a href="/p/<%= project.key %>"><img style="float:right;margin-right:10px;" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fexternal.svg?v=1589450399039" height="30px;"></a>
