@@ -4,7 +4,6 @@ const rimraf = require("rimraf");
 const generate = require("project-name-generator");
 const randomize = require("randomatic");
 const fetch = require('node-fetch');
-const fs = require("fs");
 const {
   uniqueNamesGenerator,
   adjectives,
@@ -123,40 +122,6 @@ module.exports.run = ({ app, user, project } = {}) => {
       } else if (config.nameGen == "alliterative") {
         projectname = generate({ words: 4, alliterative: true }).dashed;
       }
-
-      const dir = __dirname + "/projects/";
-      try {
-        if (!fs.existsSync(dir)) {
-          fs.mkdirSync(dir);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-
-      mkdirp.sync(`projects/${projectname}`);
-
-      // let data = { name: name };
-      fs.writeFile(
-        __dirname + `/projects/${projectname}/index.html`,
-        "",
-        error => {
-          if (error) throw error;
-        }
-      );
-      fs.writeFile(
-        __dirname + `/projects/${projectname}/style.css`,
-        "",
-        error => {
-          if (error) throw error;
-        }
-      );
-      fs.writeFile(
-        __dirname + `/projects/${projectname}/script.js`,
-        "",
-        error => {
-          if (error) throw error;
-        }
-      );
       
       let html = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
         owner: 'khalby786',
@@ -224,28 +189,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     ) {
       console.log("owner")
       let projectname = request.body.name;
-      let filename = request.body.name + ".html";
-      fs.writeFile(
-        "projects/" + projectname + "/index.html",
-        request.body.code,
-        function(err) {
-          if (err) throw err;
-        }
-      );
-      fs.writeFile(
-        "projects/" + projectname + "/style.css",
-        request.body.css,
-        function(err) {
-          if (err) throw err;
-        }
-      );
-      fs.writeFile(
-        "projects/" + projectname + "/script.js",
-        request.body.js,
-        function(err) {
-          if (err) throw err;
-        }
-      );
+
       let projectinfo = await project.get(projectname);
       
       let html_buff = new Buffer(request.body.code);
@@ -302,10 +246,39 @@ module.exports.run = ({ app, user, project } = {}) => {
     // fs.readFile(`projects/${projectname}/index.html`, "utf8", function(err, data) {
     //   res.send({ code: data });
     // });
-    let code = fs.readFileSync(`projects/${projectname}/index.html`, "utf-8");
-    let css = fs.readFileSync(`projects/${projectname}/style.css`, "utf-8");
-    let js = fs.readFileSync(`projects/${projectname}/script.js`, "utf-8");
-    res.send({ code: code, css: css, js: js });
+    // let code = fs.readFileSync(`projects/${projectname}/index.html`, "utf-8");
+    // let css = fs.readFileSync(`projects/${projectname}/style.css`, "utf-8");
+    // let js = fs.readFileSync(`projects/${projectname}/script.js`, "utf-8");
+    
+    
+    let html = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: 'khalby786',
+      repo: 'GlitchyPastePen_ProjectFiles',
+      path: req.params.project + "/index.html"
+    });
+        
+    let buff = new Buffer(html.data.content, 'base64');
+    let html_text = buff.toString('ascii');
+    
+    let css = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: 'khalby786',
+      repo: 'GlitchyPastePen_ProjectFiles',
+      path: req.params.project + "/style.css"
+    });
+        
+    let css_buff = new Buffer(css.data.content, 'base64');
+    let css_text = css_buff.toString('ascii');
+    
+    let js = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+      owner: 'khalby786',
+      repo: 'GlitchyPastePen_ProjectFiles',
+      path: req.params.project + "/script.js"
+    });
+        
+    let js_buff = new Buffer(js.data.content, 'base64');
+    let js_text = js_buff.toString('ascii');
+    
+    res.send({ code: html_text, css: css_text, js: js_text });
   });
 
   app.get("/p/:project", async function(req, res) {
@@ -432,7 +405,7 @@ module.exports.run = ({ app, user, project } = {}) => {
       console.log(req.params.user);
       console.log(github);
       
-      res.render("user", {
+      res.render("userloggedin", {
         projects: projects,
         username: req.params.user,
         user: req.session.username,
