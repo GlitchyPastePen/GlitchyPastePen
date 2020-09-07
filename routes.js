@@ -73,6 +73,7 @@ module.exports.run = ({ app, user, project } = {}) => {
       req.session.githubId = login_user.id;
       req.session.username = req.session.github.login;
       if (req.session.username == "Assfugil") {
+        console.error(">> Assfugil has attempted to log in!");
         res.send("You have been banned!");
         return;
       }
@@ -155,6 +156,9 @@ module.exports.run = ({ app, user, project } = {}) => {
         }
       );
       const projectInfo = { name: projectname, owner: req.session.username };
+      let userinfo = await user.get(req.session.username);
+      userinfo.project_count++;
+      await user.set(req.session.username, userinfo);
       console.error(">> New project " + projectname + " has been created by " + req.session.username);
       await project.set(projectname, projectInfo);
       res.redirect(`/editor/${projectname}`);
