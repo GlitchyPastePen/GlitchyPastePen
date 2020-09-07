@@ -157,13 +157,41 @@ module.exports.run = ({ app, user, project } = {}) => {
           if (error) throw error;
         }
       );
+      
+      let html = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'khalby786',
+        repo: 'GlitchyPastePen_ProjectFiles',
+        path: projectname + "/index.html",
+        message: 'index.html file created for ' + projectname,
+        content: ''
+      });
+      
+      let css = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'khalby786',
+        repo: 'GlitchyPastePen_ProjectFiles',
+        path: projectname + "/style.css",
+        message: 'style.css file created for ' + projectname,
+        content: ''
+      });
+      
+      let js = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'khalby786',
+        repo: 'GlitchyPastePen_ProjectFiles',
+        path: projectname + "/script.js",
+        message: 'script.js file created for ' + projectname,
+        content: ''
+      });
+      
+      console.log(html);
+      
       const projectInfo = { 
         name: projectname, 
         owner: req.session.username,
-        html_sha: null,
-        css_sha: null,
-        js_sha: null
+        html_sha: html.commit.data.sha,
+        css_sha: css.commit.data.sha,
+        js_sha: js.commit.data.sha
       };
+      
       let userinfo = await user.get(req.session.username);
       userinfo.project_count++;
       await user.set(req.session.username, userinfo);
