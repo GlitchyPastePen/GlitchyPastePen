@@ -182,14 +182,14 @@ module.exports.run = ({ app, user, project } = {}) => {
         content: ''
       });
       
-      console.log(html);
+      console.log(html.data.content);
       
       const projectInfo = { 
         name: projectname, 
         owner: req.session.username,
-        html_sha: html.commit.data.sha,
-        css_sha: css.commit.data.sha,
-        js_sha: js.commit.data.sha
+        html_sha: html.data.content.sha,
+        css_sha: css.data.content.sha,
+        js_sha: js.data.content.sha
       };
       
       let userinfo = await user.get(req.session.username);
@@ -246,8 +246,26 @@ module.exports.run = ({ app, user, project } = {}) => {
           if (err) throw err;
         }
       );
-      let projectinfo = { name: projectname, owner: request.session.username };
-      let setinfo = await project.set(projectname, projectinfo);
+      let projectinfo = await project.get(projectname);
+      
+      let html_buff = new Buffer(request.body.code);
+      let html = html_buff.toString('base64');
+      
+      let css_buff = new Buffer(request.body.css);
+      let css = css_buff.toString('base64');
+      
+      let js_buff = new Buffer(request.body.js);
+      let js = js_buff.toString('base64');
+      
+      await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'khalby786',
+        repo: 'GlitchyPastePen_ProjectFiles',
+        path: projectname + "/script.js",
+        message: 'script.js file updated for ' + projectname + " by " + request.session.username,
+        content: js,
+        sha: projectinfp
+      });
+      
       response.send({ status: 200 });
     } else {
       response.sendStatus(401);
