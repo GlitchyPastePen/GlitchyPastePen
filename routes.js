@@ -69,7 +69,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     console.log(access_token);
     const login_user = await fetchGitHubUser(access_token);
     if (login_user) {
-      req.session.username = req.session.github.login;
+      req.session.username = login_user.login;
       if (req.session.username == "Assfugil") {
         console.error(">> Assfugil has attempted to log in!");
         res.redirect("https://google.com");
