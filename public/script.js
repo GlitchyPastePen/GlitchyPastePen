@@ -127,7 +127,7 @@ function deploy() {
     .then(data => {
       if (data.status === 200) {
         swal.fire({
-          text: "Your project has been successfully exported!"
+          html: 'Your project has been successfully saved and deployed <br />at <a href="/p/' + name + '">https://glitchypastepen.glitch.me/p/' + name + "</a>",
           icon: "success",
         });
       } else {
@@ -145,7 +145,13 @@ function githubexport() {
   let js2 = js.getValue();
   let css2 = css.getValue();
   let name = document.getElementById("project-name").value;
-  let content = { code: code, js: js2, css: css2, name: name };
+  var userrepo = prompt(`Note: Your GitHub repository needs to have at least one file in it already.
+
+This will export your project to the 'glitchypastepen' branch of your existing GitHub Repo:
+`, "user/repo");
+  console.log(userrepo.slice("/")[0]);
+  console.log(userrepo.slice("1")[1]);
+  let content = { code: code, js: js2, css: css2, name: name, user: userrepo.slice("/")[0], repo: userrepo.slice("1")[1] };
 
   fetch("/export", {
     method: "post",
@@ -158,7 +164,7 @@ function githubexport() {
     .then(data => {
       if (data.status === 200) {
         swal.fire({
-          html: 'Your project has been successfully saved and deployed <br />at <a href="/p/' + name + '">https://glitchypastepen.glitch.me/p/' + name + "</a>",
+          text: "Your project has been successfully exported!",
           icon: "success",
         });
       } else {

@@ -490,7 +490,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         });
 
         let css_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-          owner: req.session.username,
+          owner: req.body.user,
           repo: req.body.repo,
           path: "style.css",
           message: 'style.css file for ' + projectname + " by " + req.session.username,
@@ -499,7 +499,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         });
 
         let js_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-          owner: req.session.username,
+          owner: req.body.user,
           repo: req.body.repo,
           path: "script.js",
           message: 'script.js file for ' + projectname + " by " + req.session.username,
