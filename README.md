@@ -16,8 +16,7 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 * Beautify your code to make it look better.
 * Instant hosting for projects
 
-![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2FScreen%20Shot%202020-07-12%20at%204.27.55%20PM.png?v=1594557148047)
-![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2FScreen%20Shot%202020-07-12%20at%204.30.53%20PM.png?v=1594557152082)
+![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2FScreen%20Shot%202020-09-08%20at%203.19.40%20PM.png?v=1599564010266)
 
 ### Contributing
 
