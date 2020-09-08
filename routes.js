@@ -31,7 +31,7 @@ module.exports.run = ({ app, user, project } = {}) => {
 
   app.get("/login/github", (req, res) => {
     res.redirect(
-      `https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}`
+      `https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&scopes=read:user%20repo`
     );
   });
 
@@ -461,6 +461,13 @@ module.exports.run = ({ app, user, project } = {}) => {
       res.redirect("/");
     });
   });
+  
+  app.get("/export/:project", async (req, res) => {
+    let projectinfo = await project.get(req.params.project);
+    if ((req.session.loggedin === true) && (req.session.username === projectinfo.owner)) {
+      
+    }
+  })
   
   app.get('*', function(req, res){
     res.status(404).send('<body style="background-color:black;"><center><a href="https://http.cat"><img src="https://http.cat/404"></a></center>');
