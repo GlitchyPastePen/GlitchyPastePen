@@ -463,9 +463,10 @@ module.exports.run = ({ app, user, project } = {}) => {
   });
   
   app.post("/export", async (req, res) => {
-    let projectinfo = await project.get(req.body.project);
+    let projectinfo = await project.get(req.body.name);
+    console.log(req.body)
     if ((req.session.loggedin === true) && (req.session.username === projectinfo.owner)) {
-      const octokit = new Octokit({ auth: req.session.access_token });
+      const exportkit = new Octokit({ auth: req.session.access_token });
       
       let projectname = projectinfo.name;
       
@@ -480,7 +481,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         let js_buff = new Buffer(req.body.js);
         let js = js_buff.toString('base64');
 
-        let html_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        let html_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
           owner: req.body.user,
           repo: req.body.repo,
           path: "index.html",
@@ -489,7 +490,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           branch: "glitchypastepen"
         });
 
-        let css_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        let css_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
           owner: req.body.user,
           repo: req.body.repo,
           path: "style.css",
@@ -498,7 +499,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           branch: "glitchypastepen"
         });
 
-        let js_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+        let js_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
           owner: req.body.user,
           repo: req.body.repo,
           path: "script.js",

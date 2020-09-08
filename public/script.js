@@ -149,9 +149,10 @@ function githubexport() {
 
 This will export your project to the 'glitchypastepen' branch of your existing GitHub Repo:
 `, "user/repo");
-  console.log(userrepo.slice("/")[0]);
-  console.log(userrepo.slice("1")[1]);
-  let content = { code: code, js: js2, css: css2, name: name, user: userrepo.slice("/")[0], repo: userrepo.slice("1")[1] };
+  console.log(userrepo);
+  console.log(userrepo.split("/")[0]);
+  console.log(userrepo.split("1")[1]);
+  let content = { code: code, js: js2, css: css2, name: name, user: userrepo.split("/")[0], repo: userrepo.split("/")[1] };
 
   fetch("/export", {
     method: "post",
