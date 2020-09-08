@@ -41,8 +41,8 @@
             html: `To use the script files and stylesheets in your
                 <code>index.html</code> code, make sure to set <br>
                 the source pointing towards
-                <code>/p<span class="projectname"></span>/style.css</code> or
-                <code>/p<span class="projectname"></span>/script.js</code>!`,
+                <code>/p<span id="projectnamepopup1" class="projectname"></span>/style.css</code> or
+                <code>/p<span id="projectnamepopup2" class="projectname"></span>/script.js</code>!`,
             icon: "info",
           });
         };
@@ -142,14 +142,8 @@
     
     <div id="loader">
       <center>
-        <img src="https://cdn.glitch.com/a1686874-cbbf-4ca9-b412-cd53a73b9ceb%2Fglitchypastepen.png?v=1587918769653">
-        <p style="font-size: 25px;">
-          Loading...
-        </p>
-        <p>
-          <i>Tip!</i><br>
-          Press <kbd>Ctrl</kbd> + <kbd>,</kbd> for editor preferences.
-        </p>
+        <img src="https://cdn.glitch.com/a1686874-cbbf-4ca9-b412-cd53a73b9ceb%2Fglitchypastepen.png?v=1587918769653"><br><br><br>
+        <div class="donutSpinner"></div><br><br><br>
         <span id="recaptcha-warning">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</span>
         <div class='g-recaptcha' data-sitekey='6LfFR8kZAAAAAHWfBiRSp5d5s3aCsunFoDGNAmKk' data-callback='recaptchaCallback' data-size='invisible'></div>
       </center>
@@ -196,7 +190,7 @@
     
     <div id="editor"></div>
     
-    <iframe src="https://gpp-debug.glitch.me"> </iframe>
+    <iframe id="devtool" src="https://gpp-debug.glitch.me"></iframe>
     <div id="settings">
       
     </div>
@@ -204,7 +198,7 @@
     <footer id="editor-footer">
       <span
         class="left code"
-        onclick="if (document.querySelector('iframe').style.display === 'none') { document.querySelector('iframe').style.display = 'block' } else { document.querySelector('iframe').style.display = 'none' };"
+        onclick="if (document.getElementById('devtool').style.display === 'none') { document.getElementById('devtool').style.display = 'block' } else { document.getElementById('devtool').style.display = 'none' };"
       >
         DEVTOOLS
       </span>

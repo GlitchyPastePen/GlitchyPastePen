@@ -410,7 +410,7 @@ button:hover {
   z-index: -1;
 }
 
-iframe {
+#devtool {
   display: none;
   width: 100%;
   position: fixed;
@@ -551,4 +551,23 @@ kbd {
 #bottom a {
   text-decoration: underline;
   color: blue;
+}
+
+.donutSpinner {
+    display: inline-block;
+    border: 4px solid hsl(222, 100%, 95%);;
+    border-left-color: hsl(243, 80%, 62%);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: donut-spin 1.2s linear infinite;
+}
+
+@keyframes donut-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

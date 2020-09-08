@@ -2,7 +2,7 @@
 const editor = ace.edit("editor");
 const format = ace.require("ace/ext/beautify");
 const io = require("socket.io");
-const iframe = document.querySelector("iframe");
+const iframe = document.getElementById("devtool");
 const editorDiv = document.getElementById("editor");
 const footer = document.getElementById("editor-footer");
 const projecturl = window.location.href;
@@ -75,6 +75,7 @@ projectname_el.value = projectname;
 document.getElementById("preview-link").href = "https://glitchypastepen.glitch.me/p/" + projectname;
 // document.getElementsByClassName("projectname")[0].innerText = projectname;
 // document.getElementsByClassName("projectname")[1].innerText = projectname;
+document.getElementById("projectnamepopup1").innerText = projectname;
 
 projectname_el.onclick = () => {
   simplecopy(projectname_el.value);
