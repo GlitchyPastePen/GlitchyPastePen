@@ -35,16 +35,6 @@
         var recaptchaCallback = function(token) {
           console.log("success!");
           document.getElementById("loader").style.display = "none";
-          
-          
-          swal.fire({
-            html: `To use the script files and stylesheets in your
-                <code>index.html</code> code, make sure to set <br>
-                the source pointing towards
-                <code>/p<span id="projectnamepopup1" class="projectname"></span>/style.css</code> or
-                <code>/p<span id="projectnamepopup2" class="projectname"></span>/script.js</code>!`,
-            icon: "info",
-          });
         };
     </script>
     <style type="text/css">
@@ -144,7 +134,7 @@
       <center>
         <img src="https://cdn.glitch.com/a1686874-cbbf-4ca9-b412-cd53a73b9ceb%2Fglitchypastepen.png?v=1587918769653"><br><br><br>
         <div class="donutSpinner"></div><br><br><br>
-        <span id="recaptcha-warning">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</span>
+        <span id="recaptcha-warning">This site is protected by reCAPTCHA and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service apply.</a></span>
         <div class='g-recaptcha' data-sitekey='6LfFR8kZAAAAAHWfBiRSp5d5s3aCsunFoDGNAmKk' data-callback='recaptchaCallback' data-size='invisible'></div>
       </center>
     </div>
@@ -184,7 +174,7 @@
         </button>
       </div>
       <div id="bottom">
-        <a href="https://glitchypastepen.glitch.me">System Status</a>
+        <a href="https://glitchypastepen.statuspage.io">System Status</a>
       </div>
     </aside>
     

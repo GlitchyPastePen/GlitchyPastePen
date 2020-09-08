@@ -3,3 +3,6 @@ project.db
 user.db
 contributor.db
 chat
+package-lock.json
+shrinkwrap.yaml
+.glitch-assets

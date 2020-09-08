@@ -73,9 +73,6 @@ window.onkeyup = () => {
 
 projectname_el.value = projectname;
 document.getElementById("preview-link").href = "https://glitchypastepen.glitch.me/p/" + projectname;
-// document.getElementsByClassName("projectname")[0].innerText = projectname;
-// document.getElementsByClassName("projectname")[1].innerText = projectname;
-document.getElementById("projectnamepopup1").innerText = projectname;
 
 projectname_el.onclick = () => {
   simplecopy(projectname_el.value);
