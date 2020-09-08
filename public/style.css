@@ -4,9 +4,9 @@
 
 body {
   --fore: black;
-  --back: white;
+  --back: #0F0F0F;
   background-color: var(--back);
-  color: black;
+  color: var(--fore);
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
   margin-top: 30px;
   margin: 0px;

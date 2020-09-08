@@ -127,7 +127,7 @@ function deploy() {
     .then(data => {
       if (data.status === 200) {
         swal.fire({
-          html: 'Your project has been successfully saved and deployed <br />at <a href="/p/' + name + '">https://glitchypastepen.glitch.me/p/' + name + "</a>",
+          html: 'Your project has been successfully saved and deployed at <a href="/p/' + name + '">https://glitchypastepen.glitch.me/p/' + name + "</a>",
           icon: "success",
         });
       } else {
