@@ -183,16 +183,7 @@ if (iframe.style.display === 'block') {
 }
 
 window.onload = () => {
-  document.getElementById("loader").style.display = "none";
-  
-  swal.fire({
-    html: `To use the script files and stylesheets in your
-        <code>index.html</code> code, make sure to set <br>
-        the source pointing towards
-        <code>/p<span class="projectname"></span>/style.css</code> or
-        <code>/p<span class="projectname"></span>/script.js</code>!`,
-    icon: "info",
-  });
+  grecaptcha.execute();
 }
 
 function showCopyPopup() {

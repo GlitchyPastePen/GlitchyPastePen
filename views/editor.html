@@ -33,7 +33,18 @@
     <script src="https://kit.fontawesome.com/98f54f160f.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
         var recaptchaCallback = function(token) {
-            alert(token);
+          console.log("success!");
+          document.getElementById("loader").style.display = "none";
+          
+          
+          swal.fire({
+            html: `To use the script files and stylesheets in your
+                <code>index.html</code> code, make sure to set <br>
+                the source pointing towards
+                <code>/p<span class="projectname"></span>/style.css</code> or
+                <code>/p<span class="projectname"></span>/script.js</code>!`,
+            icon: "info",
+          });
         };
     </script>
     <style type="text/css">
@@ -115,6 +126,15 @@
         border-right: 1px solid white;
         border-top: 1px solid white;
       }
+      
+      .grecaptcha-badge {
+        display: none;
+      }
+      
+      #recaptcha-warning {
+        font-size: 12px;
+        color: grey;
+      }
     </style>
   </head>
   <body style="background-color:#0F0F0F;">
@@ -130,6 +150,7 @@
           <i>Tip!</i><br>
           Press <kbd>Ctrl</kbd> + <kbd>,</kbd> for editor preferences.
         </p>
+        <span id="recaptcha-warning">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</span>
         <div class='g-recaptcha' data-sitekey='6LfFR8kZAAAAAHWfBiRSp5d5s3aCsunFoDGNAmKk' data-callback='recaptchaCallback' data-size='invisible'></div>
       </center>
     </div>
@@ -213,21 +234,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-keybinding_menu.min.js"></script>
     <script src="/public/simplecopy.min.js"></script>
-    <script src="/public/script.js"></script>
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="//www.google.com/recaptcha/api.js" async defer></script>
-    <script type="text/javascript">
-      var ticker = setInterval(function (){
-        try {
-          grecaptcha.execute();
-          clearInterval(ticker);
-        } catch(e) {
-          console.error(e);
-        }
-      }, 100);
-    </script>
+    <script src="/public/script.js"></script>
   <!--<script>
     // autosave/deploy
   setInterval(function(){ save() }, 3000);
