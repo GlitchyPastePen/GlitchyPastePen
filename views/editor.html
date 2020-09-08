@@ -152,9 +152,18 @@
     <aside id="filetree">
       <span id="files-label"><i>PROJECT FILES</i></span>
       <div id="files">
-        <button class="file">
-          index.html
+        <button class="file" onclick="editor.setSession(html);">
+          index<span class="html">.html</span>
         </button>
+        <button class="file" onclick="editor.setSession(css);">
+          style<span class="css">.css</span>
+        </button>
+        <button class="file" onclick="editor.setSession(js);">
+          script<span class="js">.js</span>
+        </button>
+      </div>
+      <div id="bottom">
+        <a href="https://glitchypastepen.glitch.me">System Status</a>
       </div>
     </aside>
     
@@ -166,15 +175,6 @@
     </div>
     
     <footer id="editor-footer">
-      <span class="left code" onclick="editor.setSession(html);">
-        index.html
-      </span>
-      <span class="left code" onclick="editor.setSession(css);">
-        style.css
-      </span>
-      <span class="left code" onclick="editor.setSession(js);">
-        script.js
-      </span>
       <span
         class="left code"
         onclick="if (document.querySelector('iframe').style.display === 'none') { document.querySelector('iframe').style.display = 'block' } else { document.querySelector('iframe').style.display = 'none' };"

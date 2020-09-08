@@ -504,13 +504,43 @@ kbd {
   width: 100%;
   padding: 3px 0px !important;
   border-radius: 3px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
   text-align: left;
-  background-color: #0F0F0F;
+  background-color: transparent;
   color: white;
   border: none !important;
+  margin: 0px;
+  font-family: "Roboto Mono", "IBM Plex Mono", monospace;
+}
+
+.html {
+  color: pink;
+}
+
+.js {
+  color: red;
+}
+
+.css {
+  color: orange;
+}
+
+.file:hover {
+  background-color: rgba(201, 76, 76, 0.3);
+  color: white;
 }
 
 #files-label {
   color: white;
   margin-left: 20px;
+}
+
+#bottom {
+  position: absolute;
+  color: white;
+  bottom: 20px;
+  padding-left: 20px;
 }
