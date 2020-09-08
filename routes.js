@@ -462,10 +462,61 @@ module.exports.run = ({ app, user, project } = {}) => {
     });
   });
   
-  app.get("/export/:project", async (req, res) => {
-    let projectinfo = await project.get(req.params.project);
+  app.post("/export", async (req, res) => {
+    let projectinfo = await project.get(req.body.project);
     if ((req.session.loggedin === true) && (req.session.username === projectinfo.owner)) {
+      const octokit = new Octokit({ auth: req.session.access_token });
       
+      let projectname = projectinfo.name;
+      
+      try {
+      
+        let html_buff = new Buffer(req.body.code);
+        let html = html_buff.toString('base64');
+
+        let css_buff = new Buffer(req.body.css);
+        let css = css_buff.toString('base64');
+
+        let js_buff = new Buffer(req.body.js);
+        let js = js_buff.toString('base64');
+
+        let html_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+          owner: req.body.user,
+          repo: req.body.repo,
+          path: "index.html",
+          message: 'index.html file for ' + projectname + " by " + req.session.username,
+          content: html,
+          branch: "glitchypastepen"
+        });
+
+        let css_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+          owner: req.session.username,
+          repo: req.body.repo,
+          path: "style.css",
+          message: 'style.css file for ' + projectname + " by " + req.session.username,
+          content: css,
+          branch: "glitchypastepen"
+        });
+
+        let js_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+          owner: req.session.username,
+          repo: req.body.repo,
+          path: "script.js",
+          message: 'script.js file for ' + projectname + " by " + req.session.username,
+          content: js,
+          branch: "glitchypastepen"
+        });
+        
+        res.send({ status: 200, message: "Exported!" })
+        
+      } catch(e) {
+        
+        console.error(e);
+        
+        res.send({ status: 400, message: "Something went wrong, try again?" });
+      }
+    } else {
+      res.send({ status: 401, message: "Unauthorised!" })
     }
   })
   

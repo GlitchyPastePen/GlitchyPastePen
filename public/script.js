@@ -126,12 +126,37 @@ function deploy() {
     .then(response => response.json())
     .then(data => {
       if (data.status === 200) {
-        document.getElementById("status").innerHTML =
-          'Your project has been successfully deployed <br />at <a href="/p/' +
-          name +
-          '">https://glitchypastepen.glitch.me/p/' +
-          name +
-          "</a>";
+        swal.fire({
+          text: "Your project has been successfully exported!"
+          icon: "success",
+        });
+      } else {
+        swal.fire({
+          text: "Something went wrong, try again?",
+          icon: "error",
+        });
+      }
+      
+    });
+}
+
+function githubexport() {
+  let code = html.getValue();
+  let js2 = js.getValue();
+  let css2 = css.getValue();
+  let name = document.getElementById("project-name").value;
+  let content = { code: code, js: js2, css: css2, name: name };
+
+  fetch("/export", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(content)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 200) {
         swal.fire({
           html: 'Your project has been successfully saved and deployed <br />at <a href="/p/' + name + '">https://glitchypastepen.glitch.me/p/' + name + "</a>",
           icon: "success",
