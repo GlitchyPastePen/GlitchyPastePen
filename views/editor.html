@@ -37,7 +37,7 @@
         top: 100px;
         right: 0;
         bottom: 26px;
-        left: 0;
+        left: 300px;
         z-index: 2;
       }
             /* Dropup Button */
@@ -98,9 +98,19 @@
         z-index: 90;
         padding-top: 5vw;
       }
+      
+      aside {
+        position: absolute;
+        float: left;
+        background-color: white;
+        display: inline-block;
+        width: 300px;
+        top: 100px;
+        bottom: 26px;
+      }
     </style>
   </head>
-  <body style="background-color:#272822;">
+  <body style="background-color:#0F0F0F;">
     
     
     <div id="loader">
@@ -119,17 +129,9 @@
     <header style="border-bottom: 0px solid black !important;background-color: #0F0F0F">
       <span id="status"> </span>
       <button class="deploy" onclick="beautify()" title="Beautify code!">
-<!--         <img
-          src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
-          height="40px"
-        /> -->
         Beautify
       </button>
       <button class="deploy" onclick="deploy();" title="Save code!">
-<!--         <img
-          src="https://img.icons8.com/cotton/100/000000/save.png"
-          height="40px"
-        /> -->
         Save & deploy
       </button>
       <button class="deploy" onclick="simplecopy(editor.getValue())">
@@ -144,16 +146,21 @@
         <a href="" class="owner"></a>
       </p>
     </header>
+    
+    <aside id="filetree">
+      <div id="files">
+        <button class="file">
+          index.html
+        </button>
+      </div>
+    </aside>
+    
     <div id="editor"></div>
     
     <iframe src="https://gpp-debug.glitch.me"> </iframe>
     <div id="settings">
       
     </div>
-    
-<!--     <aside id="preview">
-      Hi
-    </aside> -->
     
     <footer id="editor-footer">
       <span class="left code" onclick="editor.setSession(html);">

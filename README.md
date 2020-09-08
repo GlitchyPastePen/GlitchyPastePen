@@ -44,7 +44,12 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
   <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix%402x.png?1513093958726" alt="remix this" height="33">
 </a>
 
-1. Remix this project.
+1. Remix this project or clone this repo.
+
+```
+git clone https://github.com/khalby786/glitchypastepen.git
+cd glitchypastepen
+```
 
 2. In the `.env` file, create a variable named `SECRET` and give it some value (meant for your session password).
 
@@ -67,6 +72,10 @@ GlitchyPastePen has an online code IDE, which allows you to create a simple stat
 ![](https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F7734c72e-2d9f-430b-9dd6-3355ceabd05c.image.png?v=1591507568690)
 
 8. Fill in all the details according to your wish, but make sure to set callback as `https://PROJECTNAME.glitch.me/login/github/callback`.
+
+```
+npm start
+```
 
 ### Collaborators
 
