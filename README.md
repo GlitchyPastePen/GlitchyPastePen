@@ -86,3 +86,7 @@ npm start
 
 * [RiversideRocks](https://riverside.rocks)
 * [chroventer](https://github.com/chroventer)
+
+---
+
+Status page at https://glitchypastepen.statuspage.io.
