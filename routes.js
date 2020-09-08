@@ -468,6 +468,8 @@ module.exports.run = ({ app, user, project } = {}) => {
     if ((req.session.loggedin === true) && (req.session.username === projectinfo.owner)) {
       const exportkit = new Octokit({ auth: req.session.access_token });
       
+      console.log(req.session.access_token)
+      
       let projectname = projectinfo.name;
       
       try {
@@ -485,7 +487,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           owner: req.body.user,
           repo: req.body.repo,
           path: "index.html",
-          message: 'index.html file for ' + projectname + " by " + req.session.username,
+          message: 'index.html file for ' + projectname + " by " + req.body.user,
           content: html,
           branch: "glitchypastepen"
         });
@@ -494,7 +496,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           owner: req.body.user,
           repo: req.body.repo,
           path: "style.css",
-          message: 'style.css file for ' + projectname + " by " + req.session.username,
+          message: 'style.css file for ' + projectname + " by " + req.body.user,
           content: css,
           branch: "glitchypastepen"
         });
@@ -503,7 +505,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           owner: req.body.user,
           repo: req.body.repo,
           path: "script.js",
-          message: 'script.js file for ' + projectname + " by " + req.session.username,
+          message: 'script.js file for ' + projectname + " by " + req.body.user,
           content: js,
           branch: "glitchypastepen"
         });

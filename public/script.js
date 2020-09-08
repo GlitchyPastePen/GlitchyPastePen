@@ -151,7 +151,7 @@ This will export your project to the 'glitchypastepen' branch of your existing G
 `, "user/repo");
   console.log(userrepo);
   console.log(userrepo.split("/")[0]);
-  console.log(userrepo.split("1")[1]);
+  console.log(userrepo.split("/")[1]);
   let content = { code: code, js: js2, css: css2, name: name, user: userrepo.split("/")[0], repo: userrepo.split("/")[1] };
 
   fetch("/export", {
