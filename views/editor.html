@@ -34,11 +34,12 @@
     <style type="text/css">
       #editor {
         position: absolute;
-        top: 100px;
+        top: 90px;
         right: 0;
         bottom: 26px;
         left: 300px;
         z-index: 2;
+        border-top: 1px solid white;
       }
             /* Dropup Button */
       .dropbtn {
@@ -102,11 +103,12 @@
       aside {
         position: absolute;
         float: left;
-        background-color: white;
         display: inline-block;
-        width: 300px;
-        top: 100px;
+        width: 299px;
+        top: 90px;
         bottom: 26px;
+        border-right: 1px solid white;
+        border-top: 1px solid white;
       }
     </style>
   </head>
@@ -148,6 +150,7 @@
     </header>
     
     <aside id="filetree">
+      <span id="files-label"><i>PROJECT FILES</i></span>
       <div id="files">
         <button class="file">
           index.html

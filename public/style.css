@@ -490,3 +490,27 @@ kbd {
 #preview-link:hover {
   color: black;
 }
+
+#files {
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+#filetree {
+  padding-top: 30px;
+}
+
+.file {
+  width: 100%;
+  padding: 3px 0px !important;
+  border-radius: 3px;
+  text-align: left;
+  background-color: #0F0F0F;
+  color: white;
+  border: none !important;
+}
+
+#files-label {
+  color: white;
+  margin-left: 20px;
+}
