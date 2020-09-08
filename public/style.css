@@ -1,6 +1,6 @@
 @import url("https://rsms.me/inter/inter.css");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=IBM+Plex+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=IBM+Plex+Mono&display=swap");
 
 body {
   --fore: black;
@@ -112,7 +112,7 @@ header {
 }
 
 .submit {
-  margin-top: 20px;  
+  margin-top: 20px;
   background-color: var(--background);
   padding-top: 10px;
   padding-right: 20px;
@@ -168,17 +168,17 @@ pre {
 
 #deploy {
   border: none;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   display: inline-block;
   float: right;
   cursor: pointer;
 }
 
 .deploy {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   display: inline-block;
   float: right;
-  cursor: pointer; 
+  cursor: pointer;
   border: 1px solid white;
   margin-right: 20px;
   font-size: 16px;
@@ -302,25 +302,28 @@ a {
 }
 
 button {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid white;
+  margin-right: 20px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  font-family: "Inter", sans-serif;
+  transition: 300ms !important;
+  margin-bottom: 10px;
   padding-top: 10px;
   padding-right: 20px;
   padding-bottom: 10px;
   padding-left: 20px;
-  color: black;
-  border: 1px solid black;
   border-radius: 5px;
-  transition: 200ms linear;
-  cursor: pointer;
-  font-family: "IBM Plex Mono", monospace;
-  margin-bottom: 10px;
-  font-size: 15px;
 }
 
 button:hover {
-  background-color: yellow;
-  color: black;
-  transition: 200ms linear;
+  background-color: white !important;
+  color: black !important;
+  transition: 300ms !important;
 }
 
 #option {
@@ -341,10 +344,10 @@ button:hover {
 #editor-footer {
   background-color: #5500ff;
   width: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   z-index: 10;
   position: absolute;
-  left:  0px;
+  left: 0px;
   right: 0px;
   bottom: 0px;
   color: white;
@@ -387,7 +390,6 @@ button:hover {
   --hover: #8547ff;
   background-color: var(--hover);
 }
-
 
 .code {
   font-family: "Fira Mono", "IBM Plex Mono", monospace;
@@ -554,20 +556,20 @@ kbd {
 }
 
 .donutSpinner {
-    display: inline-block;
-    border: 4px solid hsl(222, 100%, 95%);;
-    border-left-color: hsl(243, 80%, 62%);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: donut-spin 1.2s linear infinite;
+  display: inline-block;
+  border: 4px solid hsl(222, 100%, 95%);
+  border-left-color: hsl(243, 80%, 62%);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: donut-spin 1.2s linear infinite;
 }
 
 @keyframes donut-spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
