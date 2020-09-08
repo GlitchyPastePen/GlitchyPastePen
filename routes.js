@@ -69,15 +69,20 @@ module.exports.run = ({ app, user, project } = {}) => {
     console.log(access_token);
     const login_user = await fetchGitHubUser(access_token);
     if (login_user) {
-      req.session.access_token = access_token;
-      req.session.github = login_user;
-      req.session.githubId = login_user.id;
       req.session.username = req.session.github.login;
       if (req.session.username == "Assfugil") {
         console.error(">> Assfugil has attempted to log in!");
-        res.send("You have been banned!");
+        res.redirect("https://google.com");
         return;
       }
+      if (req.session.username == "undefined") {
+        console.error(">> Undefined has attempted to log in!");
+        res.redirect("https://google.com");
+        return;
+      }
+      req.session.access_token = access_token;
+      req.session.github = login_user;
+      req.session.githubId = login_user.id;
       req.session.email = req.session.github.email;
       req.session.loggedin = true;
       console.error(">> " + req.session.username + " has logged in!")
@@ -378,6 +383,10 @@ module.exports.run = ({ app, user, project } = {}) => {
   });
 
   app.get("/u/:user", async (req, res) => {
+    if (req.params.user === "undefined") {
+      res.redirect("/logout");
+      return;
+    }
     if (!(await user.has(req.params.user))) {
       res.send("User not found!");
       return;
