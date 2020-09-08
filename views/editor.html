@@ -31,7 +31,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
     <script src="https://kit.fontawesome.com/98f54f160f.js" crossorigin="anonymous"></script>
-    <script src="//www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript">
+        var recaptchaCallback = function(token) {
+            alert(token);
+        };
+    </script>
     <style type="text/css">
       #editor {
         position: absolute;
@@ -126,6 +130,7 @@
           <i>Tip!</i><br>
           Press <kbd>Ctrl</kbd> + <kbd>,</kbd> for editor preferences.
         </p>
+        <div class='g-recaptcha' data-sitekey='6LfFR8kZAAAAAHWfBiRSp5d5s3aCsunFoDGNAmKk' data-callback='recaptchaCallback' data-size='invisible'></div>
       </center>
     </div>
     
@@ -212,6 +217,17 @@
     <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="//www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript">
+      var ticker = setInterval(function (){
+        try {
+          grecaptcha.execute();
+          clearInterval(ticker);
+        } catch(e) {
+          console.error(e);
+        }
+      }, 100);
+    </script>
   <!--<script>
     // autosave/deploy
   setInterval(function(){ save() }, 3000);
