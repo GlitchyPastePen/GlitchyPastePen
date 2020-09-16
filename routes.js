@@ -31,7 +31,7 @@ module.exports.run = ({ app, user, project } = {}) => {
 
   app.get("/login/github", (req, res) => {
     res.redirect(
-      `https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&scopes=read:user%20repo`
+      `https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&scopes=read%3Auser%20repo`
     );
   });
 
