@@ -475,7 +475,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     let projectinfo = await project.get(req.body.name);
     console.log(req.body)
     if ((req.session.loggedin === true) && (req.session.username === projectinfo.owner)) {
-      const exportkit = new Octokit({ auth: req.session.access_token });
+      // const exportkit = new Octokit({ auth: process.env.GITHUB_ACCESS_TOKEN });
       
       console.log(req.session.access_token)
       
@@ -492,31 +492,67 @@ module.exports.run = ({ app, user, project } = {}) => {
         let js_buff = new Buffer(req.body.js);
         let js = js_buff.toString('base64');
 
-        let html_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-          owner: req.body.user,
-          repo: req.body.repo,
-          path: "index.html",
-          message: 'index.html file for ' + projectname + " by " + req.body.user,
-          content: html,
-          branch: "glitchypastepen"
-        });
+//         let html_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+//           owner: req.body.user,
+//           repo: req.body.repo,
+//           path: "index.html",
+//           message: 'index.html file for ' + projectname + " by " + req.body.user,
+//           content: html,
+//           branch: "master"
+//         });
 
-        let css_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-          owner: req.body.user,
-          repo: req.body.repo,
-          path: "style.css",
-          message: 'style.css file for ' + projectname + " by " + req.body.user,
-          content: css,
-          branch: "glitchypastepen"
-        });
+//         let css_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+//           owner: req.body.user,
+//           repo: req.body.repo,
+//           path: "style.css",
+//           message: 'style.css file for ' + projectname + " by " + req.body.user,
+//           content: css,
+//           branch: "glitchypastepen"
+//         });
 
-        let js_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-          owner: req.body.user,
-          repo: req.body.repo,
-          path: "script.js",
-          message: 'script.js file for ' + projectname + " by " + req.body.user,
-          content: js,
-          branch: "glitchypastepen"
+//         let js_update = await exportkit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+//           owner: req.body.user,
+//           repo: req.body.repo,
+//           path: "script.js",
+//           message: 'script.js file for ' + projectname + " by " + req.body.user,
+//           content: js,
+//           branch: "glitchypastepen"
+//         });
+        
+        let html_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/{path}", {
+          method: 'POST',
+          body: JSON.stringify({
+            message: 'index.html file for ' + projectname + " by " + req.body.user,
+            content: html,
+            branch: "glitchypastepen"
+          }),
+          headers: {
+            Authorization: "token " + req.session.access_token
+          }
+        });
+        
+        let css_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/{path}", {
+          method: 'POST',
+          body: JSON.stringify({
+            message: 'index.html file for ' + projectname + " by " + req.body.user,
+            content: html,
+            branch: "glitchypastepen"
+          }),
+          headers: {
+            Authorization: "token " + req.session.access_token
+          }
+        });
+        
+        let js_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/{path}", {
+          method: 'POST',
+          body: JSON.stringify({
+            message: 'index.html file for ' + projectname + " by " + req.body.user,
+            content: html,
+            branch: "glitchypastepen"
+          }),
+          headers: {
+            Authorization: "token " + req.session.access_token
+          }
         });
         
         res.send({ status: 200, message: "Exported!" })
