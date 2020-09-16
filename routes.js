@@ -519,8 +519,22 @@ module.exports.run = ({ app, user, project } = {}) => {
 //           branch: "glitchypastepen"
 //         });
         
-        let html_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/{path}", {
-          method: 'POST',
+        let css_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/style.css", {
+          method: 'PUT',
+          body: JSON.stringify({
+            message: 'style.css file for ' + projectname + " by " + req.body.user,
+            content: css,
+            branch: "glitchypastepen"
+          }),
+          headers: {
+            Authorization: "token " + req.session.access_token
+          }
+        });
+        
+        console.log(await css_update.json());
+        
+        let html_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/index.html", {
+          method: 'PUT',
           body: JSON.stringify({
             message: 'index.html file for ' + projectname + " by " + req.body.user,
             content: html,
@@ -531,11 +545,13 @@ module.exports.run = ({ app, user, project } = {}) => {
           }
         });
         
-        let css_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/{path}", {
-          method: 'POST',
+        console.log(await html_update.json());
+        
+        let js_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/script.js", {
+          method: 'PUT',
           body: JSON.stringify({
-            message: 'index.html file for ' + projectname + " by " + req.body.user,
-            content: html,
+            message: 'script.js file for ' + projectname + " by " + req.body.user,
+            content: js,
             branch: "glitchypastepen"
           }),
           headers: {
@@ -543,17 +559,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           }
         });
         
-        let js_update = await fetch("https://api.github.com/repos/" + req.body.user + "/" + req.body.repo + "/contents/{path}", {
-          method: 'POST',
-          body: JSON.stringify({
-            message: 'index.html file for ' + projectname + " by " + req.body.user,
-            content: html,
-            branch: "glitchypastepen"
-          }),
-          headers: {
-            Authorization: "token " + req.session.access_token
-          }
-        });
+        console.log(await js_update.json());
         
         res.send({ status: 200, message: "Exported!" })
         
