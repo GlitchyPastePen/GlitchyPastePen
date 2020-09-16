@@ -505,11 +505,11 @@ kbd {
 .file {
   width: 100%;
   padding: 3px 0px !important;
-  border-radius: 3px;
+  border-radius: 0px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-top-left-radius: 9px;
-  border-bottom-left-radius: 9px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   text-align: left;
   background-color: transparent;
   color: white;
@@ -572,4 +572,33 @@ kbd {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.pulseAnim {
+    display: block;
+    padding: 16px;
+    border-radius: 50%;
+    background:hsl(243, 80%, 62%);
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(88, 120, 243, 0.4);
+    animation: pulseAnim 2s infinite;
+}
+
+@keyframes pulseAnim {
+    0% {
+        box-shadow: 0 0 0 0 rgba(88, 120, 243, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(88, 120, 243, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(88, 120, 243, 0);
+    }
+}
+
+.pulseAnim {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
 }
