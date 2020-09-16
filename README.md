@@ -7,6 +7,12 @@ Create simple front-end projects (mainly with HTML, CSS and JS) using an online 
 
 GlitchyPastePen has an online code IDE, which allows you to create a simple static site and host them immediately. 
 
+GlitchyPastePen: https://glitchypastepen.glitch.me/
+GitHub Repository: https://github.com/GlitchyPastePen/GlitchyPastePen
+Discord Server Invite: https://discord.gg/EzpVwR3
+Status: https://glitchypastepen.statuspage.io
+Forum: https://glitchypastepen.flarum.cloud
+
 ### Features
 
 * Collaborate live with friends and other users (**temporarily disabled**)
