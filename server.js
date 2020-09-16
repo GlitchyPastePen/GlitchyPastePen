@@ -16,8 +16,8 @@ const socket = io.listen(server);
 
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.json());
+app.use(bodyParser.json({ limit: "200mb" }));
+// app.use(express.json());
 app.use(require("express-status-monitor")());
 app.use(cors());
 app.use("/public", express.static("public"));

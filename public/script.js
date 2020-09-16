@@ -110,6 +110,8 @@ fetch("/projectinfo/" + projectname)
 
 // Save your code and deploy!
 function deploy() {
+  document.querySelector(".pulseAnim").style.display = "inline-block";
+  
   let code = html.getValue();
   let js2 = js.getValue();
   let css2 = css.getValue();
@@ -125,6 +127,7 @@ function deploy() {
   })
     .then(response => response.json())
     .then(data => {
+      document.querySelector(".pulseAnim").style.display = "none";
       if (data.status === 200) {
         swal.fire({
           html: 'Your project has been successfully saved and deployed at <a href="/p/' + name + '">https://glitchypastepen.glitch.me/p/' + name + "</a>",
