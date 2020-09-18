@@ -128,7 +128,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         projectname = generate({ words: 4, alliterative: true }).dashed;
       }
       
-      let html = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      let html = await octokit.request('PUT /repos/:owner/:repo/contents/:path', {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/index.html",
@@ -136,7 +136,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         content: ''
       });
       
-      let css = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      let css = await octokit.request('PUT /repos/:owner/:repo/contents/:path', {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/style.css",
@@ -144,7 +144,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         content: ''
       });
       
-      let js = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      let js = await octokit.request('PUT /repos/:owner/:repo/contents/:path', {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/script.js",
@@ -206,7 +206,7 @@ module.exports.run = ({ app, user, project } = {}) => {
       let js_buff = new Buffer(request.body.js);
       let js = js_buff.toString('base64');
       
-      let html_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      let html_update = await octokit.request('PUT /repos/:owner/:repo/contents/:path', {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/index.html",
@@ -215,7 +215,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         sha: projectinfo.html_sha
       });
       
-      let css_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      let css_update = await octokit.request('PUT /repos/:owner/:repo/contents/:path', {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/style.css",
@@ -224,7 +224,7 @@ module.exports.run = ({ app, user, project } = {}) => {
         sha: projectinfo.css_sha
       });
       
-      let js_update = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+      let js_update = await octokit.request('PUT /repos/:owner/:repo/contents/:path', {
         owner: 'khalby786',
         repo: 'GlitchyPastePen_ProjectFiles',
         path: projectname + "/script.js",
@@ -256,7 +256,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     // let js = fs.readFileSync(`projects/${projectname}/script.js`, "utf-8");
     
     
-    let html = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    let html = await octokit.request('GET /repos/:owner/:repo/contents/:path', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
       path: req.params.projectname + "/index.html"
@@ -265,7 +265,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     let buff = new Buffer(html.data.content, 'base64');
     let html_text = buff.toString('ascii');
     
-    let css = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    let css = await octokit.request('GET /repos/:owner/:repo/contents/:path', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
       path: req.params.projectname + "/style.css"
@@ -274,7 +274,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     let css_buff = new Buffer(css.data.content, 'base64');
     let css_text = css_buff.toString('ascii');
     
-    let js = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    let js = await octokit.request('GET /repos/:owner/:repo/contents/:path', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
       path: req.params.projectname + "/script.js"
@@ -289,7 +289,7 @@ module.exports.run = ({ app, user, project } = {}) => {
   app.get("/p/:project", async function(req, res) {
     let projectname = req.params.project;
     
-    let html = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    let html = await octokit.request('GET /repos/:owner/:repo/contents/:path', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
       path: req.params.project + "/index.html"
@@ -303,7 +303,7 @@ module.exports.run = ({ app, user, project } = {}) => {
 
   app.get("/p/:project/style.css", async function(req, res) {
     let projectname = req.params.project;
-    let css = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    let css = await octokit.request('GET /repos/:owner/:repo/contents/:path', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
       path: req.params.project + "/style.css"
@@ -318,7 +318,7 @@ module.exports.run = ({ app, user, project } = {}) => {
   app.get("/p/:project/script.js", async function(req, res) {
     let projectname = req.params.project;
     
-    let js = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    let js = await octokit.request('GET /repos/:owner/:repo/contents/:path', {
       owner: 'khalby786',
       repo: 'GlitchyPastePen_ProjectFiles',
       path: req.params.project + "/script.js"
@@ -336,7 +336,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     console.log(project2);
     if (req.session.loggedin && req.session.username === project2.owner) {
       try {
-        await octokit.request('DELETE /repos/{owner}/{repo}/contents/{path}', {
+        await octokit.request('DELETE /repos/:owner/{repo}/contents/{path}', {
           owner: 'khalby786',
           repo: 'GlitchyPastePen_ProjectFiles',
           path: project2.name + "/index.html",
