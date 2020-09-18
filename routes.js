@@ -294,6 +294,8 @@ module.exports.run = ({ app, user, project } = {}) => {
       repo: 'GlitchyPastePen_ProjectFiles',
       path: req.params.project + "/index.html"
     });
+    
+    console.log(html)
         
     let buff = new Buffer(html.data.content, 'base64');
     let text = buff.toString('ascii');
@@ -336,7 +338,7 @@ module.exports.run = ({ app, user, project } = {}) => {
     console.log(project2);
     if (req.session.loggedin && req.session.username === project2.owner) {
       try {
-        await octokit.request('DELETE /repos/:owner/{repo}/contents/{path}', {
+        await octokit.request('DELETE /repos/:owner/:repo/contents/:path', {
           owner: 'khalby786',
           repo: 'GlitchyPastePen_ProjectFiles',
           path: project2.name + "/index.html",
@@ -344,7 +346,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           sha: project2.html_sha
         });
         
-        await octokit.request('DELETE /repos/{owner}/{repo}/contents/{path}', {
+        await octokit.request('DELETE /repos/:owner/:repo/contents/:path', {
           owner: 'khalby786',
           repo: 'GlitchyPastePen_ProjectFiles',
           path: project2.name + "/style.css",
@@ -352,7 +354,7 @@ module.exports.run = ({ app, user, project } = {}) => {
           sha: project2.css_sha
         });
         
-        await octokit.request('DELETE /repos/{owner}/{repo}/contents/{path}', {
+        await octokit.request('DELETE /repos/:owner/:repo/contents/:path', {
           owner: 'khalby786',
           repo: 'GlitchyPastePen_ProjectFiles',
           path: project2.name + "/script.js",
