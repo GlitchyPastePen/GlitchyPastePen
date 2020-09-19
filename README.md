@@ -4,7 +4,7 @@
   
   # GlitchyPastePen
   
-  ![GitHub stars](https://img.shields.io/github/stars/GlitchyPastePen/GlitchyPastePen)![GitHub forks](https://img.shields.io/github/forks/GlitchyPastePen/GlitchyPastePen)![GitHub issues](https://img.shields.io/github/issues/GlitchyPastePen/GlitchyPastePen)
+  ![GitHub stars](https://img.shields.io/github/stars/GlitchyPastePen/GlitchyPastePen) ![GitHub forks](https://img.shields.io/github/forks/GlitchyPastePen/GlitchyPastePen) ![GitHub issues](https://img.shields.io/github/issues/GlitchyPastePen/GlitchyPastePen)
   
   Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting.
   
