@@ -16,15 +16,13 @@
 
 ---
 
-Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting, much like CodePen.
-
 GlitchyPastePen has an online code IDE, which allows you to create a simple static site and host them immediately. 
 
-GlitchyPastePen: https://glitchypastepen.glitch.me/
-GitHub Repository: https://github.com/GlitchyPastePen/GlitchyPastePen
-Discord Server Invite: https://discord.gg/EzpVwR3
-Status: https://glitchypastepen.statuspage.io
-Forum: https://glitchypastepen.flarum.cloud
+- GlitchyPastePen: https://glitchypastepen.glitch.me/
+- GitHub Repository: https://github.com/GlitchyPastePen/GlitchyPastePen
+- Discord Server Invite: https://discord.gg/EzpVwR3
+- Status: https://glitchypastepen.statuspage.io
+- Forum: https://glitchypastepen.flarum.cloud
 
 ### Features
 
@@ -105,6 +103,3 @@ npm start
 * [RiversideRocks](https://riverside.rocks)
 * [chroventer](https://github.com/chroventer)
 
----
-
-Status page at https://glitchypastepen.statuspage.io.
