@@ -1,11 +1,15 @@
 <div align="center">
+  
   ![](https://cdn.khaleelgibran.com/gpplogo.png)
   
   # GlitchyPastePen
   
   Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting.
   
-  <a href="https://glitchypastepen.glitch.me">View Demo</a> · Report Bug · Request Feature
+  <a href="https://glitchypastepen.glitch.me">View Demo</a> · <a href="https://github.com/GlitchyPastePen/GlitchyPastePen/issues">Report Bug</a> · <a href="https://glitchypastepen.flarum.cloud">Request Feature</a>
+  
+  Loved the project? Please consider <a href="https://buymeacoffee.com/khaleelgibran">donating</a> to help it improve!
+  
 </div>
 
 Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting, much like CodePen.
