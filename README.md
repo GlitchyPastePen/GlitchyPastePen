@@ -1,7 +1,12 @@
-
-![](https://cdn.glitch.com/a1686874-cbbf-4ca9-b412-cd53a73b9ceb%2Fglitchypastepen.png?v=1587918769653)
-
-# GlitchyPastePen BETA
+<div align="center">
+  ![](https://cdn.khaleelgibran.com/gpplogo.png)
+  
+  # GlitchyPastePen
+  
+  Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting.
+  
+  <a href="https://glitchypastepen.glitch.me">View Demo</a> · Report Bug · Request Feature
+</div>
 
 Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting, much like CodePen.
 
