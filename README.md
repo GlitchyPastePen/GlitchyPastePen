@@ -4,6 +4,8 @@
   
   # GlitchyPastePen
   
+  ![GitHub stars](https://img.shields.io/github/stars/GlitchyPastePen/GlitchyPastePen)![GitHub forks](https://img.shields.io/github/forks/GlitchyPastePen/GlitchyPastePen)![GitHub issues](https://img.shields.io/github/issues/GlitchyPastePen/GlitchyPastePen)
+  
   Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting.
   
   <a href="https://glitchypastepen.glitch.me">View Demo</a> · <a href="https://github.com/GlitchyPastePen/GlitchyPastePen/issues">Report Bug</a> · <a href="https://glitchypastepen.flarum.cloud">Request Feature</a>
@@ -11,6 +13,8 @@
   Loved the project? Please consider <a href="https://buymeacoffee.com/khaleelgibran">donating</a> to help it improve!
   
 </div>
+
+---
 
 Create simple front-end projects (mainly with HTML, CSS and JS) using an online code editor with instant hosting, much like CodePen.
 
